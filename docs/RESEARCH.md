@@ -15,7 +15,8 @@
 | 9 | Skip unlikely redundant arithmetic candidate coding | Archive size unchanged; encode 5.79% faster |
 | 10 | Backward match extension and scoring simplification | 66.80 MB; encode 3.90% faster |
 | 12 | Early regional-selection sampling | 66.80 MB unchanged; encode 5.13% faster |
-| 15 | Avoid redundant prediction and Huffman passes | 66.80 MB unchanged, 5.30% faster; approved |\n| **16** | **Operation-conditioned literal-run/copy-length entropy streams** | **66,519,205 B Silesia, 0.42% smaller; 4.21% faster encode, 3.31% faster decode, ten-run paired medians. Decoder now accepts new block modes; old decoder cannot read those new blocks.** |
+| 15 | Avoid redundant prediction and Huffman passes | 66.80 MB unchanged, 5.30% faster; approved |
+| **16** | **Operation-conditioned literal-run/copy-length entropy streams** | **66,519,205 B Silesia, 0.42% smaller; 4.21% faster encode, 3.31% faster decode, ten-run paired medians. Decoder now accepts new block modes; old decoder cannot read those new blocks.** |
 
 Some releases not numbered above were performance checks without promotion. Exact historical run methods vary; compare only matched paired runs when citing improvements.
 
@@ -32,6 +33,10 @@ Some releases not numbered above were performance checks without promotion. Exac
 
 See `docs/research/attempted-ideas.md` for the extensive **actual historical prototype inventory** covering algebra, parity, hyperedges, geometry, number systems, recurrences, model sharing and latent masks. Synthetic 97–99% reductions and transform-plus-Zstd results are *not* evidence of standalone natural-file compression. That inventory is a map of prior implementations and limits, not a theorem blacklist.
 
+| 17 | Raw-source entropy-adaptive match scoring: 46,666 B smaller (0.070%) but much slower in one full-corpus screen; small-count arithmetic probability lookup: identical archives without speed gain. Neither passed screening; **not** ten-run medians. | Reject |
+
 ## Next investigations
 
-Round 16 demonstrates useful joint token/operation structure without deeper searching. Next investigate a unified, statistically cost-aware match/length/distance model implemented in a single inexpensive pass, avoiding speculative extra stream partitions or costly extra grammar/matching passes. Run cheap rejection screens first, then ten-run medians against immutable approved source. Record both positive and negative findings.
+Round 16 demonstrates useful joint token/operation structure without deeper searching. Round 17 disconfirmed raw input zero-order entropy as a cheap reliable proxy for post-match literal cost, and rejected a 512-count triangular arithmetic probability table due to no measured benefit. Full report: `docs/reports/2026-10-18-round17.md`.
+
+Next investigate a unified, statistically cost-aware match/length/distance model implemented in a single inexpensive pass, avoiding speculative extra stream partitions or costly extra grammar/matching passes. Run cheap rejection screens first, then ten-run medians against immutable approved source. Record both positive and negative findings.

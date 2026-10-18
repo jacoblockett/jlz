@@ -1,6 +1,6 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 16 approved and imported into the canonical GitHub source. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
+**Last updated:** 2026-10-18. **Status:** Round 17 screening research rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
 
 ## Accepted performance
 
@@ -14,7 +14,10 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 
 ## Next research direction
 
-Seek a genuinely **unified and economical match/token/entropy cost model**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
+Round 17 tested zero-order source-entropy calibrated matching (46,666 B smaller, but a slower single-run screen) and a small-count probability lookup (byte-identical archives, no speed benefit). Both were rejected *before* ten-run acceptance benchmarking. Canonical details: `docs/reports/2026-10-18-round17.md`. Do not misreport screening times as medians or promote either prototype.
+
+
+Seek a genuinely **unified and economical match/token/entropy cost model derived from actual emitted token streams**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
 
 ## Warnings and handoff
 
