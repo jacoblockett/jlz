@@ -12,9 +12,9 @@ go build -o jlz .
 
 Custom output paths are supported as a third argument. JLZ writes `JLZ1` containers; older MDN/MDC containers require their respective historical decoders. This remains a bounded-memory research prototype with a 512 MiB input/output limit, not a hardened service.
 
-**Current accepted baseline:** Round 15 (October 18, 2026). Complete 12-file Silesia corpus, 211,938,580 input bytes, 66,797,408 compressed bytes. Median encoding time 6.942 s, based on ten paired in-memory full-corpus runs versus Round 12 at 7.331 s. Historical Zstd-3 total: 66,216,569 bytes; XZ-6: 49,233,340 bytes. External historical CLI timing is **not comparable** to the JLZ in-memory timing. See [canonical report](docs/reports/2026-10-18-round15.md).
+**Current accepted baseline:** Round 16 (October 18, 2026). Complete 12-file Silesia corpus, 211,938,580 input bytes, **66,519,205 compressed bytes**. Paired median of 10 runs: **13.290 s encoding** and **5.311 s decoding** versus Round 15's 13.874 s and 5.493 s on the same test host. Historical Zstd-3 size: 66,216,569 bytes; XZ-6: 49,233,340 bytes. External historical CLI timings are **not comparable** to the JLZ in-memory timings. See [canonical report](docs/reports/2026-10-18-round16.md).
 
-**New agent? Read [AGENTS.md](AGENTS.md), then [current state](docs/STATE.md) before changing code.** The accepted source is on `main`. Keep experimental work in a branch until verified. [Research index](docs/RESEARCH.md) records prior approaches and decisions; [engineering contract](docs/ENGINEERING.md) records immutable constraints.
+**New agent? Read [AGENTS.md](AGENTS.md), then [current state](docs/STATE.md) before changing code.** The accepted source is on `main`. Keep unapproved experiments in disposable local directories; persistent edits land directly on `main`. [Research index](docs/RESEARCH.md) records prior approaches and decisions; [engineering contract](docs/ENGINEERING.md) records immutable constraints.
 
 ## Releases
 

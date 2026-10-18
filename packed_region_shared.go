@@ -14,13 +14,15 @@ func packedRegionVariantsShared(input []byte, tokens []byte) (byte, []byte, erro
 	}
 	var head bytes.Buffer
 	putVar(&head, uint64(st.ncommands))
-	for i, part := range [][]byte{st.op, st.lengths, st.distances, st.transforms} {
-		if i == 2 {
-			head.Write(packVarintStream(part))
-		} else {
-			head.Write(packStream(part))
-		}
-	}
+	// Pack unchanged token columns once, independently of which length model wins.
+	packedOp := packStream(st.op)
+	packedLengths := packStream(st.lengths)
+	packedDistances := packVarintStream(st.distances)
+	packedTransforms := packStream(st.transforms)
+	head.Write(packedOp)
+	head.Write(packedLengths)
+	head.Write(packedDistances)
+	head.Write(packedTransforms)
 	packLiterals := func(lit []byte) []byte {
 		if len(lit)*4 > len(input)*3 {
 			return packStream(lit)
@@ -32,6 +34,16 @@ func packedRegionVariantsShared(input []byte, tokens []byte) (byte, []byte, erro
 	selected = append(selected, head.Bytes()...)
 	selected = append(selected, p0...)
 	mode := blockMatchPacked
+	// A second way to serialize the same token sequence, with separate
+	// Huffman models for literal and reference lengths. Choose only if the
+	// complete stream representation is actually smaller.
+	if splitHead, ok := packSplitLengthHeader(st, packedOp, packedDistances, packedTransforms); ok && len(splitHead) < head.Len() {
+		head.Reset()
+		head.Write(splitHead)
+		selected = append(selected[:0], head.Bytes()...)
+		selected = append(selected, p0...)
+		mode = blockMatchPackedSplit
+	}
 	residual, err := matchedLiteralResiduals(tokens, input)
 	if err != nil {
 		return 0, nil, err
@@ -49,7 +61,11 @@ func packedRegionVariantsShared(input []byte, tokens []byte) (byte, []byte, erro
 	if len(p1) < len(p0) {
 		selected = append(selected[:0], head.Bytes()...)
 		selected = append(selected, p1...)
-		mode = blockMatchPackedPred
+		if mode == blockMatchPackedSplit {
+			mode = blockMatchPackedSplitPred
+		} else {
+			mode = blockMatchPackedPred
+		}
 	}
 	return mode, selected, nil
 }

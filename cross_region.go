@@ -10,7 +10,11 @@ import (
 )
 
 const modeMixedCross byte = 17
-const blockCrossPacked byte = 9
+const (
+	blockCrossPacked          byte = 9
+	blockMatchPackedSplit     byte = 10
+	blockMatchPackedSplitPred byte = 11
+)
 const crossHistorySize = 128 * 1024
 
 type crossBlock struct {
@@ -47,7 +51,7 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 		if size == 0 || size > stage3BlockSize || size > n-produced || plen > uint64(r.Len()) || plen > size*8+1024*1024 || (size < stage3BlockSize && size < n-produced) {
 			return nil, errors.New("cross block bounds")
 		}
-		if mode != stage3Raw && mode != blockCrossPacked && (mode == blockOldDictionary || mode > blockMatchPackedPred) {
+		if mode != stage3Raw && mode != blockCrossPacked && (mode == blockOldDictionary || mode > blockMatchPackedSplitPred) {
 			return nil, errors.New("cross block mode")
 		}
 		if mode == stage3Raw && plen != size {

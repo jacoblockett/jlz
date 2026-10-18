@@ -1,27 +1,28 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Git policy:** all persistent edits directly on `main`; ephemeral `jls-test/*` trigger branches only. **Status:** Repository migration to canonical source and JLS-compatible delivery workflow. **Approved source:** JLZ Round 15. **No compression experiment is authorized as a replacement beyond Round 15.**
+**Last updated:** 2026-10-18. **Status:** Round 16 approved and imported into the canonical GitHub source. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
 
 ## Accepted performance
 
-Silesia 12 files, 211,938,580 original bytes. Round 15: **66,797,408 archive bytes**, **6.942 s median encode time** (ten paired in-memory corpus runs). Round 12: same bytes, 7.331 s paired median in that comparison. Historical external reference bytes: Zstd-3 66,216,569; XZ-6 49,233,340. Their historical CLI times, 1.256 s and 116.989 s respectively, are not controlled comparisons against JLZ timings.
+Complete Silesia corpus: 12 files, 211,938,580 original bytes. Current Round 16: **66,519,205 total archive bytes** versus Round 15 **66,797,408**. Ten paired in-memory full-corpus runs on the same test host: encoding **13.290 s vs 13.874 s** (4.21% faster), decoding **5.311 s vs 5.493 s** (3.31% faster). Historical external archive totals: Zstd-3 **66,216,569**; XZ-6 **49,233,340**. Historical CLI timings are not directly comparable to current JLZ in-memory medians. The complete benchmark and raw paired run records are in `docs/reports/2026-10-18-round16.md` and adjacent CSV files.
 
-## Architecture as shipped
+## Shipped architecture
 
-Single CLI encoder/decoder in Go, native entropy coding, bounded mathematical match and exact-copy processing, grouped regions with independent decode groups, adaptive worker selection based on usable CPUs, logarithmic distance slots, matching heuristics, and automatically chosen representations. Reconstruct original bytes exactly. `JLZ1` container with decoder compatibility rules documented in source tests. Build remains pure Go, no dependencies beyond stdlib.
+One fixed, native Go lossless compressor; `compress` and `decompress` only, no optional levels. Grouped 256 KiB regions with bounded 128 KiB history and independent parallel decode groups. Exact, XOR, and modular-add matches; adaptive worker limits from CPU availability; logarithmic distance slots; native entropy coding. Round 16 adds automatically selected operation-conditioned lengths: literal-run varints and copy varints use separate compressed streams when smaller. No external DEFLATE, Zstd, XZ, Brotli, or LZMA backends.
 
-## Immediate research direction
+**Compatibility:** Updated Round 16 decoder reads prior JLZ1 archives. Older JLZ decoders cannot read Round 16 archives containing new split-length block types. This is documented and tested; keep all new archive interpretations explicit.
 
-Seek a unified match/token/entropy architecture that exposes larger real-file redundancy at acceptable CPU cost, not deeper versions of the same costly matcher. Any new idea begins in an isolated local experiment (never a persistent Git branch); all repository edits land directly on `main` with screening on full representative files, then ten paired whole-corpus runs if promising. Examine possible token-stream entropy modeling improvements without duplicating full coding passes.
+## Next research direction
 
-## Stop signs / pitfalls
+Seek a genuinely **unified and economical match/token/entropy cost model**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
 
-- DEFLATE contamination invalidated historical MDC claims. See `docs/research/attempted-ideas.md`.
-- Round 11 deep search saved 0.88% bytes but was 11.01% slower, rejected.
-- Round 13 sparse history saved 0.63% but was 5.75% slower, rejected.
-- Round 14 byte-pair grammar saved 0.12% but was about 10% slower in screening and had a unit-test mismatch, rejected.
-- Round 15 skipped redundant coding passes and achieved 5.30% speed improvement with byte-identical archives. This is the current accepted result.
+## Warnings and handoff
 
-## Handoff checklist
+- Historical MDC benchmarks were affected by DEFLATE; never claim transform-plus-external-codec success as standalone JLZ.
+- Round 11 eight-candidate matching: 0.88% smaller but 11.01% slower. Rejected.
+- Round 13 sparse long-range matching: 0.63% smaller but 5.75% slower. Rejected.
+- Round 14 literal byte-pair grammar: 0.12% smaller but roughly 10% slower in screening. Rejected.
+- Round 15 conditional skipping of redundant coding passes: 5.30% faster with unchanged archive bytes. Accepted.
+- Round 16 operation-conditioned length encoding: 0.42% smaller, 4.21% faster encoding and 3.31% faster decoding. Accepted with backwards-decoder incompatibility noted.
 
-Before ending work, amend the current state, log each experiment in a dated immutable report and update the research index. Keep benchmark methods and raw run records under `docs/reports/` (text/CSV), never compiled binaries. In the user-facing summary, clearly distinguish screening from completed ten-run results. No research corpus redistribution without rights to do so.
+Before ending any experiment, canonicalize reports and raw results in `docs/reports/`, update this file and `docs/RESEARCH.md`, and preserve previous approved benchmarks. Follow YAGNI, comment non-obvious intent and invariants, and never commit executables or redistribute copyrighted corpora.

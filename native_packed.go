@@ -233,6 +233,13 @@ func decodeMatchPacked(r *bytes.Reader, n uint64, matched bool) ([]byte, error) 
 }
 
 func decodeMatchPackedHistory(r *bytes.Reader, n uint64, matched bool, history []byte) ([]byte, error) {
+	return decodePackedWithLengthMode(r, n, matched, history, false)
+}
+
+// The split representation shares the same token grammar, but encodes literal
+// and reference lengths with independent statistical models. Rejoin their
+// varints before invoking the existing, exhaustively tested token decoder.
+func decodePackedWithLengthMode(r *bytes.Reader, n uint64, matched bool, history []byte, split bool) ([]byte, error) {
 	cmds, err := readVar(r)
 	if err != nil {
 		return nil, err
@@ -248,6 +255,20 @@ func decodeMatchPackedHistory(r *bytes.Reader, n uint64, matched bool, history [
 		if err != nil {
 			return nil, err
 		}
+	}
+	if split {
+		// Six packed streams: opcode, literal lengths, copy lengths, distance,
+		// transforms, and literal bytes. Retain the previous five-stream mode.
+		extra := streams[4]
+		streams[4], err = unpackStream(r, maxCount)
+		if err != nil {
+			return nil, err
+		}
+		merged, e := mergeOperationLengths(streams[0], int(cmds), streams[1], streams[2])
+		if e != nil {
+			return nil, e
+		}
+		streams[1], streams[2], streams[3] = merged, streams[3], extra
 	}
 	if len(streams[0]) != (int(cmds)+1)/2 {
 		return nil, errors.New("packed op length")

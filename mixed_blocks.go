@@ -369,6 +369,8 @@ func decodeMixedBlocksSequential(r *bytes.Reader, n uint64) ([]byte, error) {
 			restored, err = decodeMatchNativeVariant(cr, size, true)
 		case blockMatchPacked, blockMatchPackedPred:
 			restored, err = decodeMatchPacked(cr, size, mode == blockMatchPackedPred)
+		case blockMatchPackedSplit, blockMatchPackedSplitPred:
+			restored, err = decodePackedWithLengthMode(cr, size, mode == blockMatchPackedSplitPred, nil, true)
 		default:
 			return nil, errors.New("unknown mixed block mode")
 		}

@@ -77,7 +77,7 @@ func decodeMixedBlocksParallel(r *bytes.Reader, n uint64) ([]byte, error) {
 				break
 			}
 		} else {
-			if mode == blockOldDictionary || mode > blockMatchPackedPred || mode == 0 {
+			if mode == blockOldDictionary || mode > blockMatchPackedSplitPred || mode == 0 {
 				parseErr = errors.New("unknown or unsupported mixed block mode")
 				break
 			}
@@ -124,6 +124,8 @@ func decodeOneMixedBlock(mode byte, content []byte, size int) ([]byte, error) {
 		restored, err = decodeMatchNativeVariant(r, uint64(size), true)
 	case blockMatchPacked, blockMatchPackedPred:
 		restored, err = decodeMatchPacked(r, uint64(size), mode == blockMatchPackedPred)
+	case blockMatchPackedSplit, blockMatchPackedSplitPred:
+		restored, err = decodePackedWithLengthMode(r, uint64(size), mode == blockMatchPackedSplitPred, nil, true)
 	default:
 		return nil, errors.New("unknown mixed block mode")
 	}

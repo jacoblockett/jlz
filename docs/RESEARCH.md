@@ -1,6 +1,6 @@
 # Canonical research index
 
-**Approved baseline:** Round 15. The dated report in `docs/reports/2026-10-18-round15.md` is canonical. Earlier figures are historical and should not be treated as simultaneously controlled benchmarks.
+**Approved baseline:** Round 16. The latest dated report is `docs/reports/2026-10-18-round16.md`; Round 15 remains recorded in `docs/reports/2026-10-18-round15.md`. Earlier figures are historical and should not be treated as simultaneously controlled benchmarks.
 
 ## Promoted work (historical sequence)
 
@@ -15,7 +15,7 @@
 | 9 | Skip unlikely redundant arithmetic candidate coding | Archive size unchanged; encode 5.79% faster |
 | 10 | Backward match extension and scoring simplification | 66.80 MB; encode 3.90% faster |
 | 12 | Early regional-selection sampling | 66.80 MB unchanged; encode 5.13% faster |
-| **15** | **Avoid redundant prediction and Huffman passes** | **66.80 MB unchanged, 5.30% faster; approved** |
+| 15 | Avoid redundant prediction and Huffman passes | 66.80 MB unchanged, 5.30% faster; approved |\n| **16** | **Operation-conditioned literal-run/copy-length entropy streams** | **66,519,205 B Silesia, 0.42% smaller; 4.21% faster encode, 3.31% faster decode, ten-run paired medians. Decoder now accepts new block modes; old decoder cannot read those new blocks.** |
 
 Some releases not numbered above were performance checks without promotion. Exact historical run methods vary; compare only matched paired runs when citing improvements.
 
@@ -34,4 +34,4 @@ See `docs/research/attempted-ideas.md` for the extensive **actual historical pro
 
 ## Next investigations
 
-Prioritize a genuinely different economical architecture: encode matches/literals jointly with cost-aware decisions, reduce redundant entropy passes, or discover distant reuse through a compressed grammar representation *without a second expensive scan*. Run cheap rejection screens first, then ten-run medians against immutable approved source. Record both positive and negative findings.
+Round 16 demonstrates useful joint token/operation structure without deeper searching. Next investigate a unified, statistically cost-aware match/length/distance model implemented in a single inexpensive pass, avoiding speculative extra stream partitions or costly extra grammar/matching passes. Run cheap rejection screens first, then ten-run medians against immutable approved source. Record both positive and negative findings.
