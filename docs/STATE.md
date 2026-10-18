@@ -2,6 +2,14 @@
 
 **Last updated:** 2026-10-18. **Status:** Round 25 automatically sampled native byte-lane representation **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 25.
 
+## Theory catalog is an experiment queue (corrected 2026-10-18)
+
+User directive: **actively attempt catalog theories when incremental optimization stagnates**; the ideas are not to be dismissed as merely historical. Historical `docs/research/attempted-ideas.md` records individual old prototypes and their limitations, not blanket proof that theoretical ideas are exhausted. The durable active queue is [docs/research/theory-backlog.md](research/theory-backlog.md), recording untested families and exact outcomes.
+
+**Round 28 theory-driven first screens:** [full report](reports/2026-10-18-round28-theory-screens.md). Prime-index byte segregation with two JLZ native streams had a small (7,380 B) 36-block sample saving over unpartitioned native entropy, but a full Silesia prime-only *estimated* archive of **133,180,437 B**, far worse than approved Round 25 **63,104,117 B**. A PID-inspired two-lag XOR parity diagnostic found one promising held-out `x-ray` entropy signal; the actual exact-inverse XOR-residual native encoding was **778,895 B** across three `x-ray` blocks versus **429,274 B** for current native BWT. Both **specific** implementations were rejected, **not** the full prime-factor or higher-order information theories. No encoder/decoder sources changed or new candidate-only 10-run benchmark was warranted. Only original Silesia was used.
+
+**Next priority:** implement a different backlog theory, beginning with Polynomial Freiman–Ruzsa-inspired discovery of additive/progression structure in original Silesia data or the selected match stream. Do not default to another entropy/lane parameter tweak.
+
 ## Current benchmark policy and Round 27 decision (2026-10-18)
 
 **Effective immediately by user instruction:** **Performance research/benchmark only on the complete 12-file Silesia corpus, 211,938,580 original bytes.** Older external-file reports are history only; do not use external corpora again. **Benchmark candidate only**, retaining fixed approved JLZ, Zstd-3 and XZ-6 results rather than spending time rerunning baselines. Historic Zstd/XZ CLI speed data cannot be directly compared with in-memory JLZ and their decompression timings are unavailable. Future responses must use a **four-row table (Zstd-3, XZ-6, current JLZ, candidate JLZ)** with size, reduction, encode and decode times, a **three-column candidate-vs-current percentage delta table**, and a **prominent green/red H1 accept/reject recommendation**. Reusing historical JLZ medians does not create new paired measurements; note that limitation. The revised contract is in `AGENTS.md` and `docs/ENGINEERING.md`.
