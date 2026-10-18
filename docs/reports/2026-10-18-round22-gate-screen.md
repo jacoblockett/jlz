@@ -46,6 +46,30 @@ Approved Round 21 remains **63,770,766 B** on 12 Silesia files, with ten paired 
 
 **No complete JLZ archive sizes, decoding medians, Silesia per-file effects, or cross-version archive audits exist for this unpromoted screen.** Do not label this a performance improvement to JLZ, infer an `osdb` speedup, or change the approved baseline.
 
+## Follow-up: actual 11/12 Silesia inputs supplied to project sources
+
+The user supplied eleven uncompressed Silesia files as project sources. Their measured input sizes total **206,593,300 B**, matching the Round 21 manifest sizes for those eleven names. The twelfth file, `xml` (**5,345,280 B**), was **not available** in the provided project sources or local mount. The canonical full 12-file corpus remains **211,938,580 B**. This is **not** a full-corpus test.
+
+Ran a standalone Go 1.23.2 local suffix-index/serialization probe on the approved gate's first/middle/last 256 KiB region positions for all eleven available files. Each position was warmed once, then timed independently for ten repetitions. All 33 positions passed original-data serialization header checks. Machine-dependent medians, in milliseconds:
+
+| File | First | Middle | Last | Sum of separate medians |
+|---|---:|---:|---:|---:|
+| dickens | 13.154 | 12.675 | 11.254 | 37.083 |
+| mozilla | 10.525 | 18.813 | 3.506 | 32.844 |
+| mr | 8.955 | 8.460 | 0.238 | 17.653 |
+| nci | 7.869 | 6.994 | 7.296 | 22.159 |
+| ooffice | 13.689 | 14.886 | 3.495 | 32.070 |
+| **osdb** | **11.694** | **11.627** | **5.749** | **29.070** |
+| reymont | 12.591 | 11.945 | 2.367 | 26.903 |
+| samba | 12.736 | 6.043 | 2.734 | 21.513 |
+| sao | 13.114 | 12.973 | 8.602 | 34.689 |
+| webster | 13.305 | 11.758 | 2.131 | 27.194 |
+| x-ray | 12.232 | 12.180 | 3.767 | 28.179 |
+
+Raw measurements: [Round 22 Silesia-11 suffix-sort CSV](2026-10-18-round22-silesia11-sort-probe.csv). Local disposable probe used `suffixarray.New(block).Write` with signed-length/header validation. This measures a **component of** BWT sample-gate CPU overhead, not JLZ's full `encodeBWTNative` path, sample selection, end-to-end encoder duration, archive bytes, or decode time. The `osdb` 29.070 ms sum is not directly comparable with the approved 13.9% whole-file slowdown measured in a different run. The actual gate exit distribution remains unknown without the Round 21 executable and complete BWT and math sample encoding decisions.
+
+**Verdict unchanged: SCREENING ONLY.** No source changes or baseline promotion. `xml` must be supplied before a verified full 12-file benchmark can be claimed. Avoid committing research corpus bytes.
+
 ## Verdict and next experiment
 
 **DO NOT PROMOTE.** The proposed early-exit gate is exact under its stated nonnegative-length model and potentially eliminates expensive suffix sorts, but real workload occurrence and end-to-end benefit remain unmeasured.
