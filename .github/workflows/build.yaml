@@ -18,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
+        id: setup-go
         with:
           go-version-file: go.mod
           cache: true
@@ -57,7 +58,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: build/release
-          key: jlz-bundle-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.version.outputs.value }}-${{ hashFiles('**/*.go', 'go.mod', 'LICENSE', '.github/workflows/build.yaml') }}
+          key: jlz-bundle-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.setup-go.outputs.go-version }}-${{ steps.version.outputs.value }}-${{ hashFiles('**/*.go', 'go.mod', 'LICENSE', '.github/workflows/build.yaml') }}
 
       - name: Cross-compile complete distribution
         if: steps.bundle-cache.outputs.cache-hit != 'true'
