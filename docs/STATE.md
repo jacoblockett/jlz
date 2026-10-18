@@ -1,8 +1,18 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 23 generalized automatic BWT gate **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 23.
+**Last updated:** 2026-10-18. **Status:** Round 25 automatically sampled native byte-lane representation **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 25.
 
-## Current approved Round 23 result (2026-10-18)
+## Current approved Round 25 result (2026-10-18)
+
+Native, automatically selected residue-class byte-lane entropy coding for interleaved original-region structures, with a single sampled histogram shared across strides 2/4/8. One internal block mode `13`, no user options or third-party compressors; complete byte-serialized archive sizes determine promotion. Canonical [Round 25 research report](reports/2026-10-18-round25.md) and [ten-pair raw measurements](reports/2026-10-18-round25-paired10.csv).
+
+**12-file Silesia:** 211,938,580 input B; unchanged paired Round 23 **63,658,799 B** → Round 25 **63,104,117 B** (0.87% smaller), ten-pair encode median **7.622122 → 7.549920 s** (0.95% faster), decode **2.910318 → 2.839905 s** (2.42% faster). **8-file external corpus:** **32,316,619 → 32,085,884 B** (0.71% smaller), encode **3.053475 → 3.076390 s** (0.75% slower), decode **0.773359 → 0.739511 s** (4.38% faster). Only Silesia `sao` and external SoundFont change archive bytes, saving 554,682 B and 230,735 B respectively. Their per-file encodes slow roughly 51% and 27.5%, while decodes accelerate strongly; other files remain identical.
+
+**Compatibility:** 27/27 old Round 23 archives decoded by the new decoder, and 27/27 new archives roundtrip. 26/27 new archives remain byte-identical and decode on Round 23; its decoder correctly rejects the new `sao` mode 13 archive. Tests, vet and targeted race passed locally. The pre-existing historical Round 21 benchmark discrepancy remains unresolved and must be described separately.
+
+**Research next:** seek larger structural gains in remaining match/literal metadata, diversify the public/licensed corpora, and avoid endless selection-threshold microtweaks. The earlier interleaved-stream experiments in the attempted-ideas inventory used external backends or diagnostic measurements; Round 25 is a newly tested standalone native representation.
+
+## Historical approved Round 23 result (2026-10-18)
 
 Complete uploaded Silesia corpus, 12 files, 211,938,580 B. **Paired ten-run local comparison** on Go 1.23.2 linux/amd64: unchanged Round 21 source **64,505,708 B** → Round 23 **63,658,799 B** (**1.31% smaller**); encode median **6.712879 → 6.351571 s (5.38% faster)**; decode median **2.515717 → 2.330026 s (7.38% faster)**. Expanded mathematical/native and mathematical/raw eligibility limits to 80%, with the existing 2/3-sample and 5% BWT selection requirements unchanged. Mathematically safe early abort skips impossible BWT sample gates. `mr` saves 584,674 B, `x-ray` saves 262,235 B, and 25/27 audit archives are byte-identical. The main per-file tradeoff is `x-ray` encoding **93.66% slower**; overall CPU improves.
 
@@ -24,7 +34,7 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 
 ## Next research direction
 
-**Round 21's historical source remains documented; Round 23 is now approved.** Full source: `bwt_native.go`, `bwt_native_test.go`, `region_first.go`, `cross_region.go`. Canonical current paired comparison: `docs/reports/2026-10-18-round23.md`; keep the historical Round 21 report unchanged. All permanent edits go directly to `main`, except automatically deleted `jls-test/*` CI trigger branches.
+**Rounds 21 and 23 are documented historical baselines; Round 25 is approved.** Full source: `bwt_native.go`, `bwt_native_test.go`, `region_first.go`, `cross_region.go`. Canonical current comparison: `docs/reports/2026-10-18-round25.md`; keep the older Round 21/23 paired reports unchanged. All permanent edits go directly to `main`, except automatically deleted `jls-test/*` CI trigger branches.
 
 **Known costs:** in historical Round 21, `osdb` had a **13.9% slower** per-file median encoding time, with an identical archive; `ooffice`, `samba`, `mozilla`, and `sao` also have smaller timing regressions despite improving aggregate CPU use. Round 23's worst measured per-file slowdown was **`x-ray` (93.66% slower)** despite improving aggregate size and speed. These are measured targets, not excuses to overfit to Silesia. Test wider licensed corpora before stable-releasing new heuristics.
 
