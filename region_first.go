@@ -38,6 +38,21 @@ func tryEarlyRegional(input []byte, digest [32]byte, rawSize int) ([]byte, bool,
 	if regionalBytes*4 >= nativeBytes*3 || regionalBytes*2 >= rawBytes {
 		return nil, false, nil
 	}
+	// A sampled alternative block-sorting path competes with the selected
+	// mathematical regions. Only run the full alternate after a 5% margin.
+	bwtOK, bwtSamples, err := sampleBWTPreference(input, samples)
+	if err != nil {
+		return nil, false, err
+	}
+	if bwtOK {
+		bwtArchive, err := encodeParallelBWTRegions(input, digest, rawSize, bwtSamples)
+		if err != nil {
+			return nil, false, err
+		}
+		if len(bwtArchive) > 0 && len(bwtArchive)*20 < len(input)*19 {
+			return bwtArchive, true, nil
+		}
+	}
 	regional, err := encodeParallelMathRegions(input, digest, rawSize, samples)
 	if err != nil {
 		return nil, false, err

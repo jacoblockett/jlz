@@ -1,31 +1,28 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 20 selected-literal context diagnostics rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
+**Last updated:** 2026-10-18. **Status:** Round 21 automatically gated native BWT regions **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
 
 ## Accepted performance
 
-Complete Silesia corpus: 12 files, 211,938,580 original bytes. Current Round 16: **66,519,205 total archive bytes** versus Round 15 **66,797,408**. Ten paired in-memory full-corpus runs on the same test host: encoding **13.290 s vs 13.874 s** (4.21% faster), decoding **5.311 s vs 5.493 s** (3.31% faster). Historical external archive totals: Zstd-3 **66,216,569**; XZ-6 **49,233,340**. Historical CLI timings are not directly comparable to current JLZ in-memory medians. The complete benchmark and raw paired run records are in `docs/reports/2026-10-18-round16.md` and adjacent CSV files.
+Complete Silesia corpus: **12 files, 211,938,580 original bytes**. Approved **Round 21: 63,770,766 complete archive bytes**, saving **2,748,439 B (4.13%)** vs approved Round 16 **66,519,205 B**. Verified final-source **ten paired full-corpus runs**, alternating order: Round 16 vs Round 21 encoding median **12.150943 s → 10.562019 s (13.08% faster)**, decoding **4.843944 s → 4.160373 s (14.11% faster)**. Ten-pair aggregate and 120 per-file encode records, ten-pair decode records and 27-file archive audit are stored beside `docs/reports/2026-10-18-round21.md`.
+
+Historical external reference archives: **Zstd-3 66,216,569 B**, **XZ-6 49,233,340 B**. JLZ is **2,445,803 B smaller than historical Zstd-3 on Silesia only**; historical CLI times (**1.256 s**, **116.989 s**) must not be compared directly with JLZ's in-memory median timings.
 
 ## Shipped architecture
 
-One fixed, native Go lossless compressor; `compress` and `decompress` only, no optional levels. Grouped 256 KiB regions with bounded 128 KiB history and independent parallel decode groups. Exact, XOR, and modular-add matches; adaptive worker limits from CPU availability; logarithmic distance slots; native entropy coding. Round 16 adds automatically selected operation-conditioned lengths: literal-run varints and copy varints use separate compressed streams when smaller. No external DEFLATE, Zstd, XZ, Brotli, or LZMA backends.
+One fixed, native Go lossless compressor; `compress` and `decompress` only, no optional levels. Grouped 256 KiB regions with bounded 128 KiB history and independent parallel decode groups. Exact, XOR, and modular-add matches; adaptive worker limits from CPU availability; logarithmic distance slots; native entropy coding. Round 16 added automatically selected operation-conditioned lengths. **Round 21 adds a sampled, automatically selected native BWT + move-to-front + zero-run + Huffman encoding for original 256 KiB regions**, reusing three representative probes and avoiding another full mathematical match pass when BWT wins by at least 5% across two of three sample blocks. The decoder restores the unique BWT sentinel and then inverts MTF and BWT. No external DEFLATE, Zstd, XZ, Brotli, or LZMA backends.
 
-**Compatibility:** Updated Round 16 decoder reads prior JLZ1 archives. Older JLZ decoders cannot read Round 16 archives containing new split-length block types. This is documented and tested; keep all new archive interpretations explicit.
+**Compatibility:** The Round 21 decoder reads all approved Round 16 JLZ1 archives and all new BWT archives. Older decoders reject the new BWT block type 12 as expected: **21/27** audited archives remain byte-identical and decode with old versions; **6/27** new BWT files require Round 21. New archives still carry the original SHA-256 integrity check.
 
 ## Next research direction
 
-**Round 20:** Selected-literal arithmetic context weight sweep estimated at most 75,030 B saving across a 9.62 MB sample; an extra previous-byte nibble group estimated 55,120 B saving on a separate 5.30 MB sample but costs another model per bit. Literal-run phase distinguishes byte distributions and offered **943,986 B of in-sample static idealized conditional savings** across 39.56 MB of selected literals, **not actual compressed archives**. The required interleaved decoding/extra modes are too expensive to justify from these numbers. **No source was promoted and no 10-run codec benchmark performed.** See `docs/reports/2026-10-18-round20.md`.
+**Round 21 is approved.** Full source: `bwt_native.go`, `bwt_native_test.go`, `region_first.go`, `cross_region.go`. Canonical signed-off comparison: `docs/reports/2026-10-18-round21.md`. All permanent edits go directly to `main`, except automatically deleted `jls-test/*` CI trigger branches.
 
+**Known costs:** `osdb` has a **13.9% slower** per-file median encoding time, with an identical archive; `ooffice`, `samba`, `mozilla`, and `sao` also have smaller timing regressions despite improving aggregate CPU use. Treat this as a measured gate-overhead target, not an excuse to overfit only to Silesia. Test wider licensed corpora before stable-releasing new heuristics.
 
-**Round 19** found no promising savings: reconstructed-output byte XOR/subtract/second-difference predictors worsened idealized literal compression by megabytes, an online byte-order-two context model was 611 KB worse than matching first-order estimate, signed distance-width deltas added 561 KB to packed slots, and a fully exact reciprocal-table arithmetic optimization encoded slower (single-screen 14.914 s vs 13.716 s with identical archive bytes). All were **rejected without 10-run promotion benchmarks**. Canonical report: `docs/reports/2026-10-18-round19.md`. Avoid reattempting the same transformations without a new cost argument.
+**Engineering caveat:** Standard-library `index/suffixarray.Index.Write` does not publicly expose sorted suffix offsets; the new encoder parses its implementation-specific, 10-byte-prefixed serialization, with explicit header and bounds validation. Unit tests and CI toolchain checks must catch format changes. The compressed *JLZ1* wire format is independently decoded, but only replace the suffix enumerator if a simpler safe alternative is demonstrably needed. Maintain YAGNI, comments on non-obvious internals and no external compression backends.
 
-
-Round 18 audited **the actual final Round 16 archives**: ~28.19 MB selected literal payload, ~15.08 MB match distances, ~2.44 MB opcodes. An experimental previous-op-context Huffman opcode codec saved only **48,772 B (0.0733%)** on complete Silesia and requires new decoder support; rejected before ten-run timing. Measured distance slot extra bits have negligible independent bit-position skew (optimistic savings of only 53–65 KB). Block-shared arithmetic literal diagnostic exceeded its execution budget. See `docs/reports/2026-10-18-round18.md`; these are **screening/theoretical** results, not accepted measurements.
-
-
-Round 17 tested zero-order source-entropy calibrated matching (46,666 B smaller, but a slower single-run screen) and a small-count probability lookup (byte-identical archives, no speed benefit). Both were rejected *before* ten-run acceptance benchmarking. Canonical details: `docs/reports/2026-10-18-round17.md`. Do not misreport screening times as medians or promote either prototype.
-
-Seek a genuinely **high-leverage native representation whose savings are several MB on actual selected archives**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
+Prior negative screens remain canonical in Round 17–20 reports; see `docs/RESEARCH.md` and `docs/research/attempted-ideas.md` before new theory proposals. Future research should prioritize practical generalization, CPU gate decisions and major remaining literal/match structure, not marginal entropy-model partitions.
 
 ## Warnings and handoff
 
@@ -35,5 +32,6 @@ Seek a genuinely **high-leverage native representation whose savings are several
 - Round 14 literal byte-pair grammar: 0.12% smaller but roughly 10% slower in screening. Rejected.
 - Round 15 conditional skipping of redundant coding passes: 5.30% faster with unchanged archive bytes. Accepted.
 - Round 16 operation-conditioned length encoding: 0.42% smaller, 4.21% faster encoding and 3.31% faster decoding. Accepted with backwards-decoder incompatibility noted.
+- **Round 21** automatically gated native BWT/MTF/zero-run/Huffman original-region coding: 4.13% smaller, 13.08% faster encoding, 14.11% faster decoding in complete paired tests. Accepted; six new-format Silesia archives need Round 21 decoder.
 
 Before ending any experiment, canonicalize reports and raw results in `docs/reports/`, update this file and `docs/RESEARCH.md`, and preserve previous approved benchmarks. Follow YAGNI, comment non-obvious intent and invariants, and never commit executables or redistribute copyrighted corpora.

@@ -1,6 +1,6 @@
 # Canonical research index
 
-**Approved baseline:** Round 16. Latest research report is `docs/reports/2026-10-18-round20.md` (rejected), while the latest accepted benchmark is `docs/reports/2026-10-18-round16.md`; Round 15 remains recorded in `docs/reports/2026-10-18-round15.md`. Earlier figures are historical and should not be treated as simultaneously controlled benchmarks.
+**Approved baseline: Round 21.** The latest accepted full-corpus benchmark is `docs/reports/2026-10-18-round21.md` and four adjacent CSV audit/measurement files. Round 16 remains documented in `docs/reports/2026-10-18-round16.md`; rejected rounds 17–20 are canonicalized in their dated reports. Historical figures vary by host; compare only controlled paired runs.
 
 ## Promoted work (historical sequence)
 
@@ -17,6 +17,7 @@
 | 12 | Early regional-selection sampling | 66.80 MB unchanged; encode 5.13% faster |
 | 15 | Avoid redundant prediction and Huffman passes | 66.80 MB unchanged, 5.30% faster; approved |
 | **16** | **Operation-conditioned literal-run/copy-length entropy streams** | **66,519,205 B Silesia, 0.42% smaller; 4.21% faster encode, 3.31% faster decode, ten-run paired medians. Decoder now accepts new block modes; old decoder cannot read those new blocks.** |
+| **21** | **Sample-gated native BWT/MTF/zero-run/Huffman on original regions** | **63,770,766 B Silesia (4.13% smaller than Round 16); ten-pair medians 13.08% faster encode and 14.11% faster decode. No size regressions. 27/27 verified, six new BWT archives require new decoder; per-file worst encode slowdown: `osdb` 13.9%.** |
 
 Some releases not numbered above were performance checks without promotion. Exact historical run methods vary; compare only matched paired runs when citing improvements.
 
@@ -39,10 +40,6 @@ See `docs/research/attempted-ideas.md` for the extensive **actual historical pro
 
 ## Next investigations
 
-Round 16 demonstrates useful joint token/operation structure without deeper searching. Round 17 disconfirmed raw input zero-order entropy as a cheap reliable proxy for post-match literal cost, and rejected a 512-count triangular arithmetic probability table due to no measured benefit. Full report: `docs/reports/2026-10-18-round17.md`.
+Round 21 demonstrates a substantial structural alternative to repeated match-parser and entropy-tuning tweaks. The accepted encoder uses **three already identified representative regions** for BWT vs mathematical-region sizing, gates on **two of three wins and at least a 5% total margin**, then encodes BWT blocks in parallel without running the full mathematical matcher on those files. The approach is **pure Go/native only**, not bzip2 or any other mature compressor backend. The algorithms BWT, MTF and Huffman have extensive prior art. See `docs/reports/2026-10-18-round21.md` for actual complete-archive numbers, all per-file timing medians, full compatibility, independent Zstd/XZ comparisons, and the important Go suffix-array index serialization dependency.
 
-Round 18 established that only **selected** final-archive streams should drive forecasts; opcode modeling and elementary low-bit skew are too small to justify a new codec. Full report: `docs/reports/2026-10-18-round18.md`. Round 19 rejected previous-output literal residuals, order-two byte contexts, distance-width deltas, and an exact reciprocal speed optimization; see `docs/reports/2026-10-18-round19.md`.
-
-Round 20 confirmed moderate unused selected-literal context dependence, but practical joint token/literal entropy decoding would introduce CPU and new format complexity for less than the required gain. See `docs/reports/2026-10-18-round20.md` for explicit theoretical estimates and sampling limitations.
-
-Next prioritize a high-leverage reversible literal/distance representation with substantial predicted end-to-end savings before any costly implementation. Avoid speculative extra stream partitions or full extra grammar/matching passes. Run cheap rejection screens first, then ten-run medians against immutable approved source. Record both positive and negative findings.
+**Next priority:** test performance and byte-exact safety on diverse legally reusable corpora, identify a *generalizable* cheaper BWT gate that reduces losses on `osdb` and other files (without hard-coded file-type rules), and inspect the implementation-specific suffixarray index enumeration only when needed. Do not compromise YAGNI, modularity, automatic worker limits, backward decoding, or main-only development. Preserve rejected Round 17–20 ideas; only revisit with a materially different cost argument.

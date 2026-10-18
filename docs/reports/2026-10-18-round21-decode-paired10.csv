@@ -1,0 +1,11 @@
+pair,baseline_decode_seconds,candidate_decode_seconds,order
+1,5.090079607,4.307766294,base->candidate
+2,5.25711903,4.101742017,candidate->base
+3,5.599517652,7.074842756,base->candidate
+4,4.734730418,4.68665714,candidate->base
+5,5.416580999,4.000752565,base->candidate
+6,4.746354063,4.035279766,candidate->base
+7,4.692793487,4.39957237,base->candidate
+8,4.733944852,4.2190035009999995,candidate->base
+9,4.701115524,4.040948216,base->candidate
+10,4.941534394,3.993888702,candidate->base
