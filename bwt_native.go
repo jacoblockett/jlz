@@ -286,6 +286,9 @@ func sampleBWTPreference(input []byte, regional mathRegionSamples) (bool, mathRe
 	samples.positions = regional.positions
 	baseline, total := 0, 0
 	wins := 0
+	for _, result := range regional.results {
+		baseline += len(result.payload)
+	}
 	for i, idx := range regional.positions {
 		at := idx * stage3BlockSize
 		block := input[at:min(len(input), at+stage3BlockSize)]
@@ -294,10 +297,15 @@ func sampleBWTPreference(input []byte, regional mathRegionSamples) (bool, mathRe
 			return false, samples, e
 		}
 		samples.results[i] = mathRegionResult{mode: blockBWTPacked, payload: data}
-		baseline += len(regional.results[i].payload)
 		total += len(data)
 		if len(data) < len(regional.results[i].payload) {
 			wins++
+		}
+		// Remaining nonnegative payloads cannot recover a lost vote or
+		// undo an already-exceeded total-size margin. Never reject a winner.
+		remaining := 2 - i
+		if wins+remaining < 2 || total*100 > baseline*95 {
+			return false, samples, nil
 		}
 	}
 	// Require evidence that BWT wins at several independent positions,
