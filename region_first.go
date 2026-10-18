@@ -33,9 +33,10 @@ func tryEarlyRegional(input []byte, digest [32]byte, rawSize int) ([]byte, bool,
 		nativeBytes += len(native)
 		rawBytes += len(block)
 	}
-	// Avoid choosing region mode on files with near-random content or
-	// competing very strong whole-file predictors.
-	if regionalBytes*4 >= nativeBytes*3 || regionalBytes*2 >= rawBytes {
+	// Broader preflight still demands a substantial sampled advantage for the
+	// mathematical representation, then lets the measured BWT alternative
+	// compete instead of requiring extreme (>50%) input reduction.
+	if regionalBytes*5 >= nativeBytes*4 || regionalBytes*5 >= rawBytes*4 {
 		return nil, false, nil
 	}
 	// A sampled alternative block-sorting path competes with the selected
