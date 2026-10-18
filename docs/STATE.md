@@ -1,6 +1,6 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 18 selected-stream research rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
+**Last updated:** 2026-10-18. **Status:** Round 19 predictor/slot/reciprocal screens rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
 
 ## Accepted performance
 
@@ -13,6 +13,9 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 **Compatibility:** Updated Round 16 decoder reads prior JLZ1 archives. Older JLZ decoders cannot read Round 16 archives containing new split-length block types. This is documented and tested; keep all new archive interpretations explicit.
 
 ## Next research direction
+
+**Round 19** found no promising savings: reconstructed-output byte XOR/subtract/second-difference predictors worsened idealized literal compression by megabytes, an online byte-order-two context model was 611 KB worse than matching first-order estimate, signed distance-width deltas added 561 KB to packed slots, and a fully exact reciprocal-table arithmetic optimization encoded slower (single-screen 14.914 s vs 13.716 s with identical archive bytes). All were **rejected without 10-run promotion benchmarks**. Canonical report: `docs/reports/2026-10-18-round19.md`. Avoid reattempting the same transformations without a new cost argument.
+
 
 Round 18 audited **the actual final Round 16 archives**: ~28.19 MB selected literal payload, ~15.08 MB match distances, ~2.44 MB opcodes. An experimental previous-op-context Huffman opcode codec saved only **48,772 B (0.0733%)** on complete Silesia and requires new decoder support; rejected before ten-run timing. Measured distance slot extra bits have negligible independent bit-position skew (optimistic savings of only 53–65 KB). Block-shared arithmetic literal diagnostic exceeded its execution budget. See `docs/reports/2026-10-18-round18.md`; these are **screening/theoretical** results, not accepted measurements.
 
