@@ -1,6 +1,6 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 19 predictor/slot/reciprocal screens rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
+**Last updated:** 2026-10-18. **Status:** Round 20 selected-literal context diagnostics rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
 
 ## Accepted performance
 
@@ -14,6 +14,9 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 
 ## Next research direction
 
+**Round 20:** Selected-literal arithmetic context weight sweep estimated at most 75,030 B saving across a 9.62 MB sample; an extra previous-byte nibble group estimated 55,120 B saving on a separate 5.30 MB sample but costs another model per bit. Literal-run phase distinguishes byte distributions and offered **943,986 B of in-sample static idealized conditional savings** across 39.56 MB of selected literals, **not actual compressed archives**. The required interleaved decoding/extra modes are too expensive to justify from these numbers. **No source was promoted and no 10-run codec benchmark performed.** See `docs/reports/2026-10-18-round20.md`.
+
+
 **Round 19** found no promising savings: reconstructed-output byte XOR/subtract/second-difference predictors worsened idealized literal compression by megabytes, an online byte-order-two context model was 611 KB worse than matching first-order estimate, signed distance-width deltas added 561 KB to packed slots, and a fully exact reciprocal-table arithmetic optimization encoded slower (single-screen 14.914 s vs 13.716 s with identical archive bytes). All were **rejected without 10-run promotion benchmarks**. Canonical report: `docs/reports/2026-10-18-round19.md`. Avoid reattempting the same transformations without a new cost argument.
 
 
@@ -22,7 +25,7 @@ Round 18 audited **the actual final Round 16 archives**: ~28.19 MB selected lite
 
 Round 17 tested zero-order source-entropy calibrated matching (46,666 B smaller, but a slower single-run screen) and a small-count probability lookup (byte-identical archives, no speed benefit). Both were rejected *before* ten-run acceptance benchmarking. Canonical details: `docs/reports/2026-10-18-round17.md`. Do not misreport screening times as medians or promote either prototype.
 
-Seek a genuinely **high-leverage native representation focused on selected literal and distance payloads**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
+Seek a genuinely **high-leverage native representation whose savings are several MB on actual selected archives**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
 
 ## Warnings and handoff
 
