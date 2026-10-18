@@ -1,6 +1,6 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 21 automatically gated native BWT regions **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
+**Last updated:** 2026-10-18. **Status:** Round 21 automatically gated native BWT regions **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 21.
 
 ## Accepted performance
 
