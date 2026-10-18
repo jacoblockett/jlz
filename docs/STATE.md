@@ -1,6 +1,12 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 21 automatically gated native BWT regions **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 21.
+**Last updated:** 2026-10-18. **Status:** Round 23 generalized automatic BWT gate **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 23.
+
+## Current approved Round 23 result (2026-10-18)
+
+Complete uploaded Silesia corpus, 12 files, 211,938,580 B. **Paired ten-run local comparison** on Go 1.23.2 linux/amd64: unchanged Round 21 source **64,505,708 B** → Round 23 **63,658,799 B** (**1.31% smaller**); encode median **6.712879 → 6.351571 s (5.38% faster)**; decode median **2.515717 → 2.330026 s (7.38% faster)**. Expanded mathematical/native and mathematical/raw eligibility limits to 80%, with the existing 2/3-sample and 5% BWT selection requirements unchanged. Mathematically safe early abort skips impossible BWT sample gates. `mr` saves 584,674 B, `x-ray` saves 262,235 B, and 25/27 audit archives are byte-identical. The main per-file tradeoff is `x-ray` encoding **93.66% slower**; overall CPU improves.
+
+**Historical reproducibility warning:** The locally rebuilt unchanged Round 21 compressor yielded 64,505,708 B on these user-supplied files, **not** its separately recorded historical 63,770,766 B. Input hashes are now canonicalized in [Round 23 corpus SHA-256 manifest](reports/2026-10-18-round23-silesia-sha256.txt), but the original research corpus hashes/toolchain were not available to resolve this discrepancy. Never mix the prior-host Round 21 timings with current Round 23 paired medians. See [Round 23 report](reports/2026-10-18-round23.md) and [ten paired whole-corpus runs](reports/2026-10-18-round23-paired10.csv) for details. All 27/27 candidate and reference archives decoded byte-exactly in both Round 21 and Round 23; tests, vet and targeted race tests passed.
 
 ## Accepted performance
 
@@ -18,7 +24,7 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 
 ## Next research direction
 
-**Round 21 is approved.** Full source: `bwt_native.go`, `bwt_native_test.go`, `region_first.go`, `cross_region.go`. Canonical signed-off comparison: `docs/reports/2026-10-18-round21.md`. All permanent edits go directly to `main`, except automatically deleted `jls-test/*` CI trigger branches.
+**Round 21's historical source remains documented; Round 23 is now approved.** Full source: `bwt_native.go`, `bwt_native_test.go`, `region_first.go`, `cross_region.go`. Canonical signed-off comparison: `docs/reports/2026-10-18-round21.md`. All permanent edits go directly to `main`, except automatically deleted `jls-test/*` CI trigger branches.
 
 **Known costs:** `osdb` has a **13.9% slower** per-file median encoding time, with an identical archive; `ooffice`, `samba`, `mozilla`, and `sao` also have smaller timing regressions despite improving aggregate CPU use. Treat this as a measured gate-overhead target, not an excuse to overfit only to Silesia. Test wider licensed corpora before stable-releasing new heuristics.
 
