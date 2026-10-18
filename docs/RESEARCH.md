@@ -1,6 +1,6 @@
 # Canonical research index
 
-**Approved baseline:** Round 16. The latest dated report is `docs/reports/2026-10-18-round16.md`; Round 15 remains recorded in `docs/reports/2026-10-18-round15.md`. Earlier figures are historical and should not be treated as simultaneously controlled benchmarks.
+**Approved baseline:** Round 16. Latest research report is `docs/reports/2026-10-18-round18.md` (rejected), while the latest accepted benchmark is `docs/reports/2026-10-18-round16.md`; Round 15 remains recorded in `docs/reports/2026-10-18-round15.md`. Earlier figures are historical and should not be treated as simultaneously controlled benchmarks.
 
 ## Promoted work (historical sequence)
 
@@ -31,6 +31,7 @@ Some releases not numbered above were performance checks without promotion. Exac
 | 14 | Byte-pair grammar recovered ~82 KB (0.12%) but ~10% slower in screening; altered arithmetic format broke one test. Exact scan 5.63% slower | Reject |
 | 15 (other) | Arithmetic-first skip ~2.62% faster, below threshold; combined candidate didn't justify extra complexity | Reject |
 | 17 | Raw-source entropy-adaptive match scoring: 46,666 B smaller (0.070%) but much slower in one full-corpus screen; small-count arithmetic probability lookup: identical archives without speed gain. Neither passed screening; **not** ten-run medians. | Reject |
+| 18 | Two-context opcode Huffman: **48,772 B smaller (0.0733%)** on Silesia but needs decoder extension. Final-archive audit shows 28.19 MB of selected literal payload and 15.08 MB of distance metadata; fixed-position distance bit model theoretical savings only 53–65 KB. Block-shared arithmetic test exceeded time budget. All results screening/diagnostics only. | Reject |
 
 See `docs/research/attempted-ideas.md` for the extensive **actual historical prototype inventory** covering algebra, parity, hyperedges, geometry, number systems, recurrences, model sharing and latent masks. Synthetic 97–99% reductions and transform-plus-Zstd results are *not* evidence of standalone natural-file compression. That inventory is a map of prior implementations and limits, not a theorem blacklist.
 
@@ -38,4 +39,6 @@ See `docs/research/attempted-ideas.md` for the extensive **actual historical pro
 
 Round 16 demonstrates useful joint token/operation structure without deeper searching. Round 17 disconfirmed raw input zero-order entropy as a cheap reliable proxy for post-match literal cost, and rejected a 512-count triangular arithmetic probability table due to no measured benefit. Full report: `docs/reports/2026-10-18-round17.md`.
 
-Next investigate a unified, statistically cost-aware match/length/distance model implemented in a single inexpensive pass, avoiding speculative extra stream partitions or costly extra grammar/matching passes. Run cheap rejection screens first, then ten-run medians against immutable approved source. Record both positive and negative findings.
+Round 18 established that only **selected** final-archive streams should drive forecasts; opcode modeling and elementary low-bit skew are too small to justify a new codec. Full report: `docs/reports/2026-10-18-round18.md`.
+
+Next prioritize a high-leverage reversible literal/distance representation with substantial predicted end-to-end savings before any costly implementation. Avoid speculative extra stream partitions or full extra grammar/matching passes. Run cheap rejection screens first, then ten-run medians against immutable approved source. Record both positive and negative findings.

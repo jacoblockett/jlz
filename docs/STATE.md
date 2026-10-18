@@ -1,6 +1,6 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 17 screening research rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
+**Last updated:** 2026-10-18. **Status:** Round 18 selected-stream research rejected; approved Round 16 source remains unchanged. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 16.
 
 ## Accepted performance
 
@@ -14,10 +14,12 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 
 ## Next research direction
 
+Round 18 audited **the actual final Round 16 archives**: ~28.19 MB selected literal payload, ~15.08 MB match distances, ~2.44 MB opcodes. An experimental previous-op-context Huffman opcode codec saved only **48,772 B (0.0733%)** on complete Silesia and requires new decoder support; rejected before ten-run timing. Measured distance slot extra bits have negligible independent bit-position skew (optimistic savings of only 53–65 KB). Block-shared arithmetic literal diagnostic exceeded its execution budget. See `docs/reports/2026-10-18-round18.md`; these are **screening/theoretical** results, not accepted measurements.
+
+
 Round 17 tested zero-order source-entropy calibrated matching (46,666 B smaller, but a slower single-run screen) and a small-count probability lookup (byte-identical archives, no speed benefit). Both were rejected *before* ten-run acceptance benchmarking. Canonical details: `docs/reports/2026-10-18-round17.md`. Do not misreport screening times as medians or promote either prototype.
 
-
-Seek a genuinely **unified and economical match/token/entropy cost model derived from actual emitted token streams**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
+Seek a genuinely **high-leverage native representation focused on selected literal and distance payloads**, using the operation-conditioned length result as evidence that token structure contains redundancy. Avoid repeatedly parsing/re-encoding with expensive second passes, adding unused format modes, or going deeper into previously rejected match searches. Screen full representative files before ten paired Silesia runs. A gain under 3% still requires skeptical cost/complexity review.
 
 ## Warnings and handoff
 
