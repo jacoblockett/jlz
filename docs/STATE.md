@@ -1,6 +1,6 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Repository migration to canonical source and JLS-compatible delivery workflow. **Approved source:** JLZ Round 15. **No compression experiment is authorized as a replacement beyond Round 15.**
+**Last updated:** 2026-10-18. **Git policy:** all persistent edits directly on `main`; ephemeral `jls-test/*` trigger branches only. **Status:** Repository migration to canonical source and JLS-compatible delivery workflow. **Approved source:** JLZ Round 15. **No compression experiment is authorized as a replacement beyond Round 15.**
 
 ## Accepted performance
 
@@ -12,7 +12,7 @@ Single CLI encoder/decoder in Go, native entropy coding, bounded mathematical ma
 
 ## Immediate research direction
 
-Seek a unified match/token/entropy architecture that exposes larger real-file redundancy at acceptable CPU cost, not deeper versions of the same costly matcher. Any new idea begins as a separate branch/prototype with screening on full representative files, then ten paired whole-corpus runs if promising. Examine possible token-stream entropy modeling improvements without duplicating full coding passes.
+Seek a unified match/token/entropy architecture that exposes larger real-file redundancy at acceptable CPU cost, not deeper versions of the same costly matcher. Any new idea begins in an isolated local experiment (never a persistent Git branch); all repository edits land directly on `main` with screening on full representative files, then ten paired whole-corpus runs if promising. Examine possible token-stream entropy modeling improvements without duplicating full coding passes.
 
 ## Stop signs / pitfalls
 

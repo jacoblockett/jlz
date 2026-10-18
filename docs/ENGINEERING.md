@@ -1,5 +1,6 @@
 # Engineering and acceptance contract
 
+- **Branch discipline:** commit all lasting changes directly to `main`. `jls-test/*` temporary dispatch branches are the only normal exception. Keep isolated trial changes outside the repository until validated; no persistent experiment branches.
 - **YAGNI**: no speculative flags, modes, abstraction layers, extra file formats or large experimental subsystems without demonstrated need. One automatic algorithm; only two verbs. Remove rejected candidate code from approved build.
 - Explain all non-obvious arithmetic, overflow invariants, bit serialization, concurrency bounds and backward-format requirements with concise inline comments. Comments describe **why** and safety constraints, not paraphrases of obvious code.
 - Byte-exact losslessness applies to original encoded file bytes (not merely equivalent media pixels/audio). Full archive bytes include headers and metadata. Never measure partial inputs or diagnostic backend compression as a standalone win.
