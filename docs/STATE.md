@@ -2,6 +2,14 @@
 
 **Last updated:** 2026-10-18. **Status:** Round 25 automatically sampled native byte-lane representation **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 25.
 
+## Current benchmark policy and Round 27 decision (2026-10-18)
+
+**Effective immediately by user instruction:** **Performance research/benchmark only on the complete 12-file Silesia corpus, 211,938,580 original bytes.** Older external-file reports are history only; do not use external corpora again. **Benchmark candidate only**, retaining fixed approved JLZ, Zstd-3 and XZ-6 results rather than spending time rerunning baselines. Historic Zstd/XZ CLI speed data cannot be directly compared with in-memory JLZ and their decompression timings are unavailable. Future responses must use a **four-row table (Zstd-3, XZ-6, current JLZ, candidate JLZ)** with size, reduction, encode and decode times, a **three-column candidate-vs-current percentage delta table**, and a **prominent green/red H1 accept/reject recommendation**. Reusing historical JLZ medians does not create new paired measurements; note that limitation. The revised contract is in `AGENTS.md` and `docs/ENGINEERING.md`.
+
+**[Round 27](reports/2026-10-18-round27.md): REJECT.** Two isolated native entropy alternatives to the selected BWT/MTF/zero-run stream: adaptive arithmetic was 60,672,443 B but took 10.718 s encode / 5.854 s decode in one screening run; preceding-zero-context dual Huffman streams produced **62,103,195 B** versus Round 25's **63,104,117 B**. Candidate-only ten-run full-Silesia medians: **7.833325 s encoding and 2.946025 s decoding**, compared against the **previously recorded** approved Round 25 medians **7.549920 / 2.839905 s**. The BWT context candidate saves 1.586% bytes but appears 3.754% slower encode and 3.737% slower decode; timings are independent session results, not paired. Both candidates were rejected and **no codec source changed**. New code types were not promoted. Raw candidate runs are in [Round 27 timing CSV](reports/2026-10-18-round27-candidate10.csv).
+
+**Next structural priority:** investigate match literal and distance streams on Silesia only, seeking a substantially larger gain rather than repeated low-yield BWT/lane tweaks.
+
 ## Current approved Round 25 result (2026-10-18)
 
 Native, automatically selected residue-class byte-lane entropy coding for interleaved original-region structures, with a single sampled histogram shared across strides 2/4/8. One internal block mode `13`, no user options or third-party compressors; complete byte-serialized archive sizes determine promotion. Canonical [Round 25 research report](reports/2026-10-18-round25.md) and [ten-pair raw measurements](reports/2026-10-18-round25-paired10.csv).
