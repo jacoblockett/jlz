@@ -14,7 +14,7 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 
 **Compatibility:** The Round 21 decoder reads all approved Round 16 JLZ1 archives and all new BWT archives. Older decoders reject the new BWT block type 12 as expected: **21/27** audited archives remain byte-identical and decode with old versions; **6/27** new BWT files require Round 21. New archives still carry the original SHA-256 integrity check.
 
-**Round 22 screening (not promoted):** [BWT gate early rejection](reports/2026-10-18-round22-gate-screen.md) was proven selection-equivalent over 262,144 synthetic length combinations and saved 13.1% of hypothetical BWT sample encodes in that grid. No Silesia end-to-end measurements were available. **Round 21 remains the approved source.**
+**Round 22 screening (not promoted):** [BWT gate early rejection](reports/2026-10-18-round22-gate-screen.md) was proven selection-equivalent over 262,144 synthetic length combinations and saved 13.1% of hypothetical BWT sample encodes in that grid. No Silesia end-to-end measurements were available. **Round 21 remains the approved source.** Follow-up checked 11 of 12 Silesia project-supplied inputs (206,593,300 B); `xml` (5,345,280 B) remains missing. Independent suffix-index/serialization medians on `osdb`'s first/middle/last sampled regions totaled 29.070 ms, a component diagnostic only, with no end-to-end JLZ claim. Measurements are linked from the Round 22 report.
 
 ## Next research direction
 
