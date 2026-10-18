@@ -12,6 +12,12 @@ Native, automatically selected residue-class byte-lane entropy coding for interl
 
 **Research next:** seek larger structural gains in remaining match/literal metadata, diversify the public/licensed corpora, and avoid endless selection-threshold microtweaks. The earlier interleaved-stream experiments in the attempted-ideas inventory used external backends or diagnostic measurements; Round 25 is a newly tested standalone native representation.
 
+## Round 26 rejected research (2026-10-18)
+
+[Round 26 predicted byte-lane report](reports/2026-10-18-round26.md): Four-byte residue streams were optionally coded as XOR/subtraction from the previous same-lane byte before native Huffman coding. This new native transform was tested **only in isolated local source copies**, never promoted to `main`. Ten paired full-Silesia runs saved **124,052 B (0.20%)** but slowed encoding **4.26%**; ten paired external-file runs saved **145,307 B (0.45%)** with essentially unchanged encoding and 0.65% slower decoding. An optimized histogram preflight retained archive bytes but remained **2.16% slower** in six-pair screening. **Rejected for cost/complexity; Round 25 remains approved and code/format unchanged.** Three raw timing CSVs are linked from the report.
+
+**Next experiment:** seek larger structural compression improvements to independently packed mathematical-match literals and distance streams, reviewing the Round 18–20 diagnostics and historical attempted ideas before implementation. Avoid repeatedly tuning the lane-based pipeline for isolated small gains.
+
 ## Historical approved Round 23 result (2026-10-18)
 
 Complete uploaded Silesia corpus, 12 files, 211,938,580 B. **Paired ten-run local comparison** on Go 1.23.2 linux/amd64: unchanged Round 21 source **64,505,708 B** → Round 23 **63,658,799 B** (**1.31% smaller**); encode median **6.712879 → 6.351571 s (5.38% faster)**; decode median **2.515717 → 2.330026 s (7.38% faster)**. Expanded mathematical/native and mathematical/raw eligibility limits to 80%, with the existing 2/3-sample and 5% BWT selection requirements unchanged. Mathematically safe early abort skips impossible BWT sample gates. `mr` saves 584,674 B, `x-ray` saves 262,235 B, and 25/27 audit archives are byte-identical. The main per-file tradeoff is `x-ray` encoding **93.66% slower**; overall CPU improves.
