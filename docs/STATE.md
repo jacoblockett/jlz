@@ -14,6 +14,8 @@ One fixed, native Go lossless compressor; `compress` and `decompress` only, no o
 
 **Compatibility:** The Round 21 decoder reads all approved Round 16 JLZ1 archives and all new BWT archives. Older decoders reject the new BWT block type 12 as expected: **21/27** audited archives remain byte-identical and decode with old versions; **6/27** new BWT files require Round 21. New archives still carry the original SHA-256 integrity check.
 
+**Round 22 screening (not promoted):** [BWT gate early rejection](reports/2026-10-18-round22-gate-screen.md) was proven selection-equivalent over 262,144 synthetic length combinations and saved 13.1% of hypothetical BWT sample encodes in that grid. No Silesia end-to-end measurements were available. **Round 21 remains the approved source.**
+
 ## Next research direction
 
 **Round 21 is approved.** Full source: `bwt_native.go`, `bwt_native_test.go`, `region_first.go`, `cross_region.go`. Canonical signed-off comparison: `docs/reports/2026-10-18-round21.md`. All permanent edits go directly to `main`, except automatically deleted `jls-test/*` CI trigger branches.
