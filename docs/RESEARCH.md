@@ -38,6 +38,10 @@ Some releases not numbered above were performance checks without promotion. Exac
 
 See `docs/research/attempted-ideas.md` for the extensive **actual historical prototype inventory** covering algebra, parity, hyperedges, geometry, number systems, recurrences, model sharing and latent masks. Synthetic 97–99% reductions and transform-plus-Zstd results are *not* evidence of standalone natural-file compression. That inventory is a map of prior implementations and limits, not a theorem blacklist.
 
+## Round 22 gate screening (not promoted)
+
+The [Round 22 gate screen](reports/2026-10-18-round22-gate-screen.md) tested mathematically safe early rejection of BWT selection whenever two sample wins become impossible or the partial BWT size already exceeds the total 5% margin. Exhaustive 262,144-case synthetic length enumeration had zero selection disagreements and avoided 103,104 of 786,432 potential BWT sample encodes (13.1% on that synthetic grid only). Local suffix-sort microbenchmarks were approximately 12–13 ms per 256 KiB real-world sample. **No end-to-end JLZ or Silesia benchmarks were run, no source changes were accepted, and Round 21 is still the baseline.** Next: measure per-file gate exits and ten-paired whole-corpus impact in a disposable checkout before promotion.
+
 ## Next investigations
 
 Round 21 demonstrates a substantial structural alternative to repeated match-parser and entropy-tuning tweaks. The accepted encoder uses **three already identified representative regions** for BWT vs mathematical-region sizing, gates on **two of three wins and at least a 5% total margin**, then encodes BWT blocks in parallel without running the full mathematical matcher on those files. The approach is **pure Go/native only**, not bzip2 or any other mature compressor backend. The algorithms BWT, MTF and Huffman have extensive prior art. See `docs/reports/2026-10-18-round21.md` for actual complete-archive numbers, all per-file timing medians, full compatibility, independent Zstd/XZ comparisons, and the important Go suffix-array index serialization dependency.
