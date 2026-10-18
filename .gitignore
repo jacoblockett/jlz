@@ -1,0 +1,11 @@
+# Compiled outputs and local scratch. Test inputs in fixtures/ are intentional sources.
+/build/
+/dist/
+/coverage/
+/jlz
+/jlz.exe
+*.jlz
+*.restored
+*.test
+*.out
+.DS_Store

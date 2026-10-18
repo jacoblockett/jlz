@@ -1,0 +1,84 @@
+# Compression Research: Attempted Ideas With Weak or Negative Results
+
+**Purpose:** A compact historical inventory for a fresh research agent. These are approaches we **actually prototyped or tested**, not proposals for future work. “Unsuccessful” means the **particular implementation and tested datasets** did not show useful *end-to-end, original-byte-exact* improvements. It does **not** disprove the underlying theorem or exclude a different implementation.
+
+## Read this before interpreting any result
+
+- **Major confound:** MDC1 through MDC6 used Go **DEFLATE** in their compression pipelines, sometimes as an available raw fallback or terminal coder. Some independent transform studies similarly measured the transform *followed by Zstd or DEFLATE*. Such results **cannot be credited to a novel standalone compressor**. Isolated transform gains and actual archive gains must not be conflated.
+- Many dramatic **97–99.8% reductions came from synthetic inputs deliberately constructed to obey the very equations being sought**. These are valid demonstrations of exact reconstruction under those constraints, **not** evidence of general-file superiority.
+- Real-world tests used five uploaded files: PNG illustration, JPEG photo (secondary control), MP3, Windows EXE installer, and MP4. Most repeated comparisons used **15 selected 64 KiB head/middle/tail windows**, disproportionately representing structured file boundaries; this is **not** a representative full-file corpus. Some analyses also used 63 distributed samples, 256 KiB–4 MiB regions, or whole files.
+- Historical rule for accepting a replacement: **at least 0.5 absolute percentage points better lossless reduction than MDC5**, including all metadata and an exact byte roundtrip. **MDC5 itself was DEFLATE-backed**, so the benchmark must not be mistaken for proof of original algorithmic compression. These notes record historical decisions, not a valid standalone-codec leaderboard.
+- **Exact file reconstruction** is required. A smaller encoding that restores the same pixels/audio but *not the exact original PNG/JPEG/MP3 bytes* was **not** considered a successful lossless file compressor.
+
+## A. Algebraic and many-body relationships
+
+| Tested approach | What we implemented or checked | Historical outcome |
+|---|---|---|
+| **Positional bit dictionary / overlapping patterns** | Detect recurring bit strings, overlaps, positional references, and hierarchical grammar substitutions (MDC1); related to sparse bitsets, RLE, and Re-Pair. | Strong on repetitive controls, weak on random-looking data; MDC1's apparent gains also included **DEFLATE**. The early “GCD” concept was clarified as substring discovery, **not** a verified GCD-based compressor. |
+| **Equality, transitivity, complement, XOR, rotation** | Nonlocal `A=B=C`, `NOT A`, XOR masks, two-source XOR, rotated references across fixed chunks (MDC2–3). | Impressive on explicitly constructed XOR-related blocks; inconsistent on real source/executable/media. Results confounded by downstream DEFLATE. |
+| **Variable-position references and sparse differences** | More flexible distant-match discovery, modular ADD/XOR copies, residual patches (MDC4–5). | Improved special mutation/shifted-copy fixtures, but high computational cost and no convincing broad standalone lead. MDC5 also contained DEFLATE. |
+| **Spin models and spin defects** | Neighbor spin coupling, pairwise and nonlinear three-body relationships, storing violations (atomic-physics experiment). | Synthetic spins worked; best of physics codecs reduced the 63 real-file sample corpus by **~0.49%**, below Zstd/XZ. |
+| **Crystal-lattice / periodic unit-cell defects** | Find local periodic structure and store departures from repeating lattice units. | Worked on deliberately periodic controls, not enough recurrent order in real encoded interiors. |
+| **Quantum-stabilizer-inspired and low-rank binary states** | Use `GF(2)` linear dependence, a smaller independent basis, and checks/defects. *Classical analogues*, no quantum computation. | Low-rank synthetic data compressed well; most real-file interior windows were effectively full-rank. |
+| **Four-body plaquette constraints / higher-order parity** | `D=A XOR B XOR C` over four positions, including reorganized neighborhoods and defect encoding. | **65,536 → 1,544 B** for generated parity field; just **~0.16%** overall reduction on 63 real windows. |
+| **Learned interaction distances / sparse hyperedges** | Search for unknown XOR lags and nonadjacent many-body relationships; e.g. arbitrary three-offset recurrences. | Discovered designed offsets such as 11, 317, 509, with ~98% synthetic reduction. Generalized discovery brought **no useful further real-file gain**. |
+| **Mirrored and bit-reversed chunk references** | Reversed byte order, true bit mirrors, XOR masks, and edits; combined with topology in a standalone research codec. | Strong on constructed mirror data; real-file savings mostly minor. Bit-unaligned mirror *signals* were observed, but the tested codec encoded byte-aligned chunks. |
+| **Polynomial generators / recurrence equations** | Constant, linear, quadratic, cubic byte formulas; unknown 3-lag XOR; Berlekamp–Massey/linear-complexity checks. | Designed 65,536 B data compressed to hundreds of bytes. Natural-file interiors generally needed complex recurrences that **did not predict held-out data**. Gains on MP4 were confined to structured edges. |
+| **Algebraic normal form (ANF), Boolean polynomials** | Express 4,096-bit tiles as `GF(2)` polynomials; search alternative binary coordinates. | None of **125 sampled real-file tiles** gained from the polynomial form; constructed 17-term data did. Expanded formulas usually cost too much. |
+| **Binary-matrix/tensor factorization** | Search compact `GF(2)` rank factors, including **462** binary-coordinate partitions. | **6/125** real-file 512 B tiles were profitable, largely at boundaries; most interiors full-rank. A generated rank-8 tile compressed **512 → 131 B**. |
+| **Nonlinear Boolean recurrences** | Unknown-lag formulas of form `X[i]=X[i-a] XOR X[i-b] XOR (X[i-c] AND X[i-d])`. | **65,536 → 140 B** on input generated by the rule; no profitable natural-file windows in that test. |
+| **Shared multi-equation graphs and subexpressions** | Multiple regional equations with reusable XOR/AND nodes, mirrors, sparse edits, and fixed 512/128 B chunks. | Stronger on deliberately mixed mathematical data; nearly all ordinary windows fell back to raw. Shared-node benefit was small relative to the intended architecture. |
+| **Latent masks and networks of masks** | Reuse a mask *not literally present* in file; derive masks via XOR/AND; allow mirrored chunks and corrections. | Useful on constructed noisy relations (e.g., **16,384 → 9,418 B**); only **2/15** selected real regions compressed, neither beating Zstd. |
+
+## B. Hidden organization, statistical states, and constraint descriptions
+
+| Tested approach | What we implemented or checked | Historical outcome |
+|---|---|---|
+| **Entropy, neighbors and higher-order contextual statistics** | Raw byte/bit biases, lags, and held-out models using 1/3/4 earlier bits. | Weak but measurable prediction in MP3; generally too little after model overhead and often no held-out improvement in EXE/MP4 interiors. Diagnostic analysis, not an independent compressor. |
+| **Automatically inferred interleaved mathematical streams** | Detect orbits/equations across interleaved lanes; region-dependent XOR transforms and entropy-regime diagnostics. | Discovered eight engineered streams (**65,536 → 34 B**); real files mainly benefited at MP4 tail. Reductions from reshuffling plus **Zstd** were not standalone wins. |
+| **Predictive causal-state clustering** | Group bit histories into common predictive states; arithmetic-code uncertainty; support nonadjacent history (CS01). | On 15 real windows **950,515 B** versus Zstd-3 **929,765 B**. Strong on designed stochastic/hidden-state and multi-regime controls, not general files. |
+| **Automatic regime-change detection** | Infer boundaries and switch predictive-state models instead of using a whole-region predictor (CS02). | 12 primary 64 KiB samples **757,892 → 751,774 B** versus prior causal codec, but Zstd **733,118 B**; slow on difficult inputs. Mostly incremental gains. |
+| **Microcanonical constraint-and-rank encoding** | Enumerate bitstrings satisfying Hamming-weight, transition-count and symbol-population constraints; store rank in allowed universe. Then tested separate XOR/subtraction and interleave/mirror stages. | 15 real windows: standalone **963,243 B**, with extra transforms **959,357 B**, both worse than Zstd **929,765 B**. Isolated full smaller files expanded. |
+| **Unique reconstruction by constraints** | Enumerate 16×16 binary matrices from row/column totals; discard interiors **only when solution is mathematically unique**. | Found 138 uniquely determined blocks, but combined archive **expanded** to 985,329 B for 983,040 B input. |
+| **Computation-as-storage / generator inversion** | Generate original data by solving for a seed of a nonlinear generator using a short fingerprint. | Reconstructed purpose-built examples; **no profitable real-file regions**. Fingerprint could cost more than direct seed storage. |
+| **Bits-back information recycling** | Reversible bits-back ANS latent coding versus directly encoding the same marginal probabilities. | Recovered latent-choice coding cost but **no smaller real archives** than direct coding for the tested model; model itself supplied insufficient predictive power. |
+| **Shared statistical model across files** | One learned byte-probability distribution for all files versus separate models/file or region, counting model storage. | Shared model **974,575 B**, separate-per-region **961,190 B**, Zstd **929,765 B** on identical 983,040 B samples. Sharing hurt. |
+| **Shared external information/reference universe** | Whole-collection cross-file references; zero-run control, with reference library costs accounted for. | Nearly all cross-file matches were zeros: local zero regeneration **982,047 B** versus zero+cross-file refs **982,041 B** (just **6 B** extra saving). |
+| **Blind process/encoding reconstruction** | Regenerate framing, checksums, header fields; scan embedded compressed streams and try reproducing original encoding. | PNG/MP3 wrapper savings were **small but exactly reversible**. A PNG stream had an apparently **16–24% smaller alternative encoding**, but the original encoded bytes **could not be regenerated**, so this was **not** a successful lossless archive. |
+
+## C. Geometry, physics-inspired boundaries, and rearrangements
+
+| Tested approach | What we implemented or checked | Historical outcome |
+|---|---|---|
+| **Cosmological/spatial field analogues** | Spatial gradients (left/up/diagonal), reversible Haar-style transforms, bit planes, fixed-lag XOR/subtraction, shuffles. | Very small full-file reductions; decoded PNG pixels could be represented compactly, **but not the original PNG file bytes**. Some trials used Zstd downstream. |
+| **Geometric boundary reconstruction** | Reversible 2D/3D layouts; infer values from boundary using XOR/additive/majority laws; Hilbert/Morton-like traversal; geometric positive control. | Designed boundary-controlled field reconstructed well; ordinary file interiors obeyed XOR constraints at almost random rates. Apparent MP4 gains arose mainly from rearrangement, **not** boundary rigidity. |
+| **Higher-dimensional and unusual geometries** | Up to 20D hypercubes, triangular/hexagonal/periodic/twisted surfaces, quadtree/tree, radial/polar, spiral, multiscale, bit-plane/nibble layouts, 1–7-bit rotations. | On 15 windows standalone geometry **925,224 B** versus restricted MDC5 **920,331 B**. Strongest MP4-tail results came from shuffling plus a **Zstd backend**, not proven boundary reconstruction. |
+| **Geometry inference / advanced reversible shuffles** | Modular orbits, spectral/Fiedler lane ordering, byte-symbol relabeling, permuted Boolean address axes, `GF(2)` coordinate shears. | Improved previous standalone geometry by just **255 B** (combined **925,072 B** on same 15 samples). Learned geometries did not produce new large-scale mathematically forced interiors. |
+| **Hyperuniformity diagnostics** | Checked suppression of bit-count fluctuations across scale, inspired by disordered materials with hidden long-range order. | No positive evidence in tested entropy-dense interiors. **A diagnostic**, not an implemented lossless hyperuniform codec. |
+
+## D. Number systems and algebraic minimization
+
+| Tested approach | What we implemented or checked | Historical outcome |
+|---|---|---|
+| **Higher-radix/base conversion** | Nine positional bases over several blocks, exactly reversible. | **405 trials, no smaller Zstd-compressed output**. Mere base conversion supplied no net advantage. |
+| **Finite-field value remappings** | `GF(256)` logarithms/inverses and modular algebraic transforms. | A few wins of tens of bytes per 64 KiB or 1 MiB, not scalable or substantial. |
+| **p-adic and residue-number representations** | Modular similarity, valuation, residue/quotient decomposition, different primes including **257**. | Some striking modular correlations; best combined candidate **929,671 B** vs Zstd-3 **929,795 B** and MDC5 **920,331 B**. Short MP3 wins disappeared at larger scale. |
+| **Adaptive mixed-radix systems** | Search bases/layouts per numerical field or region; encode reversible mixed-base digits. | No qualifying gains against MDC5; largely unable to exploit ordinary encoded payloads. |
+| **Whitehead/Nielsen shortening (simplified)** | Reversible substitutions of free-group generators, store inverse changes and shorter group words. | Shorter *algebraic words* did **not** imply fewer serialized bits. Weak across real file samples. This was **not** a full Whitehead theorem implementation. |
+| **Tietze-style presentation/grammar reduction (simplified)** | Reusable algebraic generator definitions, elimination with recovery instructions; checked rule amortization from 64 KiB to 4 MiB. | Some savings but not competitive; at 4 MiB one shared rule set **4,182,787 B**, four separate sets **4,182,505 B**, Zstd **4,179,671 B**. This implementation resembled grammar compression. |
+| **Syzygy-inspired `GF(2)` basis elimination (simplified)** | Remove algebraically redundant equations by Gaussian/row reduction and retain reconstruction coefficients. | Real samples generally lacked enough inexpensive linear dependencies. Did not beat comparators even with larger blocks; **not** a full Gröbner/syzygy package. |
+
+## E. Incremental MDC experiments (historical, **not independent**) 
+
+- **MDC6 instruction-stream splitting:** Separate operation tokens, parameters, literals and patches, with parameter delta/XOR transforms and independent entropy coding. On matched 15×64 KiB samples, restricted MDC6 was **920,276 B** versus MDC5 **920,331 B**, a **55-byte difference**, far below the historical 0.5-point acceptance rule. Both were **DEFLATE-contaminated**.
+- **Repeatedly compressing completed archives:** In four tested MDC second-pass examples, the compressor selected raw fallback and archives expanded by ~39 bytes rather than folding further.
+
+## Historical interpretation
+
+1. **Do not mark the theorems as disproven.** These results reject only the concrete, often narrow prototypes and the original sample/codec conditions.
+2. **Do not promote transform+Zstd/DEFLATE to a new standalone-compressor result.** Earlier narratives sometimes blurred this distinction.
+3. **Do not treat synthetic mathematical generators as arbitrary-file evidence.** They prove an encoder can exploit those exact dependencies when supplied or found.
+4. **Do not equate a more compact decoded representation with original-file-exact compression.** Preserving image pixels or decompressed stream content is insufficient if original encoded bytes are not reproduced.
+5. **Several named principles were discussed but NOT actually implemented** (and therefore are **not failed tests**): prime-index chunk encoding and irreducible-prime factor strategies; full CAT(0) boundary-distance reconstruction of arbitrary bit labels; general-purpose shortest-program search; full Polynomial Freiman–Ruzsa structure discovery and higher-order partial information decomposition; full neural Mamba/RWKV/transformer compressors; true quantum computation; full unsimplified Whitehead/Tietze/syzygy algorithms.
+
+**Source record:** Historical experiments and values summarized from `COMPRESSION_RESEARCH_HANDOFF.md` and individual `*/REPORT.md` files produced during the research. The source reports contain differing sample selections and methodologies. This inventory deliberately includes **no proposed next experiments**.

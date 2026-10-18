@@ -1,0 +1,4202 @@
+[
+  {
+    "id": 0,
+    "category": "cat_0",
+    "value": 0.0,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 1,
+    "category": "cat_1",
+    "value": 45.7253,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 2,
+    "category": "cat_2",
+    "value": 91.0757,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 3,
+    "category": "cat_3",
+    "value": 135.6795,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 4,
+    "category": "cat_4",
+    "value": 179.1709,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 5,
+    "category": "cat_5",
+    "value": 221.1937,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 6,
+    "category": "cat_6",
+    "value": 261.4034,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 7,
+    "category": "cat_7",
+    "value": 299.4707,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 8,
+    "category": "cat_8",
+    "value": 335.0841,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 9,
+    "category": "cat_9",
+    "value": 367.9521,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 10,
+    "category": "cat_10",
+    "value": 397.8061,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 11,
+    "category": "cat_11",
+    "value": 424.4022,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 12,
+    "category": "cat_12",
+    "value": 447.5235,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 13,
+    "category": "cat_0",
+    "value": 466.9819,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 14,
+    "category": "cat_1",
+    "value": 482.6193,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 15,
+    "category": "cat_2",
+    "value": 494.3095,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 16,
+    "category": "cat_3",
+    "value": 501.9586,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 17,
+    "category": "cat_4",
+    "value": 505.5061,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 18,
+    "category": "cat_5",
+    "value": 504.9256,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 19,
+    "category": "cat_6",
+    "value": 500.2246,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 20,
+    "category": "cat_7",
+    "value": 491.4446,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 21,
+    "category": "cat_8",
+    "value": 478.661,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 22,
+    "category": "cat_9",
+    "value": 461.982,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 23,
+    "category": "cat_10",
+    "value": 441.5482,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 24,
+    "category": "cat_11",
+    "value": 417.5311,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 25,
+    "category": "cat_12",
+    "value": 390.1317,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 26,
+    "category": "cat_0",
+    "value": 359.5792,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 27,
+    "category": "cat_1",
+    "value": 326.1285,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 28,
+    "category": "cat_2",
+    "value": 290.0588,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 29,
+    "category": "cat_3",
+    "value": 251.6706,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 30,
+    "category": "cat_4",
+    "value": 211.2837,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 31,
+    "category": "cat_5",
+    "value": 169.2345,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 32,
+    "category": "cat_6",
+    "value": 125.873,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 33,
+    "category": "cat_7",
+    "value": 81.56,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 34,
+    "category": "cat_8",
+    "value": 36.6643,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 35,
+    "category": "cat_9",
+    "value": -8.4407,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 36,
+    "category": "cat_10",
+    "value": -53.3796,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 37,
+    "category": "cat_11",
+    "value": -97.7785,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 38,
+    "category": "cat_12",
+    "value": -141.268,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 39,
+    "category": "cat_0",
+    "value": -183.4862,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 40,
+    "category": "cat_1",
+    "value": -224.0817,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 41,
+    "category": "cat_2",
+    "value": -262.7165,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 42,
+    "category": "cat_3",
+    "value": -299.0686,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 43,
+    "category": "cat_4",
+    "value": -332.8352,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 44,
+    "category": "cat_5",
+    "value": -363.7346,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 45,
+    "category": "cat_6",
+    "value": -391.5088,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 46,
+    "category": "cat_7",
+    "value": -415.9259,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 47,
+    "category": "cat_8",
+    "value": -436.7812,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 48,
+    "category": "cat_9",
+    "value": -453.8999,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 49,
+    "category": "cat_10",
+    "value": -467.1377,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 50,
+    "category": "cat_11",
+    "value": -476.3827,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 51,
+    "category": "cat_12",
+    "value": -481.5557,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 52,
+    "category": "cat_0",
+    "value": -482.6113,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 53,
+    "category": "cat_1",
+    "value": -479.5379,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 54,
+    "category": "cat_2",
+    "value": -472.3582,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 55,
+    "category": "cat_3",
+    "value": -461.1288,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 56,
+    "category": "cat_4",
+    "value": -445.9396,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 57,
+    "category": "cat_5",
+    "value": -426.9133,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 58,
+    "category": "cat_6",
+    "value": -404.2043,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 59,
+    "category": "cat_7",
+    "value": -377.9975,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 60,
+    "category": "cat_8",
+    "value": -348.5064,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 61,
+    "category": "cat_9",
+    "value": -315.9719,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 62,
+    "category": "cat_10",
+    "value": -280.6599,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 63,
+    "category": "cat_11",
+    "value": -242.8593,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 64,
+    "category": "cat_12",
+    "value": -202.8796,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 65,
+    "category": "cat_0",
+    "value": -161.0482,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 66,
+    "category": "cat_1",
+    "value": -117.7077,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 67,
+    "category": "cat_2",
+    "value": -73.2135,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 68,
+    "category": "cat_3",
+    "value": -27.9301,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 69,
+    "category": "cat_4",
+    "value": 17.7711,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 70,
+    "category": "cat_5",
+    "value": 63.5155,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 71,
+    "category": "cat_6",
+    "value": 108.928,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 72,
+    "category": "cat_7",
+    "value": 153.6364,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 73,
+    "category": "cat_8",
+    "value": 197.2742,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 74,
+    "category": "cat_9",
+    "value": 239.4837,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 75,
+    "category": "cat_10",
+    "value": 279.919,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 76,
+    "category": "cat_11",
+    "value": 318.2491,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 77,
+    "category": "cat_12",
+    "value": 354.16,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 78,
+    "category": "cat_0",
+    "value": 387.3579,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 79,
+    "category": "cat_1",
+    "value": 417.5715,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 80,
+    "category": "cat_2",
+    "value": 444.554,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 81,
+    "category": "cat_3",
+    "value": 468.0852,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 82,
+    "category": "cat_4",
+    "value": 487.9735,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 83,
+    "category": "cat_5",
+    "value": 504.0576,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 84,
+    "category": "cat_6",
+    "value": 516.2073,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 85,
+    "category": "cat_7",
+    "value": 524.3249,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 86,
+    "category": "cat_8",
+    "value": 528.3463,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 87,
+    "category": "cat_9",
+    "value": 528.2409,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 88,
+    "category": "cat_10",
+    "value": 524.0125,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 89,
+    "category": "cat_11",
+    "value": 515.6985,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 90,
+    "category": "cat_12",
+    "value": 503.3706,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 91,
+    "category": "cat_0",
+    "value": 487.1332,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 92,
+    "category": "cat_1",
+    "value": 467.1232,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 93,
+    "category": "cat_2",
+    "value": 443.5086,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 94,
+    "category": "cat_3",
+    "value": 416.4871,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 95,
+    "category": "cat_4",
+    "value": 386.2848,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 96,
+    "category": "cat_5",
+    "value": 353.1538,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 97,
+    "category": "cat_6",
+    "value": 317.3704,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 98,
+    "category": "cat_7",
+    "value": 279.233,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 99,
+    "category": "cat_8",
+    "value": 239.0592,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 100,
+    "category": "cat_9",
+    "value": 197.1837,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 101,
+    "category": "cat_10",
+    "value": 153.9549,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 102,
+    "category": "cat_11",
+    "value": 109.7327,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 103,
+    "category": "cat_12",
+    "value": 64.8851,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 104,
+    "category": "cat_0",
+    "value": 19.7851,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 105,
+    "category": "cat_1",
+    "value": -25.1919,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 106,
+    "category": "cat_2",
+    "value": -69.6719,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 107,
+    "category": "cat_3",
+    "value": -113.2846,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 108,
+    "category": "cat_4",
+    "value": -155.6672,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 109,
+    "category": "cat_5",
+    "value": -196.4669,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 110,
+    "category": "cat_6",
+    "value": -235.3439,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 111,
+    "category": "cat_7",
+    "value": -271.9744,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 112,
+    "category": "cat_8",
+    "value": -306.0532,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 113,
+    "category": "cat_9",
+    "value": -337.296,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 114,
+    "category": "cat_10",
+    "value": -365.4421,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 115,
+    "category": "cat_11",
+    "value": -390.2563,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 116,
+    "category": "cat_12",
+    "value": -411.5308,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 117,
+    "category": "cat_0",
+    "value": -429.0873,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 118,
+    "category": "cat_1",
+    "value": -442.7779,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 119,
+    "category": "cat_2",
+    "value": -452.4869,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 120,
+    "category": "cat_3",
+    "value": -458.1313,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 121,
+    "category": "cat_4",
+    "value": -459.6618,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 122,
+    "category": "cat_5",
+    "value": -457.0629,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 123,
+    "category": "cat_6",
+    "value": -450.3533,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 124,
+    "category": "cat_7",
+    "value": -439.5858,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 125,
+    "category": "cat_8",
+    "value": -424.8465,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 126,
+    "category": "cat_9",
+    "value": -406.2544,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 127,
+    "category": "cat_10",
+    "value": -383.9602,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 128,
+    "category": "cat_11",
+    "value": -358.1454,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 129,
+    "category": "cat_12",
+    "value": -329.0203,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 130,
+    "category": "cat_0",
+    "value": -296.8229,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 131,
+    "category": "cat_1",
+    "value": -261.8161,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 132,
+    "category": "cat_2",
+    "value": -224.2865,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 133,
+    "category": "cat_3",
+    "value": -184.5411,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 134,
+    "category": "cat_4",
+    "value": -142.9055,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 135,
+    "category": "cat_5",
+    "value": -99.7208,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 136,
+    "category": "cat_6",
+    "value": -55.3408,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 137,
+    "category": "cat_7",
+    "value": -10.1295,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 138,
+    "category": "cat_8",
+    "value": 35.5427,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 139,
+    "category": "cat_9",
+    "value": 81.3013,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 140,
+    "category": "cat_10",
+    "value": 126.771,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 141,
+    "category": "cat_11",
+    "value": 171.5792,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 142,
+    "category": "cat_12",
+    "value": 215.3585,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 143,
+    "category": "cat_0",
+    "value": 257.7502,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 144,
+    "category": "cat_1",
+    "value": 298.4068,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 145,
+    "category": "cat_2",
+    "value": 336.9953,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 146,
+    "category": "cat_3",
+    "value": 373.1999,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 147,
+    "category": "cat_4",
+    "value": 406.7242,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 148,
+    "category": "cat_5",
+    "value": 437.2942,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 149,
+    "category": "cat_6",
+    "value": 464.66,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 150,
+    "category": "cat_7",
+    "value": 488.5986,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 151,
+    "category": "cat_8",
+    "value": 508.9148,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 152,
+    "category": "cat_9",
+    "value": 525.4438,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 153,
+    "category": "cat_10",
+    "value": 538.0516,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 154,
+    "category": "cat_11",
+    "value": 546.637,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 155,
+    "category": "cat_12",
+    "value": 551.1318,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 156,
+    "category": "cat_0",
+    "value": 551.5016,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 157,
+    "category": "cat_1",
+    "value": 547.7462,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 158,
+    "category": "cat_2",
+    "value": 539.8993,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 159,
+    "category": "cat_3",
+    "value": 528.0284,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 160,
+    "category": "cat_4",
+    "value": 512.2344,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 161,
+    "category": "cat_5",
+    "value": 492.6504,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 162,
+    "category": "cat_6",
+    "value": 469.4409,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 163,
+    "category": "cat_7",
+    "value": 442.8004,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 164,
+    "category": "cat_8",
+    "value": 412.9517,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 165,
+    "category": "cat_9",
+    "value": 380.1439,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 166,
+    "category": "cat_10",
+    "value": 344.6509,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 167,
+    "category": "cat_11",
+    "value": 306.7684,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 168,
+    "category": "cat_12",
+    "value": 266.8122,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 169,
+    "category": "cat_0",
+    "value": 225.1149,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 170,
+    "category": "cat_1",
+    "value": 182.0237,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 171,
+    "category": "cat_2",
+    "value": 137.8972,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 172,
+    "category": "cat_3",
+    "value": 93.1026,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 173,
+    "category": "cat_4",
+    "value": 48.0125,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 174,
+    "category": "cat_5",
+    "value": 3.0022,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 175,
+    "category": "cat_6",
+    "value": -41.5539,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 176,
+    "category": "cat_7",
+    "value": -85.285,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 177,
+    "category": "cat_8",
+    "value": -127.8273,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 178,
+    "category": "cat_9",
+    "value": -168.8266,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 179,
+    "category": "cat_10",
+    "value": -207.9416,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 180,
+    "category": "cat_11",
+    "value": -244.8465,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 181,
+    "category": "cat_12",
+    "value": -279.2337,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 182,
+    "category": "cat_0",
+    "value": -310.8165,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 183,
+    "category": "cat_1",
+    "value": -339.3313,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 184,
+    "category": "cat_2",
+    "value": -364.5399,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 185,
+    "category": "cat_3",
+    "value": -386.2313,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 186,
+    "category": "cat_4",
+    "value": -404.2236,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 187,
+    "category": "cat_5",
+    "value": -418.3654,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 188,
+    "category": "cat_6",
+    "value": -428.5373,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 189,
+    "category": "cat_7",
+    "value": -434.6524,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 190,
+    "category": "cat_8",
+    "value": -436.6576,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 191,
+    "category": "cat_9",
+    "value": -434.5334,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 192,
+    "category": "cat_10",
+    "value": -428.2947,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 193,
+    "category": "cat_11",
+    "value": -417.9903,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 194,
+    "category": "cat_12",
+    "value": -403.7024,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 195,
+    "category": "cat_0",
+    "value": -385.5464,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 196,
+    "category": "cat_1",
+    "value": -363.6695,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 197,
+    "category": "cat_2",
+    "value": -338.2495,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 198,
+    "category": "cat_3",
+    "value": -309.4936,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 199,
+    "category": "cat_4",
+    "value": -277.6367,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 200,
+    "category": "cat_5",
+    "value": -242.9389,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 201,
+    "category": "cat_6",
+    "value": -205.6842,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 202,
+    "category": "cat_7",
+    "value": -166.1775,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 203,
+    "category": "cat_8",
+    "value": -124.7423,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 204,
+    "category": "cat_9",
+    "value": -81.718,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 205,
+    "category": "cat_10",
+    "value": -37.4572,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 206,
+    "category": "cat_11",
+    "value": 7.6773,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 207,
+    "category": "cat_12",
+    "value": 53.3155,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 208,
+    "category": "cat_0",
+    "value": 99.0832,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 209,
+    "category": "cat_1",
+    "value": 144.6053,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 210,
+    "category": "cat_2",
+    "value": 189.5084,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 211,
+    "category": "cat_3",
+    "value": 233.4245,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 212,
+    "category": "cat_4",
+    "value": 275.9937,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 213,
+    "category": "cat_5",
+    "value": 316.8672,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 214,
+    "category": "cat_6",
+    "value": 355.7101,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 215,
+    "category": "cat_7",
+    "value": 392.2044,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 216,
+    "category": "cat_8",
+    "value": 426.0514,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 217,
+    "category": "cat_9",
+    "value": 456.9744,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 218,
+    "category": "cat_10",
+    "value": 484.7207,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 219,
+    "category": "cat_11",
+    "value": 509.064,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 220,
+    "category": "cat_12",
+    "value": 529.806,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 221,
+    "category": "cat_0",
+    "value": 546.778,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 222,
+    "category": "cat_1",
+    "value": 559.8427,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 223,
+    "category": "cat_2",
+    "value": 568.8949,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 224,
+    "category": "cat_3",
+    "value": 573.8627,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 225,
+    "category": "cat_4",
+    "value": 574.7077,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 226,
+    "category": "cat_5",
+    "value": 571.4258,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 227,
+    "category": "cat_6",
+    "value": 564.0467,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 228,
+    "category": "cat_7",
+    "value": 552.6342,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 229,
+    "category": "cat_8",
+    "value": 537.2853,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 230,
+    "category": "cat_9",
+    "value": 518.1296,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 231,
+    "category": "cat_10",
+    "value": 495.3278,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 232,
+    "category": "cat_11",
+    "value": 469.0712,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 233,
+    "category": "cat_12",
+    "value": 439.5793,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 234,
+    "category": "cat_0",
+    "value": 407.0985,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 235,
+    "category": "cat_1",
+    "value": 371.8997,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 236,
+    "category": "cat_2",
+    "value": 334.2764,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 237,
+    "category": "cat_3",
+    "value": 294.5421,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 238,
+    "category": "cat_4",
+    "value": 253.0277,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 239,
+    "category": "cat_5",
+    "value": 210.0788,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 240,
+    "category": "cat_6",
+    "value": 166.0528,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 241,
+    "category": "cat_7",
+    "value": 121.3161,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 242,
+    "category": "cat_8",
+    "value": 76.241,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 243,
+    "category": "cat_9",
+    "value": 31.2024,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 244,
+    "category": "cat_10",
+    "value": -13.4249,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 245,
+    "category": "cat_11",
+    "value": -57.2696,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 246,
+    "category": "cat_12",
+    "value": -99.9669,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 247,
+    "category": "cat_0",
+    "value": -141.1613,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 248,
+    "category": "cat_1",
+    "value": -180.51,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 249,
+    "category": "cat_2",
+    "value": -217.6851,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 250,
+    "category": "cat_3",
+    "value": -252.377,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 251,
+    "category": "cat_4",
+    "value": -284.2963,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 252,
+    "category": "cat_5",
+    "value": -313.1767,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 253,
+    "category": "cat_6",
+    "value": -338.7769,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 254,
+    "category": "cat_7",
+    "value": -360.8827,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 255,
+    "category": "cat_8",
+    "value": -379.3088,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 256,
+    "category": "cat_9",
+    "value": -393.9003,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 257,
+    "category": "cat_10",
+    "value": -404.5339,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 258,
+    "category": "cat_11",
+    "value": -411.1191,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 259,
+    "category": "cat_12",
+    "value": -413.5987,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 260,
+    "category": "cat_0",
+    "value": -411.9494,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 261,
+    "category": "cat_1",
+    "value": -406.1822,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 262,
+    "category": "cat_2",
+    "value": -396.3419,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 263,
+    "category": "cat_3",
+    "value": -382.5071,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 264,
+    "category": "cat_4",
+    "value": -364.7892,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 265,
+    "category": "cat_5",
+    "value": -343.3318,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 266,
+    "category": "cat_6",
+    "value": -318.3094,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 267,
+    "category": "cat_7",
+    "value": -289.9258,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 268,
+    "category": "cat_8",
+    "value": -258.4128,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 269,
+    "category": "cat_9",
+    "value": -224.0279,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 270,
+    "category": "cat_10",
+    "value": -187.0522,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 271,
+    "category": "cat_11",
+    "value": -147.7884,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 272,
+    "category": "cat_12",
+    "value": -106.558,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 273,
+    "category": "cat_0",
+    "value": -63.6988,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 274,
+    "category": "cat_1",
+    "value": -19.5619,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 275,
+    "category": "cat_2",
+    "value": 25.4908,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 276,
+    "category": "cat_3",
+    "value": 71.09,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 277,
+    "category": "cat_4",
+    "value": 116.862,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 278,
+    "category": "cat_5",
+    "value": 162.4313,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 279,
+    "category": "cat_6",
+    "value": 207.4245,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 280,
+    "category": "cat_7",
+    "value": 251.4727,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 281,
+    "category": "cat_8",
+    "value": 294.2148,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 282,
+    "category": "cat_9",
+    "value": 335.3007,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 283,
+    "category": "cat_10",
+    "value": 374.3937,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 284,
+    "category": "cat_11",
+    "value": 411.1737,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 285,
+    "category": "cat_12",
+    "value": 445.3398,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 286,
+    "category": "cat_0",
+    "value": 476.6126,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 287,
+    "category": "cat_1",
+    "value": 504.7364,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 288,
+    "category": "cat_2",
+    "value": 529.4818,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 289,
+    "category": "cat_3",
+    "value": 550.6472,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 290,
+    "category": "cat_4",
+    "value": 568.0605,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 291,
+    "category": "cat_5",
+    "value": 581.5806,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 292,
+    "category": "cat_6",
+    "value": 591.0988,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 293,
+    "category": "cat_7",
+    "value": 596.539,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 294,
+    "category": "cat_8",
+    "value": 597.8592,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 295,
+    "category": "cat_9",
+    "value": 595.0511,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 296,
+    "category": "cat_10",
+    "value": 588.1408,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 297,
+    "category": "cat_11",
+    "value": 577.188,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 298,
+    "category": "cat_12",
+    "value": 562.2859,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 299,
+    "category": "cat_0",
+    "value": 543.5605,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 300,
+    "category": "cat_1",
+    "value": 521.169,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 301,
+    "category": "cat_2",
+    "value": 495.2992,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 302,
+    "category": "cat_3",
+    "value": 466.1674,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 303,
+    "category": "cat_4",
+    "value": 434.0171,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 304,
+    "category": "cat_5",
+    "value": 399.1164,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 305,
+    "category": "cat_6",
+    "value": 361.7564,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 306,
+    "category": "cat_7",
+    "value": 322.2484,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 307,
+    "category": "cat_8",
+    "value": 280.9215,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 308,
+    "category": "cat_9",
+    "value": 238.1196,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 309,
+    "category": "cat_10",
+    "value": 194.199,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 310,
+    "category": "cat_11",
+    "value": 149.5252,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 311,
+    "category": "cat_12",
+    "value": 104.47,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 312,
+    "category": "cat_0",
+    "value": 59.4081,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 313,
+    "category": "cat_1",
+    "value": 14.7145,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 314,
+    "category": "cat_2",
+    "value": -29.239,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 315,
+    "category": "cat_3",
+    "value": -72.0866,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 316,
+    "category": "cat_4",
+    "value": -113.4716,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 317,
+    "category": "cat_5",
+    "value": -153.0496,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 318,
+    "category": "cat_6",
+    "value": -190.4909,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 319,
+    "category": "cat_7",
+    "value": -225.4836,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 320,
+    "category": "cat_8",
+    "value": -257.7359,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 321,
+    "category": "cat_9",
+    "value": -286.9786,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 322,
+    "category": "cat_10",
+    "value": -312.9676,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 323,
+    "category": "cat_11",
+    "value": -335.4854,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 324,
+    "category": "cat_12",
+    "value": -354.3433,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 325,
+    "category": "cat_0",
+    "value": -369.3828,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 326,
+    "category": "cat_1",
+    "value": -380.477,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 327,
+    "category": "cat_2",
+    "value": -387.5314,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 328,
+    "category": "cat_3",
+    "value": -390.4851,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 329,
+    "category": "cat_4",
+    "value": -389.3109,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 330,
+    "category": "cat_5",
+    "value": -384.0158,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 331,
+    "category": "cat_6",
+    "value": -374.6407,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 332,
+    "category": "cat_7",
+    "value": -361.2603,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 333,
+    "category": "cat_8",
+    "value": -343.9824,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 334,
+    "category": "cat_9",
+    "value": -322.9469,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 335,
+    "category": "cat_10",
+    "value": -298.3248,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 336,
+    "category": "cat_11",
+    "value": -270.3166,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 337,
+    "category": "cat_12",
+    "value": -239.151,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 338,
+    "category": "cat_0",
+    "value": -205.0825,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 339,
+    "category": "cat_1",
+    "value": -168.3898,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 340,
+    "category": "cat_2",
+    "value": -129.3732,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 341,
+    "category": "cat_3",
+    "value": -88.3522,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 342,
+    "category": "cat_4",
+    "value": -45.6627,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 343,
+    "category": "cat_5",
+    "value": -1.6545,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 344,
+    "category": "cat_6",
+    "value": 43.3115,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 345,
+    "category": "cat_7",
+    "value": 88.8668,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 346,
+    "category": "cat_8",
+    "value": 134.638,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 347,
+    "category": "cat_9",
+    "value": 180.2497,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 348,
+    "category": "cat_10",
+    "value": 225.3281,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 349,
+    "category": "cat_11",
+    "value": 269.5035,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 350,
+    "category": "cat_12",
+    "value": 312.414,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 351,
+    "category": "cat_0",
+    "value": 353.7078,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 352,
+    "category": "cat_1",
+    "value": 393.0467,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 353,
+    "category": "cat_2",
+    "value": 430.1085,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 354,
+    "category": "cat_3",
+    "value": 464.59,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 355,
+    "category": "cat_4",
+    "value": 496.209,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 356,
+    "category": "cat_5",
+    "value": 524.7073,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 357,
+    "category": "cat_6",
+    "value": 549.8521,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 358,
+    "category": "cat_7",
+    "value": 571.4387,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 359,
+    "category": "cat_8",
+    "value": 589.2914,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 360,
+    "category": "cat_9",
+    "value": 603.2656,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 361,
+    "category": "cat_10",
+    "value": 613.2486,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 362,
+    "category": "cat_11",
+    "value": 619.1607,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 363,
+    "category": "cat_12",
+    "value": 620.9559,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 364,
+    "category": "cat_0",
+    "value": 618.6221,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 365,
+    "category": "cat_1",
+    "value": 612.1813,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 366,
+    "category": "cat_2",
+    "value": 601.6894,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 367,
+    "category": "cat_3",
+    "value": 587.2359,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 368,
+    "category": "cat_4",
+    "value": 568.9428,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 369,
+    "category": "cat_5",
+    "value": 546.9641,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 370,
+    "category": "cat_6",
+    "value": 521.4839,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 371,
+    "category": "cat_7",
+    "value": 492.7155,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 372,
+    "category": "cat_8",
+    "value": 460.8992,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 373,
+    "category": "cat_9",
+    "value": 426.3006,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 374,
+    "category": "cat_10",
+    "value": 389.208,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 375,
+    "category": "cat_11",
+    "value": 349.9307,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 376,
+    "category": "cat_12",
+    "value": 308.7957,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 377,
+    "category": "cat_0",
+    "value": 266.1455,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 378,
+    "category": "cat_1",
+    "value": 222.3352,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 379,
+    "category": "cat_2",
+    "value": 177.7293,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 380,
+    "category": "cat_3",
+    "value": 132.6988,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 381,
+    "category": "cat_4",
+    "value": 87.6186,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 382,
+    "category": "cat_5",
+    "value": 42.8636,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 383,
+    "category": "cat_6",
+    "value": -1.1938,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 384,
+    "category": "cat_7",
+    "value": -44.1869,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 385,
+    "category": "cat_8",
+    "value": -85.758,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 386,
+    "category": "cat_9",
+    "value": -125.561,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 387,
+    "category": "cat_10",
+    "value": -163.2643,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 388,
+    "category": "cat_11",
+    "value": -198.5539,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 389,
+    "category": "cat_12",
+    "value": -231.1356,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 390,
+    "category": "cat_0",
+    "value": -260.7375,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 391,
+    "category": "cat_1",
+    "value": -287.1123,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 392,
+    "category": "cat_2",
+    "value": -310.0396,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 393,
+    "category": "cat_3",
+    "value": -329.3272,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 394,
+    "category": "cat_4",
+    "value": -344.8131,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 395,
+    "category": "cat_5",
+    "value": -356.3665,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 396,
+    "category": "cat_6",
+    "value": -363.8894,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 397,
+    "category": "cat_7",
+    "value": -367.3169,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 398,
+    "category": "cat_8",
+    "value": -366.6179,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 399,
+    "category": "cat_9",
+    "value": -361.7954,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 400,
+    "category": "cat_10",
+    "value": -352.8865,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 401,
+    "category": "cat_11",
+    "value": -339.962,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 402,
+    "category": "cat_12",
+    "value": -323.1259,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 403,
+    "category": "cat_0",
+    "value": -302.5145,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 404,
+    "category": "cat_1",
+    "value": -278.2953,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 405,
+    "category": "cat_2",
+    "value": -250.6656,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 406,
+    "category": "cat_3",
+    "value": -219.8507,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 407,
+    "category": "cat_4",
+    "value": -186.1024,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 408,
+    "category": "cat_5",
+    "value": -149.6967,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 409,
+    "category": "cat_6",
+    "value": -110.9315,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 410,
+    "category": "cat_7",
+    "value": -70.1242,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 411,
+    "category": "cat_8",
+    "value": -27.6091,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 412,
+    "category": "cat_9",
+    "value": 16.2655,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 413,
+    "category": "cat_10",
+    "value": 61.14,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 414,
+    "category": "cat_11",
+    "value": 106.6465,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 415,
+    "category": "cat_12",
+    "value": 152.4119,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 416,
+    "category": "cat_0",
+    "value": 198.0611,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 417,
+    "category": "cat_1",
+    "value": 243.2197,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 418,
+    "category": "cat_2",
+    "value": 287.5176,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 419,
+    "category": "cat_3",
+    "value": 330.5917,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 420,
+    "category": "cat_4",
+    "value": 372.089,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 421,
+    "category": "cat_5",
+    "value": 411.6695,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 422,
+    "category": "cat_6",
+    "value": 449.0091,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 423,
+    "category": "cat_7",
+    "value": 483.8022,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 424,
+    "category": "cat_8",
+    "value": 515.7641,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 425,
+    "category": "cat_9",
+    "value": 544.6338,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 426,
+    "category": "cat_10",
+    "value": 570.1754,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 427,
+    "category": "cat_11",
+    "value": 592.1808,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 428,
+    "category": "cat_12",
+    "value": 610.471,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 429,
+    "category": "cat_0",
+    "value": 624.8977,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 430,
+    "category": "cat_1",
+    "value": 635.3445,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 431,
+    "category": "cat_2",
+    "value": 641.728,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 432,
+    "category": "cat_3",
+    "value": 643.998,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 433,
+    "category": "cat_4",
+    "value": 642.1387,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 434,
+    "category": "cat_5",
+    "value": 636.1681,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 435,
+    "category": "cat_6",
+    "value": 626.1383,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 436,
+    "category": "cat_7",
+    "value": 612.135,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 437,
+    "category": "cat_8",
+    "value": 594.2764,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 438,
+    "category": "cat_9",
+    "value": 572.7128,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 439,
+    "category": "cat_10",
+    "value": 547.6251,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 440,
+    "category": "cat_11",
+    "value": 519.2232,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 441,
+    "category": "cat_12",
+    "value": 487.7445,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 442,
+    "category": "cat_0",
+    "value": 453.4517,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 443,
+    "category": "cat_1",
+    "value": 416.6307,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 444,
+    "category": "cat_2",
+    "value": 377.5883,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 445,
+    "category": "cat_3",
+    "value": 336.6499,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 446,
+    "category": "cat_4",
+    "value": 294.1562,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 447,
+    "category": "cat_5",
+    "value": 250.4609,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 448,
+    "category": "cat_6",
+    "value": 205.9277,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 449,
+    "category": "cat_7",
+    "value": 160.9271,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 450,
+    "category": "cat_8",
+    "value": 115.8334,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 451,
+    "category": "cat_9",
+    "value": 71.022,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 452,
+    "category": "cat_10",
+    "value": 26.8656,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 453,
+    "category": "cat_11",
+    "value": -16.2684,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 454,
+    "category": "cat_12",
+    "value": -58.021,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 455,
+    "category": "cat_0",
+    "value": -98.0445,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 456,
+    "category": "cat_1",
+    "value": -136.0057,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 457,
+    "category": "cat_2",
+    "value": -171.5884,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 458,
+    "category": "cat_3",
+    "value": -204.4959,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 459,
+    "category": "cat_4",
+    "value": -234.4536,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 460,
+    "category": "cat_5",
+    "value": -261.2114,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 461,
+    "category": "cat_6",
+    "value": -284.5457,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 462,
+    "category": "cat_7",
+    "value": -304.2608,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 463,
+    "category": "cat_8",
+    "value": -320.1912,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 464,
+    "category": "cat_9",
+    "value": -332.2027,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 465,
+    "category": "cat_10",
+    "value": -340.1932,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 466,
+    "category": "cat_11",
+    "value": -344.094,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 467,
+    "category": "cat_12",
+    "value": -343.8702,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 468,
+    "category": "cat_0",
+    "value": -339.5208,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 469,
+    "category": "cat_1",
+    "value": -331.079,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 470,
+    "category": "cat_2",
+    "value": -318.6118,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 471,
+    "category": "cat_3",
+    "value": -302.2194,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 472,
+    "category": "cat_4",
+    "value": -282.0344,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 473,
+    "category": "cat_5",
+    "value": -258.2207,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 474,
+    "category": "cat_6",
+    "value": -230.9723,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 475,
+    "category": "cat_7",
+    "value": -200.5115,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 476,
+    "category": "cat_8",
+    "value": -167.0871,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 477,
+    "category": "cat_9",
+    "value": -130.9723,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 478,
+    "category": "cat_10",
+    "value": -92.4628,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 479,
+    "category": "cat_11",
+    "value": -51.8737,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 480,
+    "category": "cat_12",
+    "value": -9.5375,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 481,
+    "category": "cat_0",
+    "value": 34.1988,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 482,
+    "category": "cat_1",
+    "value": 78.9769,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 483,
+    "category": "cat_2",
+    "value": 124.4296,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 484,
+    "category": "cat_3",
+    "value": 170.1843,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 485,
+    "category": "cat_4",
+    "value": 215.8659,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 486,
+    "category": "cat_5",
+    "value": 261.0999,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 487,
+    "category": "cat_6",
+    "value": 305.5155,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 488,
+    "category": "cat_7",
+    "value": 348.7486,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 489,
+    "category": "cat_8",
+    "value": 390.4448,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 490,
+    "category": "cat_9",
+    "value": 430.2627,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 491,
+    "category": "cat_10",
+    "value": 467.876,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 492,
+    "category": "cat_11",
+    "value": 502.9769,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 493,
+    "category": "cat_12",
+    "value": 535.2783,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 494,
+    "category": "cat_0",
+    "value": 564.5162,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 495,
+    "category": "cat_1",
+    "value": 590.4518,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 496,
+    "category": "cat_2",
+    "value": 612.8736,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 497,
+    "category": "cat_3",
+    "value": 631.5994,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 498,
+    "category": "cat_4",
+    "value": 646.4771,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 499,
+    "category": "cat_5",
+    "value": 657.3866,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 500,
+    "category": "cat_6",
+    "value": 664.2407,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 501,
+    "category": "cat_7",
+    "value": 666.9854,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 502,
+    "category": "cat_8",
+    "value": 665.6009,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 503,
+    "category": "cat_9",
+    "value": 660.1012,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 504,
+    "category": "cat_10",
+    "value": 650.5347,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 505,
+    "category": "cat_11",
+    "value": 636.983,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 506,
+    "category": "cat_12",
+    "value": 619.5608,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 507,
+    "category": "cat_0",
+    "value": 598.4149,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 508,
+    "category": "cat_1",
+    "value": 573.7224,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 509,
+    "category": "cat_2",
+    "value": 545.6902,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 510,
+    "category": "cat_3",
+    "value": 514.5526,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 511,
+    "category": "cat_4",
+    "value": 480.5693,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 512,
+    "category": "cat_5",
+    "value": 444.0239,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 513,
+    "category": "cat_6",
+    "value": 405.2209,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 514,
+    "category": "cat_7",
+    "value": 364.4835,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 515,
+    "category": "cat_8",
+    "value": 322.1509,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 516,
+    "category": "cat_9",
+    "value": 278.5755,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 517,
+    "category": "cat_10",
+    "value": 234.1199,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 518,
+    "category": "cat_11",
+    "value": 189.154,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 519,
+    "category": "cat_12",
+    "value": 144.052,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 520,
+    "category": "cat_0",
+    "value": 99.1891,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 521,
+    "category": "cat_1",
+    "value": 54.9384,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 522,
+    "category": "cat_2",
+    "value": 11.6684,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 523,
+    "category": "cat_3",
+    "value": -30.261,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 524,
+    "category": "cat_4",
+    "value": -70.5007,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 525,
+    "category": "cat_5",
+    "value": -108.7156,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 526,
+    "category": "cat_6",
+    "value": -144.5874,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 527,
+    "category": "cat_7",
+    "value": -177.817,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 528,
+    "category": "cat_8",
+    "value": -208.1273,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 529,
+    "category": "cat_9",
+    "value": -235.2652,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 530,
+    "category": "cat_10",
+    "value": -259.0038,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 531,
+    "category": "cat_11",
+    "value": -279.1442,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 532,
+    "category": "cat_12",
+    "value": -295.5175,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 533,
+    "category": "cat_0",
+    "value": -307.9856,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 534,
+    "category": "cat_1",
+    "value": -316.4428,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 535,
+    "category": "cat_2",
+    "value": -320.8165,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 536,
+    "category": "cat_3",
+    "value": -321.0679,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 537,
+    "category": "cat_4",
+    "value": -317.192,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 538,
+    "category": "cat_5",
+    "value": -309.2183,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 539,
+    "category": "cat_6",
+    "value": -297.2097,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 540,
+    "category": "cat_7",
+    "value": -281.2626,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 541,
+    "category": "cat_8",
+    "value": -261.5061,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 542,
+    "category": "cat_9",
+    "value": -238.1006,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 543,
+    "category": "cat_10",
+    "value": -211.2366,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 544,
+    "category": "cat_11",
+    "value": -181.1331,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 545,
+    "category": "cat_12",
+    "value": -148.0362,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 546,
+    "category": "cat_0",
+    "value": -112.2163,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 547,
+    "category": "cat_1",
+    "value": -73.9665,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 548,
+    "category": "cat_2",
+    "value": -33.6,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 549,
+    "category": "cat_3",
+    "value": 8.5526,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 550,
+    "category": "cat_4",
+    "value": 52.1459,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 551,
+    "category": "cat_5",
+    "value": 96.8227,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 552,
+    "category": "cat_6",
+    "value": 142.2166,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 553,
+    "category": "cat_7",
+    "value": 187.9557,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 554,
+    "category": "cat_8",
+    "value": 233.6649,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 555,
+    "category": "cat_9",
+    "value": 278.9693,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 556,
+    "category": "cat_10",
+    "value": 323.4977,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 557,
+    "category": "cat_11",
+    "value": 366.8851,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 558,
+    "category": "cat_12",
+    "value": 408.7758,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 559,
+    "category": "cat_0",
+    "value": 448.8266,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 560,
+    "category": "cat_1",
+    "value": 486.7096,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 561,
+    "category": "cat_2",
+    "value": 522.1146,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 562,
+    "category": "cat_3",
+    "value": 554.7519,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 563,
+    "category": "cat_4",
+    "value": 584.3549,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 564,
+    "category": "cat_5",
+    "value": 610.6816,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 565,
+    "category": "cat_6",
+    "value": 633.5176,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 566,
+    "category": "cat_7",
+    "value": 652.6768,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 567,
+    "category": "cat_8",
+    "value": 668.0039,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 568,
+    "category": "cat_9",
+    "value": 679.375,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 569,
+    "category": "cat_10",
+    "value": 686.699,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 570,
+    "category": "cat_11",
+    "value": 689.9181,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 571,
+    "category": "cat_12",
+    "value": 689.0085,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 572,
+    "category": "cat_0",
+    "value": 683.9805,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 573,
+    "category": "cat_1",
+    "value": 674.8782,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 574,
+    "category": "cat_2",
+    "value": 661.7798,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 575,
+    "category": "cat_3",
+    "value": 644.796,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 576,
+    "category": "cat_4",
+    "value": 624.0699,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 577,
+    "category": "cat_5",
+    "value": 599.7755,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 578,
+    "category": "cat_6",
+    "value": 572.1161,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 579,
+    "category": "cat_7",
+    "value": 541.3229,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 580,
+    "category": "cat_8",
+    "value": 507.653,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 581,
+    "category": "cat_9",
+    "value": 471.3872,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 582,
+    "category": "cat_10",
+    "value": 432.8278,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 583,
+    "category": "cat_11",
+    "value": 392.2959,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 584,
+    "category": "cat_12",
+    "value": 350.1291,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 585,
+    "category": "cat_0",
+    "value": 306.6784,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 586,
+    "category": "cat_1",
+    "value": 262.3054,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 587,
+    "category": "cat_2",
+    "value": 217.3792,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 588,
+    "category": "cat_3",
+    "value": 172.2737,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 589,
+    "category": "cat_4",
+    "value": 127.3642,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 590,
+    "category": "cat_5",
+    "value": 83.0243,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 591,
+    "category": "cat_6",
+    "value": 39.6229,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 592,
+    "category": "cat_7",
+    "value": -2.4787,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 593,
+    "category": "cat_8",
+    "value": -42.9301,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 594,
+    "category": "cat_9",
+    "value": -81.3945,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 595,
+    "category": "cat_10",
+    "value": -117.5515,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 596,
+    "category": "cat_11",
+    "value": -151.0996,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 597,
+    "category": "cat_12",
+    "value": -181.7591,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 598,
+    "category": "cat_0",
+    "value": -209.2739,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 599,
+    "category": "cat_1",
+    "value": -233.4142,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 600,
+    "category": "cat_2",
+    "value": -253.9778,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 601,
+    "category": "cat_3",
+    "value": -270.792,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 602,
+    "category": "cat_4",
+    "value": -283.7154,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 603,
+    "category": "cat_5",
+    "value": -292.6383,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 604,
+    "category": "cat_6",
+    "value": -297.4844,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 605,
+    "category": "cat_7",
+    "value": -298.2109,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 606,
+    "category": "cat_8",
+    "value": -294.809,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 607,
+    "category": "cat_9",
+    "value": -287.3041,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 608,
+    "category": "cat_10",
+    "value": -275.7554,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 609,
+    "category": "cat_11",
+    "value": -260.2554,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 610,
+    "category": "cat_12",
+    "value": -240.9296,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 611,
+    "category": "cat_0",
+    "value": -217.9347,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 612,
+    "category": "cat_1",
+    "value": -191.4579,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 613,
+    "category": "cat_2",
+    "value": -161.7151,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 614,
+    "category": "cat_3",
+    "value": -128.9492,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 615,
+    "category": "cat_4",
+    "value": -93.428,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 616,
+    "category": "cat_5",
+    "value": -55.4422,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 617,
+    "category": "cat_6",
+    "value": -15.3027,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 618,
+    "category": "cat_7",
+    "value": 26.6618,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 619,
+    "category": "cat_8",
+    "value": 70.1073,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 620,
+    "category": "cat_9",
+    "value": 114.678,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 621,
+    "category": "cat_10",
+    "value": 160.0083,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 622,
+    "category": "cat_11",
+    "value": 205.7267,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 623,
+    "category": "cat_12",
+    "value": 251.4584,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 624,
+    "category": "cat_0",
+    "value": 296.8285,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 625,
+    "category": "cat_1",
+    "value": 341.4649,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 626,
+    "category": "cat_2",
+    "value": 385.0018,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 627,
+    "category": "cat_3",
+    "value": 427.0824,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 628,
+    "category": "cat_4",
+    "value": 467.3619,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 629,
+    "category": "cat_5",
+    "value": 505.5104,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 630,
+    "category": "cat_6",
+    "value": 541.2156,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 631,
+    "category": "cat_7",
+    "value": 574.1854,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 632,
+    "category": "cat_8",
+    "value": 604.1502,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 633,
+    "category": "cat_9",
+    "value": 630.8653,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 634,
+    "category": "cat_10",
+    "value": 654.1128,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 635,
+    "category": "cat_11",
+    "value": 673.7035,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 636,
+    "category": "cat_12",
+    "value": 689.4784,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 637,
+    "category": "cat_0",
+    "value": 701.3099,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 638,
+    "category": "cat_1",
+    "value": 709.103,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 639,
+    "category": "cat_2",
+    "value": 712.7962,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 640,
+    "category": "cat_3",
+    "value": 712.3616,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 641,
+    "category": "cat_4",
+    "value": 707.8058,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 642,
+    "category": "cat_5",
+    "value": 699.1689,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 643,
+    "category": "cat_6",
+    "value": 686.5251,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 644,
+    "category": "cat_7",
+    "value": 669.9816,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 645,
+    "category": "cat_8",
+    "value": 649.6778,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 646,
+    "category": "cat_9",
+    "value": 625.784,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 647,
+    "category": "cat_10",
+    "value": 598.5005,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 648,
+    "category": "cat_11",
+    "value": 568.0552,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 649,
+    "category": "cat_12",
+    "value": 534.7023,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 650,
+    "category": "cat_0",
+    "value": 498.7202,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 651,
+    "category": "cat_1",
+    "value": 460.4086,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 652,
+    "category": "cat_2",
+    "value": 420.0867,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 653,
+    "category": "cat_3",
+    "value": 378.0904,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 654,
+    "category": "cat_4",
+    "value": 334.7691,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 655,
+    "category": "cat_5",
+    "value": 290.4835,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 656,
+    "category": "cat_6",
+    "value": 245.602,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 657,
+    "category": "cat_7",
+    "value": 200.4981,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 658,
+    "category": "cat_8",
+    "value": 155.5469,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 659,
+    "category": "cat_9",
+    "value": 111.1226,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 660,
+    "category": "cat_10",
+    "value": 67.5947,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 661,
+    "category": "cat_11",
+    "value": 25.3255,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 662,
+    "category": "cat_12",
+    "value": -15.3332,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 663,
+    "category": "cat_0",
+    "value": -54.0428,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 664,
+    "category": "cat_1",
+    "value": -90.481,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 665,
+    "category": "cat_2",
+    "value": -124.3439,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 666,
+    "category": "cat_3",
+    "value": -155.3491,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 667,
+    "category": "cat_4",
+    "value": -183.238,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 668,
+    "category": "cat_5",
+    "value": -207.7773,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 669,
+    "category": "cat_6",
+    "value": -228.7617,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 670,
+    "category": "cat_7",
+    "value": -246.0151,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 671,
+    "category": "cat_8",
+    "value": -259.3922,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 672,
+    "category": "cat_9",
+    "value": -268.7799,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 673,
+    "category": "cat_10",
+    "value": -274.0978,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 674,
+    "category": "cat_11",
+    "value": -275.2993,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 675,
+    "category": "cat_12",
+    "value": -272.3717,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 676,
+    "category": "cat_0",
+    "value": -265.3364,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 677,
+    "category": "cat_1",
+    "value": -254.2487,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 678,
+    "category": "cat_2",
+    "value": -239.1976,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 679,
+    "category": "cat_3",
+    "value": -220.3045,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 680,
+    "category": "cat_4",
+    "value": -197.7227,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 681,
+    "category": "cat_5",
+    "value": -171.636,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 682,
+    "category": "cat_6",
+    "value": -142.257,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 683,
+    "category": "cat_7",
+    "value": -109.8257,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 684,
+    "category": "cat_8",
+    "value": -74.6071,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 685,
+    "category": "cat_9",
+    "value": -36.8893,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 686,
+    "category": "cat_10",
+    "value": 3.0188,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 687,
+    "category": "cat_11",
+    "value": 44.7906,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 688,
+    "category": "cat_12",
+    "value": 88.0837,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 689,
+    "category": "cat_0",
+    "value": 132.5433,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 690,
+    "category": "cat_1",
+    "value": 177.8051,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 691,
+    "category": "cat_2",
+    "value": 223.4979,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 692,
+    "category": "cat_3",
+    "value": 269.2472,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 693,
+    "category": "cat_4",
+    "value": 314.6779,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 694,
+    "category": "cat_5",
+    "value": 359.4174,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 695,
+    "category": "cat_6",
+    "value": 403.0992,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 696,
+    "category": "cat_7",
+    "value": 445.3651,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 697,
+    "category": "cat_8",
+    "value": 485.8689,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 698,
+    "category": "cat_9",
+    "value": 524.2788,
+    "description": "some repeated JSON field data"
+  },
+  {
+    "id": 699,
+    "category": "cat_10",
+    "value": 560.2804,
+    "description": "some repeated JSON field data"
+  }
+]

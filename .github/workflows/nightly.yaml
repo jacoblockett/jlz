@@ -1,0 +1,70 @@
+name: Nightly
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+      timezone: 'America/New_York'
+
+concurrency:
+  group: ${{ github.repository }}-automation
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    outputs:
+      should_build: ${{ steps.check.outputs.should_build }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check for package changes
+        id: check
+        shell: bash
+        run: |
+          set -euo pipefail
+          should_build=true
+          git fetch origin --tags --force
+          if git rev-parse -q --verify refs/tags/nightly >/dev/null; then
+            mapfile -t files < <(git diff --name-only nightly..HEAD -- '.github/workflows' '*.go' 'go.mod' 'fixtures' 'LICENSE')
+            if (( ${#files[@]} == 0 )); then should_build=false; fi
+          fi
+          echo "should_build=$should_build" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: check
+    if: needs.check.outputs.should_build == 'true'
+    uses: ./.github/workflows/build.yaml
+
+  publish:
+    needs: [check, build]
+    if: needs.check.outputs.should_build == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-bundle
+          path: build/release
+      - name: Publish nightly
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mapfile -t assets < <(find build/release -maxdepth 1 -type f -print | sort)
+          (( ${#assets[@]} == 7 )) || { echo 'Expected six platform archives and checksums' >&2; exit 1; }
+          if gh release view nightly --repo "$GH_REPO" >/dev/null 2>&1; then
+            gh release delete nightly --repo "$GH_REPO" --cleanup-tag --yes
+          fi
+          gh release create nightly "${assets[@]}" --repo "$GH_REPO" --title Nightly --notes 'Rolling JLZ build from main.' --prerelease --target "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git tag -f nightly "$GITHUB_SHA"
+          git push origin refs/tags/nightly --force

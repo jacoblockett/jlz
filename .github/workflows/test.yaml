@@ -1,0 +1,44 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.repository }}-automation
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-bundle
+          path: build/release
+      - name: Publish rolling Test prerelease
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mapfile -t assets < <(find build/release -maxdepth 1 -type f -print | sort)
+          (( ${#assets[@]} == 7 )) || { echo 'Expected six platform archives and checksums' >&2; exit 1; }
+          if gh release view test --repo "$GH_REPO" >/dev/null 2>&1; then
+            gh release delete test --repo "$GH_REPO" --cleanup-tag --yes
+          fi
+          gh release create test "${assets[@]}" --repo "$GH_REPO" --title Test --notes 'Rolling verified JLZ build from main.' --prerelease --latest=false --target "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git tag -f test "$GITHUB_SHA"
+          git push origin refs/tags/test --force
