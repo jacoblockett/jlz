@@ -49,7 +49,18 @@ jobs:
           [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo 'Expected semver MAJOR.MINOR.PATCH' >&2; exit 1; }
           echo "value=$version" >> "$GITHUB_OUTPUT"
 
+      # Cache packaged executables only for exactly the same source, build rules,
+      # host toolchain and asset version. The uncached test/vet/race suite above
+      # still runs on every invocation, including cache hits.
+      - name: Restore unchanged distribution
+        id: bundle-cache
+        uses: actions/cache@v4
+        with:
+          path: build/release
+          key: jlz-bundle-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.version.outputs.value }}-${{ hashFiles('**/*.go', 'go.mod', 'LICENSE', '.github/workflows/build.yaml') }}
+
       - name: Cross-compile complete distribution
+        if: steps.bundle-cache.outputs.cache-hit != 'true'
         shell: bash
         env:
           VERSION: ${{ steps.version.outputs.value }}
@@ -68,14 +79,31 @@ jobs:
             cp LICENSE "$stage/LICENSE"
             (cd "$stage" && zip -q -r "../release/jlz-$VERSION-$target.zip" "$exe" LICENSE)
           done
-          # The Linux host executable is the only cross-build we can launch here.
-          ./build/stage-linux-amd64/jlz >build/smoke.stdout 2>build/smoke.stderr && {
+          (cd build/release && sha256sum *.zip > SHA256SUMS.txt)
+
+      # Always validate restored archives before re-publishing them. This also
+      # exercises the generated distribution when there was no cache hit.
+      - name: Verify distribution
+        shell: bash
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          set -euo pipefail
+          targets=(linux-amd64 linux-arm64 windows-amd64 windows-arm64 darwin-amd64 darwin-arm64)
+          test "$(find build/release -maxdepth 1 -type f | wc -l)" -eq 7
+          for target in "${targets[@]}"; do
+            asset="build/release/jlz-$VERSION-$target.zip"
+            test -s "$asset"
+            unzip -tqq "$asset"
+          done
+          (cd build/release && sha256sum -c SHA256SUMS.txt)
+          mkdir -p build/smoke
+          unzip -p "build/release/jlz-$VERSION-linux-amd64.zip" jlz >build/smoke/jlz
+          chmod +x build/smoke/jlz
+          if ./build/smoke/jlz >build/smoke.stdout 2>build/smoke.stderr; then
             echo 'Missing CLI arguments unexpectedly succeeded' >&2
             exit 1
-          }
-          test "$(find build/release -maxdepth 1 -name '*.zip' | wc -l)" -eq 6
-          for asset in build/release/*.zip; do unzip -tqq "$asset"; done
-          (cd build/release && sha256sum *.zip > SHA256SUMS.txt)
+          fi
 
       - name: Upload verified release bundle
         uses: actions/upload-artifact@v4
