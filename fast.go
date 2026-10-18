@@ -160,6 +160,20 @@ func compressFast(input []byte) ([]byte, summary, error) {
 			}
 		}
 	}
+	// A different structural representation can exploit interleaved fields
+	// missed by whole-file native Huffman and mathematical references.
+	// Actual full-archive bytes always decide whether to use it.
+	if len(input) > 2*1024*1024 {
+		if stride := sampledLaneStride(input, bestSize); stride != 0 {
+			candidate, e := encodeLaneArchive(input, digest, bestSize, stride)
+			if e != nil {
+				return nil, s, e
+			}
+			if len(candidate) != 0 && len(candidate) < bestSize {
+				best, bestSize, s.method, s.raw = candidate, len(candidate), "lane-regions", false
+			}
+		}
+	}
 	if best == nil {
 		best = makeRaw()
 	}
