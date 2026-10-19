@@ -1,5 +1,7 @@
 package engine
 
+import "sync"
+
 // tryEarlyRegional avoids encoding the full file with unrelated candidates
 // when three distributed regions give strong independent evidence that the
 // selected local/regional match representation is far better than native.
@@ -12,26 +14,75 @@ func tryEarlyRegional(input []byte, digest [32]byte, rawSize int) ([]byte, bool,
 	}
 	var samples mathRegionSamples
 	samples.positions = [3]int{0, count / 2, count - 1}
-	regionalBytes, nativeBytes, rawBytes := 0, 0, 0
-	for i, idx := range samples.positions {
+	// All three independent regional probes are required for a successful
+	// early regional selection. Compute them concurrently when CPU quota
+	// permits; retain the original sample evaluation and decision order.
+	type result struct {
+		mode      byte
+		payload   []byte
+		nativeLen int
+		err       error
+	}
+	var measured [3]result
+	measure := func(i int) {
+		idx := samples.positions[i]
 		at := idx * stage3BlockSize
 		block := input[at:min(at+stage3BlockSize, len(input))]
 		mode, payload, err := encodeMathRegionBlockFast(block)
 		if err != nil {
-			return nil, false, err
+			measured[i].err = err
+			return
 		}
-		samples.results[i] = mathRegionResult{mode: mode, payload: payload}
 		native, err := nativePackBytes(block)
-		if err != nil {
-			return nil, false, err
+		measured[i] = result{mode: mode, payload: payload, nativeLen: len(native), err: err}
+	}
+	workerCount := availableWorkers(len(measured))
+	if workerCount > 1 {
+		jobs := make(chan int)
+		var wg sync.WaitGroup
+		for w := 0; w < workerCount; w++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				for i := range jobs {
+					measure(i)
+				}
+			}()
 		}
-		// All sampled blocks must support the same clear direction.
-		if (len(payload)+32)*10 >= len(native)*9 {
+		for i := range measured {
+			jobs <- i
+		}
+		close(jobs)
+		wg.Wait()
+	} else {
+		// With one worker preserve the old short-circuit behavior: there
+		// is no parallel latency to recover by encoding doomed samples.
+		for i := range measured {
+			measure(i)
+			if measured[i].err != nil {
+				return nil, false, measured[i].err
+			}
+			if (len(measured[i].payload)+32)*10 >= measured[i].nativeLen*9 {
+				return nil, false, nil
+			}
+		}
+	}
+	regionalBytes, nativeBytes, rawBytes := 0, 0, 0
+	for i, idx := range samples.positions {
+		if measured[i].err != nil {
+			return nil, false, measured[i].err
+		}
+		payload := measured[i].payload
+		samples.results[i] = mathRegionResult{mode: measured[i].mode, payload: payload}
+		at := idx * stage3BlockSize
+		blockLen := min(stage3BlockSize, len(input)-at)
+		// Preserve the original strict early selection predicate.
+		if (len(payload)+32)*10 >= measured[i].nativeLen*9 {
 			return nil, false, nil
 		}
 		regionalBytes += len(payload)
-		nativeBytes += len(native)
-		rawBytes += len(block)
+		nativeBytes += measured[i].nativeLen
+		rawBytes += blockLen
 	}
 	// Broader preflight still demands a substantial sampled advantage for the
 	// mathematical representation, then lets the measured BWT alternative
