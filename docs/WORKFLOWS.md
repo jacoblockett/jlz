@@ -14,6 +14,6 @@ Linux local Go tests run normally. Cross-compile Windows/amd64 using `CGO_ENABLE
 No hosted CI, nightly, Test or stable release execution. Keep binaries, corpora, and temporary benchmark files out of Git. Local archives/releases can be produced on explicit request; do not reinstate Actions without explicit authorization.
 
 ## Current package layout
-Run all commands from the repository root. The executable is `.`; production encoder/decoder and adjacent package tests live in `./internal/jlz`; correctness fixtures live in `./internal/jlz/testdata/fixtures`. Use `JLZ_CORPUS=/path/to/silesia` only for explicitly enabled corpus research/audit tests. `go test -count=1 ./...` and `go vet ./...` operate on both Go packages. No GitHub Actions are permitted.
+Run all commands from the repository root. The executable source is root `main.go`; production encoder/decoder and adjacent package tests live in `./engine`; correctness fixtures live in `./engine/testdata/fixtures`. Use `JLZ_CORPUS=/path/to/silesia` only for explicitly enabled corpus research/audit tests. `go test -count=1 ./...` and `go vet ./...` operate on all Go packages. No GitHub Actions are permitted.
 
 Feature source packages are rooted at `additive/`, `bwt/`, `match/`, `entropy/`, `lane/`, `predictive/`, `archive/`, and `workers/`. They are built and tested with `go test ./...`; no hosted CI is permitted.
