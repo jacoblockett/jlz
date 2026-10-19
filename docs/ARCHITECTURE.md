@@ -32,3 +32,5 @@ The build output is ignored by Git. Do not place binaries in source control, use
 
 
 Round53 adds `engine/finite_state.go` for a bounded, self-contained, byte-renormalized 12-bit native finite-state coder with exact packed-stream subtype 5. The `engine/` orchestrator owns selection and decoding because this codec is only called for selected intermediate BWT and mathematical streams. Existing `entropy/` arithmetic and raw/RLE/Huffman formats remain independently implemented and backwards-readable; do not substitute an external compression codec backend.
+
+Round54 adds `engine/match_dual_anchor.go`, an encoder-only native exact-match fast parser with two short/long hash anchors. `engine/region_fast.go` automatically chooses it only when the existing XOR/ADD-relationship evidence probe does not identify transformed matches. It produces existing JLZ match tokens and does not modify archive or decoder formats. Accepted R54 timing/ratio trade and validation are documented in `docs/reports/2026-10-19-round54-dual-anchor-speed.md`.
