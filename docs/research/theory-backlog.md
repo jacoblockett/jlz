@@ -22,6 +22,12 @@ The current practical threshold is holistic archive size, encode/decode times, m
 
 More catalog families may be appended as they are identified. No finite negative result closes the parent theory.
 
+## Complementary-first research rule (Round 33)
+
+The catalog must be tested *alongside* successful JLZ representations, not just as whole-file replacements. Audit potential effects on selected match opcodes/lengths/distances/literals, native BWT symbols, modular-additive residuals, and group-local modeling; compare exact coded stream sizes with all metadata. Require complete Silesia archive gains and acceptable encode/decode costs before promotion. A wholesale replacement is exceptional and requires transformative end-to-end proof, not a fixed numerical hurdle.
+
+The [40-idea integration audit](complementary-integration-audit.md) maps every historical idea to candidate JLZ surfaces, with statuses distinguishing **actually tested versus still open**. It is *not* a claim that each theory has been prototyped. In Round 33, complementary 16-rule grammar gave **15,138 B** savings in six of nine *actually selected* packed match-length streams, while grammar, sparse defects, boundary methods and other previously rejected standalone representations achieved some additive-coordinate substream wins. The full sparse-defect candidate reduced complete Silesia archives **497,389 B** but made the recorded ten-run encoding and decoding medians about **5.69% / 6.52% slower**; hence reject that candidate and retain approved R29. **Next:** bounded-CPU selective grammar in existing match-length metadata, while remaining theory×stream integrations stay open.
+
 ## Concrete experiments already recorded
 
 | Date | Candidate | Evidence | Decision |
