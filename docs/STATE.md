@@ -128,3 +128,5 @@ New primary user goal: substantially reduce JLZ compression time toward Zstd-3 o
 ## Source layout cleanup (2026-10-19)
 
 Moved the root Go CLI into `cmd/jlz` and grouped the current tightly coupled native compressor, decoder, and in-package tests under `internal/jlz`. Correctness fixtures now reside in `internal/jlz/testdata/fixtures`. CLI-to-engine wrappers preserve the two automatic commands and existing `JLZ1` serialization. The module uses `github.com/jacoblockett/jlz`. Updated README, local-only workflows and engineering documentation, without re-running historical competitor/reference benchmarks or changing the approved Round 29 compression algorithm. See `docs/ARCHITECTURE.md` for rationale and test paths.
+
+**Validation caveat for feature reorganization:** New package wiring was statically checked, but Go compilation, gofmt, tests, race checks and full-corpus reconstruction could not run in this session because the tool runtime cannot download a local repository checkout and GitHub Actions are prohibited. Treat new structure as pending executable verification. See [layout report](reports/2026-10-19-go-organization.md).

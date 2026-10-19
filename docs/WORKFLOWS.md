@@ -9,9 +9,11 @@
 4. Prioritize substantial compression throughput gains with near-Zstd-3 archive size. Draw inspiration from open-source compressors without copying their code or employing their codecs as JLZ backends. Record each experiment and decision in `docs/reports/`, `docs/STATE.md`, and `docs/RESEARCH.md`.
 
 ## Windows first
-Linux local Go tests run normally. Cross-compile Windows/amd64 using `CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o /tmp/jlz.exe ./cmd/jlz` and verify that the artifact is produced. This does **not** test native Windows runtime or prove Windows throughput. Native Windows tests require an actual Windows machine, not GitHub Actions.
+Linux local Go tests run normally. Cross-compile Windows/amd64 using `CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o /tmp/jlz.exe .` and verify that the artifact is produced. This does **not** test native Windows runtime or prove Windows throughput. Native Windows tests require an actual Windows machine, not GitHub Actions.
 
 No hosted CI, nightly, Test or stable release execution. Keep binaries, corpora, and temporary benchmark files out of Git. Local archives/releases can be produced on explicit request; do not reinstate Actions without explicit authorization.
 
 ## Current package layout
-Run all commands from the repository root. The executable is `./cmd/jlz`; production encoder/decoder and adjacent package tests live in `./internal/jlz`; correctness fixtures live in `./internal/jlz/testdata/fixtures`. Use `JLZ_CORPUS=/path/to/silesia` only for explicitly enabled corpus research/audit tests. `go test -count=1 ./...` and `go vet ./...` operate on both Go packages. No GitHub Actions are permitted.
+Run all commands from the repository root. The executable is `.`; production encoder/decoder and adjacent package tests live in `./internal/jlz`; correctness fixtures live in `./internal/jlz/testdata/fixtures`. Use `JLZ_CORPUS=/path/to/silesia` only for explicitly enabled corpus research/audit tests. `go test -count=1 ./...` and `go vet ./...` operate on both Go packages. No GitHub Actions are permitted.
+
+Feature source packages are rooted at `additive/`, `bwt/`, `match/`, `entropy/`, `lane/`, `predictive/`, `archive/`, and `workers/`. They are built and tested with `go test ./...`; no hosted CI is permitted.

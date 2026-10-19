@@ -1,34 +1,31 @@
-# Code organization
+# Source organization
 
-JLZ is a single executable with one automatic native compressor, a backwards-compatible `JLZ1` decoder, and two CLI verbs. This layout follows Go package boundaries without inventing artificial subsystems.
+JLZ has one standalone executable, with `main.go` at the repository root. Go packages are organized by actual dependency boundaries, not by filename prefix. The repository does not track compiled executables.
 
 ```text
-cmd/jlz/main.go                    CLI parsing, file operations and reporting
-internal/jlz/api.go                Small command-to-engine interface
-internal/jlz/jlz.go                Container format, shared data structures, decoder
-internal/jlz/*.go                  Native compression strategies and stream primitives
-internal/jlz/*_test.go             White-box tests next to the implementation
-internal/jlz/testdata/fixtures/    Tracked byte-exact correctness fixtures
-docs/research/                     Active mathematical research and negative results
-docs/reports/                      Historical measurement records
-docs/archived-actions/             Inactive hosted-CI definitions, never executable
+main.go                    two-command CLI (source, not a binary)
+engine/                    automatic selection and JLZ1 archive integration
+archive/varint.go          shared wire framing primitive
+additive/words.go          reversible 16-bit modular differences
+bwt/transform.go          block sorting and move-to-front/zero-run
+entropy/arithmetic.go     native adaptive context arithmetic coding
+lane/block.go             byte-lane transforms and entropy estimates
+match/                    fingerprints, transformed-match probes, LZ expansion
+predictive/transform.go   reversible lag predictors
+workers/                  CPU quota-aware bounded parallelism
+engine/testdata/fixtures/ byte-exact correctness fixtures
+docs/                     research, reports, engineering and inactive workflows
 ```
 
-## Why one engine package?
+Each directory is a real Go package. `engine/` owns high-level archive construction, encoder selection, legacy-format decoding and interoperability between formats. Feature packages provide independent transforms or policy without importing `engine`. Existing unit/regression tests that exercise internal engine symbols remain alongside `engine` implementations. Wire formats, the two CLI verbs and existing selection logic are unchanged.
 
-Go directories define separate packages. The current native BWT, mathematical matchers, entropy stream coders, and region selectors intentionally call shared unexported primitives. Splitting each filename into its own package now would require broad interface exposure and risk import cycles. Keep `internal/jlz` cohesive until a measured, stable dependency boundary justifies its own package. Unit tests retain private symbol access.
-
-## Stable behavior
-
-This is a source-layout refactor, **not** a compressor algorithm change. It preserves the `JLZ1` archive modes, checksum, encoded token representations, automatic codec selection, and the two existing CLI verbs. `cmd/jlz` delegates to `internal/jlz` through a small, exported API. The accepted Silesia measurements in prior reports are historical; no new speed or compression claim follows from moving files.
-
-All development and validation are local. Build from the repository root:
+Build locally from the repository root:
 
 ```sh
 go test -count=1 ./...
 go vet ./...
-go build -o jlz ./cmd/jlz
-CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o jlz.exe ./cmd/jlz
+go build -o jlz .
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o jlz.exe .
 ```
 
-Package-level correctness fixtures belong under `testdata/fixtures`, which Go tooling excludes from package discovery. For a full-Silesia research run, use a separately acquired verified original corpus outside the Git repository.
+The build output is ignored by Git. Do not place binaries in source control, use GitHub Actions, or claim unrun tests as passing. Full candidate throughput benchmarking continues to use only the original 12-file Silesia corpus and stored reference measurements.
