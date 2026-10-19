@@ -51,7 +51,7 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 		if size == 0 || size > stage3BlockSize || size > n-produced || plen > uint64(r.Len()) || plen > size*8+1024*1024 || (size < stage3BlockSize && size < n-produced) {
 			return nil, errors.New("cross block bounds")
 		}
-		if mode != stage3Raw && mode != blockCrossPacked && (mode == blockOldDictionary || mode > blockLanePacked) {
+		if mode != stage3Raw && mode != blockCrossPacked && (mode == blockOldDictionary || mode > blockAdditivePacked) {
 			return nil, errors.New("cross block mode")
 		}
 		if mode == stage3Raw && plen != size {
@@ -84,7 +84,9 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 					b := blocks[i]
 					var dec []byte
 					var err error
-					if b.typ == blockLanePacked {
+					if b.typ == blockAdditivePacked {
+						dec, err = decodeAdditiveWords(b.payload, b.size)
+					} else if b.typ == blockLanePacked {
 						dec, err = decodeLaneBlock(b.payload, b.size)
 					} else if b.typ == blockBWTPacked {
 						dec, err = decodeBWTNative(b.payload, b.size)
