@@ -2,6 +2,14 @@
 
 **Last updated:** 2026-10-18. **Status:** Round 29 automatically selected modular-additive 16-bit word representation **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 29.
 
+## Round 30 structural theory attempt (screened, not promoted)
+
+**Recommendation: REJECT the three tested rank-two models, keep Round 29 approved.** Implemented and actually decoded three lossless native Go component encoders over original Silesia bytes: row/column mixed finite differences; a base plus horizontal/vertical generators and exact 16-bit residuals; and a two-generator finite additive walk with explicit exception values. Over first/middle/last regions of every Silesia file (**36 representative regions, 7,728,404 B**), the hypothetical best serialized rank-two representation per region was **5,716,493 B**, against **2,676,525 B** for the best current native rank-one/BWT representation on those same samples. All 36 original-byte roundtrips passed; additional random/odd/empty tests, uncached targeted Go tests, vet and race passed. No fully integrated new JLZ1 archive, no new decoder mode, no candidate-only ten-run Silesia time estimate, and **no source promotion**.
+
+Bounded exact additive doubling in Z/(2^16) on up to 128 distinct words per sample found a few structured subsets (x-ray middle |A+A|/|A| **3.41**; ooffice final **1.99**), but the tested rank-two encoders still did not win. This **does not implement or disprove the full Polynomial Freiman–Ruzsa theorem**. The historical attempted-ideas catalog remains an active source for alternatives. Record: [Round 30](reports/2026-10-18-round30.md) and [active backlog](research/theory-backlog.md).
+
+**Next catalog candidate:** genuine geometric/boundary-distance encoding motivated by CAT(0) spaces, with invertible original-byte reconstruction and charged geometry metadata; do not use a cosmetic rearrangement and call it a theorem implementation.
+
 ## Current approved Round 29 (2026-10-18)
 
 **Silesia-only:** 211,938,580 original bytes, 12 files. New **62,644,663 B** complete archives, **70.442%** source reduction, versus retained Round 25 **63,104,117 B**, **70.225%** reduction. **-459,454 B (-0.7281% candidate archive size)**. Ten **candidate-only** whole-corpus encode medians **7.516364 s** and decode medians **2.821363 s**; retained approved Round 25 medians **7.549920/2.839905 s** (nominal -0.4445% / -0.6529% times). Independent sessions rather than paired old/new timings, so sub-1% speed deltas have uncertainty; no baseline or reference benchmarks were rerun.
