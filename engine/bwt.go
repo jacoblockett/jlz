@@ -38,7 +38,7 @@ func encodeBWTBijective(data []byte) ([]byte, error) {
 	}
 	var out bytes.Buffer
 	putVar(&out, uint64(primary))
-	out.Write(packStream(bwt.BijectiveZeroEncode(transformed)))
+	out.Write(packFiniteState(bwt.BijectiveZeroEncode(transformed)))
 	return out.Bytes(), nil
 }
 
