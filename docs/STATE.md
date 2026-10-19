@@ -10,6 +10,12 @@ Bounded exact additive doubling in Z/(2^16) on up to 128 distinct words per samp
 
 **Next catalog candidate:** genuine geometric/boundary-distance encoding motivated by CAT(0) spaces, with invertible original-byte reconstruction and charged geometry metadata; do not use a cosmetic rearrangement and call it a theorem implementation.
 
+## Round 31 catalog theory: geometric cubical boundaries (screened, rejected)
+
+**Approved codec remains Round 29.** Three **actually implemented and reversible** Go encoders/decoders were tested on Silesia: dyadic square-label quadtree for eight bitplanes, horizontal row boundary-distance runs, and vertical edge-incidence contour runs with exact inverse integration. All **36 original Silesia sample regions (7,728,404 B)** roundtripped. Actual native-packed streams include model metadata and codebook framing; optimistic best geometric representation per region **6,404,465 B**, versus best existing native BWT/additive per region **2,676,525 B**. **0/36 wins.** Targeted uncached tests, Go vet and race checks passed. Screening-only component results; no full JLZ1 candidate, no 10-run candidate performance and no new block type. This is a finite CAT(0)-inspired Euclidean cubical-grid description, **not** a full CAT(0) theorem implementation or disproof. Historical reference benchmarks remain unchanged. [Round 31 report](reports/2026-10-18-round31-cat0-geometry.md).
+
+**Next theory:** move to a genuinely different **Tietze/grammar-presentation** family with fully charged generator metadata and a working byte-exact inverse, rather than tuning geometric model parameters.
+
 ## Current approved Round 29 (2026-10-18)
 
 **Silesia-only:** 211,938,580 original bytes, 12 files. New **62,644,663 B** complete archives, **70.442%** source reduction, versus retained Round 25 **63,104,117 B**, **70.225%** reduction. **-459,454 B (-0.7281% candidate archive size)**. Ten **candidate-only** whole-corpus encode medians **7.516364 s** and decode medians **2.821363 s**; retained approved Round 25 medians **7.549920/2.839905 s** (nominal -0.4445% / -0.6529% times). Independent sessions rather than paired old/new timings, so sub-1% speed deltas have uncertainty; no baseline or reference benchmarks were rerun.
