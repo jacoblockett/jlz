@@ -46,6 +46,18 @@ func tryEarlyRegional(input []byte, digest [32]byte, rawSize int) ([]byte, bool,
 		return nil, false, err
 	}
 	if bwtOK {
+		// A mathematically distinct additive-progression representation can
+		// replace suffix sorting when actual distributed sample payloads
+		// reliably beat BWT. It writes a complete original-byte JLZ1 archive.
+		if additiveWordPreference(input, bwtSamples) {
+			additive, e := encodeParallelAdditiveArchive(input, digest)
+			if e != nil {
+				return nil, false, e
+			}
+			if len(additive) > 0 && len(additive)*20 < len(input)*19 {
+				return additive, true, nil
+			}
+		}
 		bwtArchive, err := encodeParallelBWTRegions(input, digest, rawSize, bwtSamples)
 		if err != nil {
 			return nil, false, err
