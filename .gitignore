@@ -1,4 +1,4 @@
-# Compiled outputs and local scratch. Test inputs in fixtures/ are intentional sources.
+# Compiled outputs and local scratch. Test inputs in internal/jlz/testdata/fixtures/ are intentional sources.
 /build/
 /dist/
 /coverage/

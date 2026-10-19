@@ -5,7 +5,7 @@ JLZ is an experimental, **standalone, byte-exact lossless compressor**, written 
 ```sh
 go test -count=1 ./...
 go vet ./...
-go build -o jlz .
+go build -o jlz ./cmd/jlz
 ./jlz compress input.bin
 ./jlz decompress input.bin.jlz
 ```
@@ -19,5 +19,16 @@ Custom output paths are supported as a third argument. JLZ writes `JLZ1` contain
 ## Local development and builds
 
 GitHub Actions are disabled. Go tests and candidate-only Silesia benchmark runs are executed locally. Go 1.23+ on Linux supports Windows/amd64 cross-compilation; native Windows execution requires a Windows runtime. The previous workflow definitions are archived as inactive reference files. See [local workflow](docs/WORKFLOWS.md).
+
+## Repository layout
+
+- `cmd/jlz/`: CLI entry point for the existing `compress` and `decompress` commands.
+- `internal/jlz/`: native compression/decoding engine, codecs, and package-level regression tests.
+- `internal/jlz/testdata/fixtures/`: versioned correctness inputs (not performance benchmarks).
+- `docs/`: engineering notes, active research, historical reports, and inactive Actions definitions.
+
+Go organizes code by **package boundary**, not one directory per algorithm. The codec components intentionally share a single internal package while their dependencies remain tightly coupled; splitting them into artificial subpackages would risk cyclic imports and complicate testing. See [architecture](docs/ARCHITECTURE.md).
+
+To run without building: `go run ./cmd/jlz compress input.bin`. Windows: `go build -o jlz.exe ./cmd/jlz`.
 
 Licensed under the repository's MIT LICENSE.
