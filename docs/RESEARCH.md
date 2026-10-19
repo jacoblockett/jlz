@@ -81,3 +81,7 @@ Round 21 demonstrates a substantial structural alternative to repeated match-par
 ## Round 34: optional match-length grammar (rejected)
 
 Actually integrated and tested a bounded 16-rule Tietze/Re-Pair-style nested grammar with native-packed two-byte token coordinates on current match-length streams (ordinary, split and cross-region). Original 12-file Silesia, validated hashes, 10 full candidate-only roundtrips: 62,417,637 B, medians 16.231375 s encode and 5.415786 s decode. Historical approved Round 29: 62,644,663 B, 7.516364/2.821363 s. **0.3624% archive saving at +115.95%/+91.96% nominal CPU. REJECT, no codec promotion.** Source rolled back; see [report](reports/2026-10-18-round34-grammar-lengths.md). Continue untried complementary theory×stream variants, not unconditional grammar search.
+
+## Round 35: speed-first open-source-inspired matcher trial (inconclusive)
+
+Investigated Snappy's adaptive search skipping, Zstd's fast/greedy/lazy parser budgets and LZ4's acceleration principle. An original native JLZ match-search trial and 10-run full-Silesia test were committed but CI failed before runner allocation (0 executed steps), so no candidate size/speed/roundtrip data exists. Source rolled back, docs retained. [Round 35 report](reports/2026-10-18-round35-speed-research.md). Speed relative to historically timed Zstd-3 is now the dominant optimization objective, with archive size near Zstd-3 and standalone losslessness maintained; historical Zstd CLI timings and JLZ in-memory timings are not directly comparable.

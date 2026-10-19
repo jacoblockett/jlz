@@ -329,9 +329,6 @@ func tokenizeMatchV2RangeStride(input []byte, start, stride int, exactOnly bool)
 	var recent [3]int
 	literalStart := start
 	refs := 0
-	// Like fast LZ parsers, search fewer positions in a long literal desert.
-	// Still index intervening bytes, so later matches retain full history.
-	misses := 0
 	flush := func(end int) {
 		if end > literalStart {
 			commands.WriteByte(matchLiteral)
@@ -355,15 +352,12 @@ func tokenizeMatchV2RangeStride(input []byte, start, stride int, exactOnly bool)
 			choice = idx.find(pos, recent)
 		}
 		if choice.score <= 0 {
-			misses++
-			step := min(8, 1+misses/64)
-			pos += step
+			pos++
 			continue
 		}
-		misses = 0
 		// Single-byte lazy parsing. Only take a one-byte delay when its
 		// score improves enough to compensate for the new literal byte.
-		if stride == 1 && pos+1 < len(input) && choice.length < 64 {
+		if stride == 1 && pos+1 < len(input) {
 			idx.addBefore(pos + 1)
 			next := idx.find(pos+1, recent)
 			if next.score > choice.score+2*matchLiteralValueBits {
