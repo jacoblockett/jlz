@@ -66,9 +66,9 @@ func encodeMathRegionBlockHistory(block []byte, history []byte) (byte, []byte, e
 			whole := make([]byte, len(history)+len(block))
 			copy(whole, history)
 			copy(whole[len(history):], block)
-			tokens, err = tokenizeMatchV2Range(whole, len(history))
+			tokens, err = tokenizeRegionHybrid(whole, len(history))
 		} else {
-			tokens, err = tokenizeMatchV2(block)
+			tokens, err = tokenizeRegionHybrid(block, 0)
 		}
 		if err != nil {
 			return 0, nil, err
