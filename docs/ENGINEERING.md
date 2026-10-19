@@ -31,3 +31,8 @@ The native `engine/finite_state.go` encoder/decoder adds automatically selected 
 `engine/match_dual_anchor.go` and its test were temporarily introduced for a faster dual-anchor exact-match parser, but **were deleted from production** after the user rejected +1.68985% compressed archive growth. `engine/region_fast.go` was restored to the exact R53 source blob. R54 adds no currently active code, modes or supported algorithms. Retain findings only in `docs/reports/2026-10-19-round54-dual-anchor-speed.md`.
 
 **Non-negotiable engineering acceptance invariant:** no encoding or decoding speed gain justifies an increase in compressed size against the approved full 12-file original-Silesia aggregate. A candidate must meet or beat the retained accepted archive size **including all metadata** before performance or other benefits can justify promotion. Validate exact reconstruction, backward decoding, Go tests/vet/races and Windows cross-build. As of this correction, production remains Round53.
+
+
+## Round55 BWT preflight invariant
+
+The encoder's sampled BWT choice must compare **the same bijective stream bytes and mode15** that the selected BWT encoder actually emits; do not benchmark legacy mode12 samples as surrogates. Retain sample payloads for full archive and require two of three sample wins and a 2% measured sampled size advantage before routing to the existing BWT encoder. These gates are heuristics, not mathematical guarantees; full output remains exact and candidate benefits must be measured end to end. Round55 passed ten complete canonical Silesia runs at 60,726,433 B, with seven smaller and five unchanged files, no decoder changes. The rejected R54 dualhash parser is not revived. [Report](reports/2026-10-19-round55-bwt-preflight-recovery.md).
