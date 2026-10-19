@@ -1,19 +1,22 @@
 package engine
 
 import (
- "bytes"
- "errors"
- "sync"
+	"bytes"
+	"errors"
+	"sync"
 
- "github.com/jacoblockett/jlz/bwt"
+	"github.com/jacoblockett/jlz/bwt"
 )
 
-const blockBWTPacked byte = 12
+const (
+	blockBWTPacked    byte = 12
+	blockBWTBijective byte = 15 // zero-run bijective binary, legacy mode 12 still readable
+)
 
-func bwtNativeTransform(data []byte) ([]byte,int,error) { return bwt.Transform(data) }
-func inverseBWTNative(data []byte, primary int) ([]byte,error) { return bwt.Inverse(data, primary) }
-func mtfZeroEncode(data []byte) []byte { return bwt.MTFEncode(data) }
-func mtfZeroDecode(data []byte, expected int) ([]byte,error) { return bwt.MTFDecode(data, expected) }
+func bwtNativeTransform(data []byte) ([]byte, int, error)       { return bwt.Transform(data) }
+func inverseBWTNative(data []byte, primary int) ([]byte, error) { return bwt.Inverse(data, primary) }
+func mtfZeroEncode(data []byte) []byte                          { return bwt.MTFEncode(data) }
+func mtfZeroDecode(data []byte, expected int) ([]byte, error)   { return bwt.MTFDecode(data, expected) }
 
 func encodeBWTNative(data []byte) ([]byte, error) {
 	bwt, primary, err := bwtNativeTransform(data)
@@ -25,6 +28,43 @@ func encodeBWTNative(data []byte) ([]byte, error) {
 	out.Write(packStream(mtfZeroEncode(bwt)))
 	return out.Bytes(), nil
 }
+
+// encodeBWTBijective preserves the original BWT transform while replacing
+// only its MTF zero-run representation with a bijective binary digit stream.
+func encodeBWTBijective(data []byte) ([]byte, error) {
+	transformed, primary, err := bwtNativeTransform(data)
+	if err != nil {
+		return nil, err
+	}
+	var out bytes.Buffer
+	putVar(&out, uint64(primary))
+	out.Write(packStream(bwt.BijectiveZeroEncode(transformed)))
+	return out.Bytes(), nil
+}
+
+func decodeBWTBijective(data []byte, expected int) ([]byte, error) {
+	r := bytes.NewReader(data)
+	primary, err := readVar(r)
+	if err != nil {
+		return nil, err
+	}
+	if expected < 1 || primary > uint64(expected) {
+		return nil, errors.New("bijective BWT primary out of bounds")
+	}
+	encoded, err := unpackStream(r, expected*2+20)
+	if err != nil {
+		return nil, err
+	}
+	if r.Len() != 0 {
+		return nil, errors.New("bijective BWT trailing payload")
+	}
+	transformed, err := bwt.BijectiveZeroDecode(encoded, expected)
+	if err != nil {
+		return nil, err
+	}
+	return inverseBWTNative(transformed, int(primary))
+}
+
 func decodeBWTNative(data []byte, expected int) ([]byte, error) {
 	r := bytes.NewReader(data)
 	primary, err := readVar(r)
@@ -62,8 +102,8 @@ func encodeParallelBWTRegions(input []byte, digest [32]byte, rawSize int, sample
 			for idx := range jobs {
 				at := idx * stage3BlockSize
 				block := input[at:min(len(input), at+stage3BlockSize)]
-				enc, err := encodeBWTNative(block)
-				mode := blockBWTPacked
+				enc, err := encodeBWTBijective(block)
+				mode := blockBWTBijective
 				if len(enc) >= len(block) {
 					mode = stage3Raw
 					enc = block
