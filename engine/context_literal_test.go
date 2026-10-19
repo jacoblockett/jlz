@@ -57,7 +57,7 @@ func TestNativeContextLiteralCodec(t *testing.T) {
 }
 
 func TestContextLiteralActualArchiveAndCorruption(t *testing.T) {
-	input, err := os.ReadFile("fixtures/04_sparse_mutations.bin")
+	input, err := os.ReadFile("testdata/fixtures/04_sparse_mutations.bin")
 	if err != nil {
 		t.Fatal(err)
 	}
