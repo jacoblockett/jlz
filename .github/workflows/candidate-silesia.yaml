@@ -1,0 +1,29 @@
+name: Candidate Silesia Research
+on:
+  create:
+permissions:
+  contents: read
+jobs:
+  candidate:
+    if: github.event.ref_type == 'branch' && startsWith(github.event.ref, 'jls-test/')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Download and verify original 12-file Silesia
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o /tmp/silesia.zip https://raw.githubusercontent.com/yewq/Silesia-compression-corpus/main/silesia.zip
+          mkdir -p /tmp/silesia
+          unzip -oq /tmp/silesia.zip -d /tmp/silesia
+          cd /tmp/silesia
+          sha256sum -c "$GITHUB_WORKSPACE/docs/reports/2026-10-18-round23-silesia-sha256.txt"
+      - name: Candidate-only full-corpus ten-run medians
+        env:
+          JLZ_CANDIDATE_CORPUS: /tmp/silesia
+        run: go test -count=1 -run '^TestCandidateSilesiaMedian$' -v .
