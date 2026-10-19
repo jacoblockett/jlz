@@ -16,20 +16,21 @@ type bitModel struct {
 	prev [65536]bitCount
 }
 
-func normalizedCount(c bitCount) (uint64, uint64) {
+func normalizedCount(c bitCount) (uint32, uint32) {
 	if c.zero == 0 && c.one == 0 {
 		return 1, 1
 	}
-	return uint64(c.zero), uint64(c.one)
+	return uint32(c.zero), uint32(c.one)
 }
 func (m *bitModel) probability(previous byte, prefix uint16) uint64 {
 	global := &m.base[prefix]
 	local := &m.prev[int(previous)*256+int(prefix)]
 	z0, o0 := normalizedCount(*global)
 	z1, o1 := normalizedCount(*local)
+	// Counts rescale by 2048, so both quotients and weighted sum fit uint32.
 	p0 := (z0 * 65536) / (z0 + o0)
 	p1 := (z1 * 65536) / (z1 + o1)
-	weight := uint64(1)
+	weight := uint32(1)
 	if z1+o1 >= 10 {
 		weight = 5
 	}
@@ -40,7 +41,7 @@ func (m *bitModel) probability(previous byte, prefix uint16) uint64 {
 	if p > 65535 {
 		p = 65535
 	}
-	return p
+	return uint64(p)
 }
 func addCount(c *bitCount, v byte) {
 	if c.zero == 0 && c.one == 0 {
@@ -85,17 +86,24 @@ func (w *bitWriter) finish() []byte {
 }
 
 type bitReader struct {
-	data   []byte
-	offset int
+	data    []byte
+	offset  int
+	current byte
 }
 
 func (r *bitReader) bit() uint64 {
-	pos := r.offset
-	r.offset++
-	if pos/8 >= len(r.data) {
-		return 0
+	// A full byte is fetched once; the decoder specifies implicit zero padding.
+	if r.offset&7 == 0 {
+		at := r.offset >> 3
+		r.current = 0
+		if at < len(r.data) {
+			r.current = r.data[at]
+		}
 	}
-	return uint64((r.data[pos/8] >> (7 - uint(pos%8))) & 1)
+	r.offset++
+	result := r.current >> 7
+	r.current <<= 1
+	return uint64(result)
 }
 
 type acEncoder struct {
