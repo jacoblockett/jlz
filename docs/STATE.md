@@ -113,3 +113,7 @@ Prior negative screens remain canonical in Round 17–20 reports; see `docs/RESE
 - **Round 21** automatically gated native BWT/MTF/zero-run/Huffman original-region coding: 4.13% smaller, 13.08% faster encoding, 14.11% faster decoding in complete paired tests. Accepted; six new-format Silesia archives need Round 21 decoder.
 
 Before ending any experiment, canonicalize reports and raw results in `docs/reports/`, update this file and `docs/RESEARCH.md`, and preserve previous approved benchmarks. Follow YAGNI, comment non-obvious intent and invariants, and never commit executables or redistribute copyrighted corpora.
+
+## Round 34: bounded match-length grammar (rejected)
+
+A native 16-rule hierarchical grammar codec was actually integrated as an optional match-length stream in ordinary, split and cross-region packed modes and benchmarked on all twelve verified original Silesia files. Ten candidate-only complete corpus runs: **62,417,637 B**, **16.231375 s encode**, **5.415786 s decode**; full original-byte restoration each run. Against retained approved Round 29 **62,644,663 B / 7.516364 s / 2.821363 s**, this saves **227,026 B (0.3624%)** but costs nominal **+115.95% encoding / +91.96% decoding**. Tests, vet, targeted race, Test build and full CI benchmark passed after test-harness fixes. **REJECT** due to disproportionate CPU cost; remove candidate production code and keep approved Round 29 on main. [Report](reports/2026-10-18-round34-grammar-lengths.md). Mathematical theory remains open for different inexpensive stream pairings.

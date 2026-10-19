@@ -16,7 +16,7 @@ func packedRegionVariantsShared(input []byte, tokens []byte) (byte, []byte, erro
 	putVar(&head, uint64(st.ncommands))
 	// Pack unchanged token columns once, independently of which length model wins.
 	packedOp := packStream(st.op)
-	packedLengths := packLengthStream(st.lengths)
+	packedLengths := packStream(st.lengths)
 	packedDistances := packVarintStream(st.distances)
 	packedTransforms := packStream(st.transforms)
 	head.Write(packedOp)

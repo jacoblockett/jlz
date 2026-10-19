@@ -53,3 +53,7 @@ Detailed methodology and qualifications: [Round 28 research](../reports/2026-10-
 3. If the result has realistic scope to beat approved archive bytes, implement a standalone native JLZ candidate in a disposable local copy; verify exact original bytes.
 4. Run ten candidate-only complete Silesia encode/decode benchmarks, reuse published approved/reference results, and report the mandated four model rows plus three percentage deltas and colored H1 accept/reject recommendation. Disclose independent-run timing uncertainty.
 5. Record **all** measured attempts, successful or not, under `docs/reports/`, then update this backlog, `docs/STATE.md` and `docs/RESEARCH.md`. Promote code only when justified and only on `main`.
+
+## Round 34 status: grammar on already selected match lengths
+
+**TESTED / specific implementation REJECTED.** Actual integrated 16-rule pair grammar, first-8192-byte duplicate-pair frequency gate (>=384), independent packing of low/high hierarchical token coordinate bytes, native stream type 5, exact decoder and full archive selection. Complete 12-file Silesia candidate 62,417,637 B versus retained accepted 62,644,663 B (-0.3624%); candidate 10-run medians 16.231375/5.415786 seconds versus retained accepted 7.516364/2.821363 (+115.95%/+91.96%). Tests and Test workflow passed. Roll back production code, leave full Tietze theory and cheaper different additive realizations OPEN. [Round 34 report](../reports/2026-10-18-round34-grammar-lengths.md).

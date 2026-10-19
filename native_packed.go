@@ -179,8 +179,6 @@ func unpackStream(r *bytes.Reader, limit int) ([]byte, error) {
 		return decodeCanonicalHuffman(lengths, coded, int(n))
 	case 4:
 		return unpackVarintSlots(buf, int(n))
-	case lengthGrammarCodec:
-		return unpackLengthGrammar(buf, int(n))
 	case 3:
 		if n == 0 || len(buf) == 0 {
 			return nil, errors.New("packed arithmetic stream invalid")
@@ -215,8 +213,6 @@ func encodeMatchPackedVariant(input []byte, digest [32]byte, tokens []byte, matc
 	for i, stream := range [][]byte{st.op, st.lengths, st.distances, st.transforms} {
 		if i == 2 {
 			out.Write(packVarintStream(stream))
-		} else if i == 1 {
-			out.Write(packLengthStream(stream))
 		} else {
 			out.Write(packStream(stream))
 		}
