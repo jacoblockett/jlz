@@ -1,6 +1,8 @@
-# Round 54 — Fast dual-anchor exact parsing with algebraic guard (ACCEPT H1)
+# Round 54 — Fast dual-anchor exact parsing with algebraic guard (REJECT H1, production rolled back)
 
-**Date:** 2026-10-19. **Decision: ACCEPT H1 under JLZ's speed-first objectives.** Round 54 supersedes approved Round 53 for production source. Native stand-alone Go only; no Zstd/DEFLATE/XZ/Brotli/LZMA backend, imported compressor, copied compressor source, extra CLI verbs, flags or new wire subtype.
+**Date:** 2026-10-19. **Final decision: REJECT H1, explicitly rejected by the user because compressed archive size regressed.** An earlier provisional ACCEPT decision was overturned. The entire Round54 fast-parser source was removed from main and the exact prior R53 `engine/region_fast.go` blob restored. **Round53 is the current approved production baseline.** Native stand-alone Go only; no Zstd/DEFLATE/XZ/Brotli/LZMA backend, imported compressor, copied compressor source, extra CLI verbs, flags or new wire subtype.
+
+> **Final disposition (user correction, 2026-10-19): REJECT.** Previous provisional acceptance of Round54 is void. Ratio regression is not permitted regardless of speed gain. The R54 parser and test files were deleted from production and R53 source restored; the figures below document a rejected experiment, not an approved codec.
 
 ## Hypothesis and actual implementation
 
@@ -8,7 +10,7 @@ The Round52 Zstd-3 architectural audit identified a structural alternative to ex
 
 **Automatic hybrid selection rather than wholesale replacement:** Before parsing a mathematical region, reuse the existing deterministic `likelyTransformedMatches` structural probe. If it finds a verified XOR/ADD transformation, retain JLZ's full previous mathematical matcher; otherwise call the new exact-only dual-anchor parser. This affects the actual mathematical regional encoder and history-backed groups only, with no user switch. The already approved BWT/finite-state/additive streams and all legacy codec readers remain intact. Neither path calls external compressors.
 
-**Source:** `engine/match_dual_anchor.go` and the two `tokenizeRegionHybrid` calls in `engine/region_fast.go`. Focused exact-token and history-aware regression tests are in `engine/match_dual_anchor_test.go`. Original candidate implemented in disposable local source, then accepted source/tests committed to `main` after validation.
+**Source:** `engine/match_dual_anchor.go` and the two `tokenizeRegionHybrid` calls in `engine/region_fast.go`. Focused exact-token and history-aware regression tests are in `engine/match_dual_anchor_test.go`. Original candidate implemented in disposable local source and temporarily committed to `main` after validation; all R54-only Go source and tests were subsequently reverted after the user rejected the compression loss. Research measurements are retained for provenance.
 
 ## Candidate screening, all on twelve complete canonical Silesia files
 
@@ -77,7 +79,7 @@ External CLI Zstd/XZ timings use different conventions from JLZ in-memory measur
 | x-ray | 4,266,987 | 4,266,987 | 0 |
 | **TOTAL** | **60,838,336** | **61,866,415** | **+1,028,079** |
 
-This is explicitly a ratio sacrifice and **not** a universal win: three files grow, one shrinks, eight unchanged; worst file-size regression is mozilla **+4.56%**. R54 remains smaller than the historical Zstd-3 aggregate by 4,350,154 B but slower by historical unpaired CLI-vs-in-memory timings. The production decision values sustained native encoding throughput without discarding advanced modes or backward decoding. The ratio-first R53 baseline remains in history and can be reconsidered if priorities shift.
+This is explicitly a ratio sacrifice and **not** a universal win: three files grow, one shrinks, eight unchanged; worst file-size regression is mozilla **+4.56%**. R54 remains smaller than the historical Zstd-3 aggregate by 4,350,154 B but slower by historical unpaired CLI-vs-in-memory timings. The user rejected exchanging compression ratio for throughput. R53 is restored as production, and R54 is preserved only as negative research evidence.
 
 ## Validation, format, compatibility
 
@@ -91,6 +93,6 @@ This is explicitly a ratio sacrifice and **not** a universal win: three files gr
 
 ## Decision and next experiment
 
-**ACCEPT H1, R54 production.** The measured nominal encoding improvement is substantial relative to recent hot-loop microtuning, while the compressed-size loss **1.69%** and mozilla per-file regression **4.56%** are openly charged. This is a deliberate performance/ratio trade, not a strict Pareto improvement. The selected codec remains automatic and retains prior mathematical paths and decoders. If the user prioritizes best ratio over fast compression, R53 remains an exact historical comparison and can be preferred.
+**REJECT H1.** Despite nominally faster encoding, Round54 worsens whole-Silesia archive size by **1,028,079 B (+1.68985%)** and grows the `mozilla` file archive by **4.56%**. Under the user's clarified non-negotiable rule, compression cannot be sacrificed for speed. The Round54 trial was fully rolled back from production; **R53 remains the active accepted codec**, and its historical benchmark remains the reference. No ten-run candidate promotion is permitted for any subsequent candidate that increases aggregate original-Silesia archive bytes.
 
 **Next materially distinct research:** investigate low-work mathematical substream prediction using the new finite-state packed metadata, or a bounded algorithmic region classifier that can select a single parser with a stronger byte-cost estimate without encoding both full candidates. Do not immediately repeat stride size, bucket depth, finger-print microtuning or arbitrary threshold sweeps. Better ratio recovery must show actual end-to-end savings that justify candidate runtime.
