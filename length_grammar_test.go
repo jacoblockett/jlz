@@ -42,6 +42,7 @@ func TestLengthGrammarStreamRoundTrip(t *testing.T) {
 		t.Fatal("invalid test fixture")
 	}
 	bad := append([]byte(nil), encoded...)
+	bad[at] = 255
 	bad[at+1] = 255
 	reader := bytes.NewReader(bad)
 	if _, err := unpackStream(reader, len(input)); err == nil {
@@ -53,5 +54,7 @@ func lenVarAt(stream []byte) int {
 	if n <= 0 { return -1 }
 	_, m := binary.Uvarint(stream[n:])
 	if m <= 0 || stream[n+m] != lengthGrammarCodec { return -1 }
-	return n+m+1+1+1
+	_, k := binary.Uvarint(stream[n+m+2:])
+	if k <= 0 { return -1 }
+	return n+m+2+k
 }
