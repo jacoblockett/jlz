@@ -49,6 +49,24 @@
 | E | MDC6 separated instruction/metadata streams | Current JLZ packed op/length/distance/literal streams | JLZ already uses separately packed streams. Tietze on selected match lengths has measured benefit; no new source mode promoted. |
 | E | Repeated compression of completed archive | Operate instead on existing substreams BEFORE archive framing | Direct post-archive recompression is not a useful additive internal codec; upstream stream-level alternatives were MEASURED instead. |
 
+## Additional explicitly open theoretical families (beyond retrospective catalog)
+
+This second queue includes *unimplemented full theories* as distinct from the retrospective prototypes above. These are evaluated for compatibility with existing JLZ, but none is marked fully tested by a small analogue.
+
+| Theoretical direction | Additive integration hypothesis | Status |
+|---|---|---|
+| Irreducible-prime factor/basis representations | Signed modular-word residuals and match-distance low bits: factor residual exceptions with exact prime/model overhead | Only prime positional lane separation tested on additive/BWT streams; actual irreducible basis remains OPEN |
+| Higher-order partial information decomposition | Multi-parent conditioning in selected literal/residual bitplanes; model state paid and held-out coding measured | Fixed pair-XOR residual tested, no wins on additive/BWT trials. Formal multivariable PID OPEN |
+| Polynomial Freiman–Ruzsa low-doubling structure | Additive 16-bit progression encoder already succeeds; seek rank>1 structure in already selected residual streams or re-usable within a group | Round 29 rank-one accepted; Round 30 standalone rank-two lost; narrow residual-grid variant tested Round 33, full PFR OPEN |
+| General CAT(0) geometry | Boundary/contour codec as alternative for existing residual lanes | Horizontal and vertical boundaries both show actual selected-lane component savings, 8/36 and 7/36. Full CAT(0) inverse geometry OPEN |
+| Full Whitehead/Nielsen minimization | Rewrites of *selected match operation or length tokens*, not replacement of original bytes | Compatible in principle if expansion rules/inverse fully stored; full algorithms unimplemented |
+| General Tietze presentation transformations | Add a short generator dictionary to selected packed match-length substreams | 16-rule real compressor/decoder **measured 15,138 B saving on nine selected blocks**; broader Tietze theory OPEN |
+| Full syzygy / Gröbner dependency elimination | Low-rank equations among selected bitplanes, backed by sparse defects | Sparse defects integrated but rejected on CPU; general algebraic system and costed basis OPEN |
+| Approximate shortest-program search | Automatically selected, bounded dictionary/recurrent code *for existing metadata streams* | Concrete bounded 16-rule Tietze variant measured; general shortest-description search remains OPEN, mathematical optimum not computable in general |
+| Full neural Mamba/RWKV/transformer predictive coding | Learn a **small deterministic embedded predictor** for selected literal/metadata bits, counting weight storage and decoder inference | Conditionally compatible but no plausible bounded CPU/weight design yet; not attempted, don't label disproven |
+| Genuine quantum computation | At most an *offline search aid* for model selection; actual decoder must remain native deterministic classical Go | No available quantum execution infrastructure and no bounded end-to-end cost model. Not a feasible current JLZ decoder dependency; no quantum claims made |
+| Full unsimplified algebraic/field minimization | Dependency graph over already-emitted token, residual and distance streams with inverse and model costs | Only restricted grammar and GF2 sparse analogues screened; full mathematical methods remain OPEN |
+
 ## Concrete Silesia companion measurements
 
 - **36-region additive-coordinate sample, total incumbent coordinate payload 5,966,439 B:** hypothetical per-region selective savings after a mode byte per changed lane: Tietze 16-rule hierarchy **297,313 B** (16/36); sparse zero-default defects **96,297 B** (10/36); horizontal edge-boundary **81,117 B** (8/36); vertical boundaries **61,671 B** (7/36); bitplane decomposition **26,838 B** (5/36); grid16 **3,110 B** (1/36); prime split **11 B** (2/36). XOR lags 1+2, 1+4 and 7+11 or high-XOR-low: no sample win. These are **component oracle** savings, **not** full-corpus wins. Only x-ray is known to select this coordinate coding in current approved Round 29.
