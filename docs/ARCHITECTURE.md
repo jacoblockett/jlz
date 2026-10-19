@@ -29,3 +29,6 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o jlz.exe .
 ```
 
 The build output is ignored by Git. Do not place binaries in source control, use GitHub Actions, or claim unrun tests as passing. Full candidate throughput benchmarking continues to use only the original 12-file Silesia corpus and stored reference measurements.
+
+
+Round53 adds `engine/finite_state.go` for a bounded, self-contained, byte-renormalized 12-bit native finite-state coder with exact packed-stream subtype 5. The `engine/` orchestrator owns selection and decoding because this codec is only called for selected intermediate BWT and mathematical streams. Existing `entropy/` arithmetic and raw/RLE/Huffman formats remain independently implemented and backwards-readable; do not substitute an external compression codec backend.
