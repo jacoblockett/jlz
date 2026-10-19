@@ -82,8 +82,8 @@ func packSplitLengthHeader(st nativeStreams, packedOp, packedDistances, packedTr
 	var b bytes.Buffer
 	putVar(&b, uint64(st.ncommands))
 	b.Write(packedOp)
-	b.Write(packStream(literal))
-	b.Write(packStream(copyLengths))
+	b.Write(packFiniteState(literal))
+	b.Write(packFiniteState(copyLengths))
 	b.Write(packedDistances)
 	b.Write(packedTransforms)
 	return b.Bytes(), true
