@@ -1,6 +1,16 @@
 # State and next steps
 
-**Last updated:** 2026-10-18. **Status:** Round 25 automatically sampled native byte-lane representation **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 25.
+**Last updated:** 2026-10-18. **Status:** Round 29 automatically selected modular-additive 16-bit word representation **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 29.
+
+## Current approved Round 29 (2026-10-18)
+
+**Silesia-only:** 211,938,580 original bytes, 12 files. New **62,644,663 B** complete archives, **70.442%** source reduction, versus retained Round 25 **63,104,117 B**, **70.225%** reduction. **-459,454 B (-0.7281% candidate archive size)**. Ten **candidate-only** whole-corpus encode medians **7.516364 s** and decode medians **2.821363 s**; retained approved Round 25 medians **7.549920/2.839905 s** (nominal -0.4445% / -0.6529% times). Independent sessions rather than paired old/new timings, so sub-1% speed deltas have uncertainty; no baseline or reference benchmarks were rerun.
+
+The newly accepted **block mode 14** packs original aligned little-endian 16-bit words as previous-word modular differences in Z/(2^16), signed-zigzag maps differences, and entropy-packs high and low coordinate bytes separately with the native Huffman/RLE/raw stream. Three distributed actual BWT sample sizes and a cheap signed-difference frequency prefilter gate automatic selection; unrelated files keep prior byte-identical archives. **Only x-ray changes:** 4,726,441 B to **4,266,987 B**. This is a concrete **rank-one local additive progression encoder/decoder**, not a claim that the full Polynomial Freiman–Ruzsa conjecture was implemented or proven.
+
+**Compatibility:** candidate decoder restored all **27 prior Round 25 archives** and all **27 newly encoded archives** roundtripped, 26/27 new archives byte-identical. Previous Round 25 decoder correctly rejects the new x-ray mode 14. Standard uncached Go tests/vet, additive/cross/lane targeted race checks, short random and malformed archive integrity tests passed. Full report: [Round 29](reports/2026-10-18-round29.md); [ten candidate runs](reports/2026-10-18-round29-candidate10.csv). Retain Silesia-only and candidate-only benchmark policy; Zstd/XZ reference measures historic and not comparable on CPU methodology.
+
+**Next active theory:** a genuinely more general rank-two/low-doubling set representation with fully priced model coefficients, exceptions and executable inverse, rather than more entropy parameter tuning. The theoretical backlog remains ACTIVE; simplified failures do not close whole theory families.
 
 ## Theory catalog is an experiment queue (corrected 2026-10-18)
 
