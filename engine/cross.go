@@ -167,6 +167,8 @@ func packCrossRegionTokens(block, tokens []byte) ([]byte, error) {
 	for i, part := range [][]byte{st.op, st.lengths, st.distances, st.transforms} {
 		if i == 2 {
 			buf.Write(packVarintStream(part))
+		} else if i < 2 {
+			buf.Write(packFiniteState(part))
 		} else {
 			buf.Write(packStream(part))
 		}
