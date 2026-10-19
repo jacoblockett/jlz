@@ -177,6 +177,12 @@ func unpackStream(r *bytes.Reader, limit int) ([]byte, error) {
 		}
 		coded := buf[len(buf)-h.Len():]
 		return decodeCanonicalHuffman(lengths, coded, int(n))
+	case 5:
+		model, at, e := finiteStateReadTable(buf)
+		if e != nil {
+			return nil, e
+		}
+		return finiteStateDecode(buf[at:], &model, int(n))
 	case 4:
 		return unpackVarintSlots(buf, int(n))
 	case 3:
