@@ -1,0 +1,31 @@
+name: Candidate Speed Research
+on:
+  create:
+permissions:
+  contents: read
+jobs:
+  candidate:
+    if: github.event.ref_type == 'branch' && startsWith(github.event.ref, 'jls-test/')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Acquire and verify complete original Silesia
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o /tmp/silesia.zip https://raw.githubusercontent.com/yewq/Silesia-compression-corpus/main/silesia.zip
+          mkdir -p /tmp/silesia
+          unzip -oq /tmp/silesia.zip -d /tmp/silesia
+          (cd /tmp/silesia && sha256sum -c "$GITHUB_WORKSPACE/docs/reports/2026-10-18-round23-silesia-sha256.txt")
+      - name: Candidate-only ten-run benchmark and inverse
+        env:
+          JLZ_CANDIDATE_CORPUS: /tmp/silesia
+        run: |
+          go test -count=1 -timeout=20m -run '^TestCandidateSilesiaMedian$' -v .
+          go tool pprof -top -nodecount=30 /tmp/jlz-speed-candidate.pprof
