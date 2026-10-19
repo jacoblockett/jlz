@@ -10,7 +10,7 @@ The current practical threshold is holistic archive size, encode/decode times, m
 |---|---|---|
 | Prime-index chunk and irreducible-prime factor strategies | **PARTIAL SCREEN 2026-10-18:** prime-position Huffman segregation failed badly against Round 25 archive totals; **full family OPEN** | Try a structural prime-factor/base description or related recurrence against selected original bytes; not just prime vs nonprime rearrangement |
 | Higher-order partial information decomposition | **PARTIAL SCREEN 2026-10-18:** held-out pair-XOR diagnostic and reversible lag-XOR residual test; **full PID OPEN** | Find nontrivial multivariable *conditional* structure and evaluate held-out adaptive coding cost, not merely static XOR |
-| Polynomial Freiman–Ruzsa / additive combinatorics | **UNTESTED FULL THEORY; NEXT PRIORITY** | Detect low-doubling, finite abelian additive structure in actual original Silesia numeric data or match streams, estimate exact progression/basis and exception costs on held-out regions |
+| Polynomial Freiman–Ruzsa / additive combinatorics | **PARTIAL PRACTICAL SUCCESS, Round 29 ACCEPTED:** implemented complete rank-one modular 16-bit additive-word progression encoder/decoder and automatic gate, saving 459,454 B (0.728%) on full Silesia with near-neutral accepted-time comparison. **General PFR and low-doubling higher-rank discovery remain OPEN.** | Build/test a genuine rank-two generalized arithmetic progression / low-doubling set model with exact inverse and fully charged parameters/exceptions on Silesia; do not simply keep tuning the accepted one-dimensional codec |
 | CAT(0) geometric boundary-distance reconstruction | **UNTESTED FULL THEORY** | Define an exact and economical binary labeling/boundary representation and cheaply test reconstructed description lengths |
 | Whitehead/Nielsen transformations | **SIMPLIFIED historical trials only; full OPEN** | Encode candidate free-group word mappings with fully charged inverse metadata and native entropy coding |
 | Tietze-style grammar/presentation minimization | **SIMPLIFIED historical trials only; full OPEN** | Search stronger shared-rule transformations with actual decoding and rule amortization across large Silesia regions |
@@ -30,6 +30,9 @@ More catalog families may be appended as they are identified. No finite negative
 | 2026-10-18 | Pair-lag XOR parity as a limited higher-order-information proxy | `x-ray` holdout entropy difference favored two-lag parity, but after actual XOR residual/native packing three 256 KiB `x-ray` blocks were 778,895 B versus native BWT 429,274 B; reversible exact on all 12 samples | **REJECT this XOR residual**, full PID family remains open |
 
 Detailed methodology and qualifications: [Round 28 research](../reports/2026-10-18-round28-theory-screens.md). Earlier isolated screens that did not implement the complete theory must never be cited as the theory being definitively disproven.
+
+| 2026-10-18 | Rank-one additive progression in Z/(2^16), signed-zigzag and two JLZ native entropy-packed word coordinates, automatically selected on original Silesia | Ten candidate-only full-Silesia medians 62,644,663 B and 7.516364/2.821363 s versus retained Round 25 63,104,117 B and 7.549920/2.839905 s; 27 prior-archive and new-archive validations | **ACCEPT concrete rank-one coder as Round 29**; full PFR / higher-rank family remains OPEN |
+
 
 ## Research workflow for next sessions
 
