@@ -6,11 +6,11 @@ package engine
 // and share a three-entry repeat-distance cache. No index is stored in an archive.
 
 import (
- "github.com/jacoblockett/jlz/match"
 	"bytes"
 	"crypto/sha256"
 	"encoding/binary"
 	"errors"
+	"github.com/jacoblockett/jlz/match"
 	"io"
 )
 
@@ -36,7 +36,7 @@ const (
 )
 
 type matchBucket struct {
-	positions [4]uint32 // Stored as (position + 1), 0 means empty.
+	positions [2]uint32 // Stored as (position + 1), 0 means empty.
 	next      uint32
 }
 
@@ -63,7 +63,7 @@ func newMatchIndexTransforms(data []byte, transforms bool) *matchIndex {
 
 // The index and tokenizer retain the established scoring and token format.
 func matchFingerprint(data []byte, at int, typ byte) uint32 { return match.Fingerprint(data, at, typ) }
-func matchHash(key uint32) uint32 { return match.Hash(key) }
+func matchHash(key uint32) uint32                           { return match.Hash(key) }
 
 func (m *matchIndex) addBefore(pos int) {
 	n := len(m.input)
@@ -78,7 +78,7 @@ func (m *matchIndex) addBefore(pos int) {
 				break
 			}
 			bucket := &m.heads[typ][matchHash(matchFingerprint(m.input, at, typ))]
-			bucket.positions[bucket.next&3] = uint32(at + 1)
+			bucket.positions[bucket.next&1] = uint32(at + 1)
 			bucket.next++
 		}
 	}
@@ -184,8 +184,8 @@ func (m *matchIndex) find(pos int, recent [3]int) matchChoice {
 		}
 		key := matchFingerprint(data, pos, typ)
 		bucket := &m.heads[typ][matchHash(key)]
-		for k := 0; k < 4; k++ {
-			slot := (bucket.next - 1 - uint32(k)) & 3
+		for k := 0; k < 2; k++ {
+			slot := (bucket.next - 1 - uint32(k)) & 1
 			value := bucket.positions[slot]
 			if value == 0 {
 				break // earlier slots cannot be filled if the newest is empty
