@@ -1,5 +1,8 @@
 # State and next steps
 
+**2026-10-19 local execution policy:** Due to GitHub Actions billing, all five Actions workflows are disabled and archived under `docs/archived-actions/`. GitHub is source control only. The local environment has Go 1.23.2 linux/amd64 and all 12 original Silesia files (211,938,580 B, 12/12 canonical SHA-256 verified). Local correctness and full candidate-only benchmark runs replace hosted CI; Windows is first cross-compile target. Source must be supplied as a local ZIP/checkout for full end-to-end JLZ compilation because the private GitHub connector does not mount the working tree into the tool runtime. The approved baseline remains Round 29. See `docs/WORKFLOWS.md`.
+
+
 **Last updated:** 2026-10-18. **Status:** Round 29 automatically selected modular-additive 16-bit word representation **accepted**, source updated on `main`. **Branch policy:** all persistent source and document edits directly on `main`; temporary `jls-test/*` branches are solely for CI dispatch and deleted automatically. **Approved source:** JLZ Round 29.
 
 ## Round 30 structural theory attempt (screened, not promoted)

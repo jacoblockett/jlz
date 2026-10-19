@@ -1,3 +1,5 @@
+**CURRENT POLICY (2026-10-19): GitHub Actions are disabled.** All validation runs locally, and GitHub is source control only. The historical references below to CI/trigger branches are superseded by [the local workflow](WORKFLOWS.md). Prioritize Windows cross-compilation, but Linux execution does not prove native Windows runtime correctness or performance.
+
 # Engineering and acceptance contract
 
 - **Branch discipline:** commit all lasting changes directly to `main`. `jls-test/*` temporary dispatch branches are the only normal exception. Keep isolated trial changes outside the repository until validated; no persistent experiment branches.

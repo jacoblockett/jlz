@@ -16,8 +16,8 @@ Custom output paths are supported as a third argument. JLZ writes `JLZ1` contain
 
 **New agent? Read [AGENTS.md](AGENTS.md), then [current state](docs/STATE.md) before changing code.** The accepted source is on `main`. Keep unapproved experiments in disposable local directories; persistent edits land directly on `main`. [Research index](docs/RESEARCH.md) records prior approaches and decisions; [engineering contract](docs/ENGINEERING.md) records immutable constraints.
 
-## Releases
+## Local development and builds
 
-The JLS-compatible lifecycle has reusable Build, ephemeral Test trigger, rolling Nightly, and manual stable Release workflows. Release archives contain compiled executables; the Git repository contains **Go source, tests, required fixtures, workflows and documentation**, not compiled program binaries. See [workflow guide](docs/WORKFLOWS.md).
+GitHub Actions are disabled. Go tests and candidate-only Silesia benchmark runs are executed locally. Go 1.23+ on Linux supports Windows/amd64 cross-compilation; native Windows execution requires a Windows runtime. The previous workflow definitions are archived as inactive reference files. See [local workflow](docs/WORKFLOWS.md).
 
 Licensed under the repository's MIT LICENSE.
