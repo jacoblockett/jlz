@@ -156,11 +156,13 @@ func sampleBWTPreference(input []byte, regional mathRegionSamples) (bool, mathRe
 	for i, idx := range regional.positions {
 		at := idx * stage3BlockSize
 		block := input[at:min(len(input), at+stage3BlockSize)]
-		data, e := encodeBWTNative(block)
+		// Evaluate the exact bijective representation emitted by full-region BWT.
+		// A legacy-MTF sample can reject a genuinely smaller new-format archive.
+		data, e := encodeBWTBijective(block)
 		if e != nil {
 			return false, samples, e
 		}
-		samples.results[i] = mathRegionResult{mode: blockBWTPacked, payload: data}
+		samples.results[i] = mathRegionResult{mode: blockBWTBijective, payload: data}
 		total += len(data)
 		if len(data) < len(regional.results[i].payload) {
 			wins++
@@ -168,11 +170,11 @@ func sampleBWTPreference(input []byte, regional mathRegionSamples) (bool, mathRe
 		// Remaining nonnegative payloads cannot recover a lost vote or
 		// undo an already-exceeded total-size margin. Never reject a winner.
 		remaining := 2 - i
-		if wins+remaining < 2 || total*100 > baseline*95 {
+		if wins+remaining < 2 || total*100 > baseline*98 {
 			return false, samples, nil
 		}
 	}
-	// Require evidence that BWT wins at several independent positions,
-	// not merely on one structurally atypical section of the file.
-	return wins >= 2 && total*100 <= baseline*95, samples, nil
+	// Require two of three independent position wins and a 2% total margin.
+	// The full archive still uses measured sizes, not the sample estimate.
+	return wins >= 2 && total*100 <= baseline*98, samples, nil
 }
