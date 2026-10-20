@@ -36,3 +36,6 @@
 - Never imply external CLI timings and in-memory JLZ timings share I/O measurement conventions.
 
 Last documentation reorganization: 2026-10-19 America/New_York. **No new version/round identifiers are to be assigned.**
+
+
+**Latest research outcome (not an integrated candidate):** Original reversible prefix-doubling suffix-array construction exactly reproduced current BWT bytes on 21 original-source diagnostic blocks but ran ~2–7× slower than the standard-library forward transform; serializing and re-parsing current suffix indexes accounted for ~0.882 seconds of cumulative stage work across all 451 selected BWT source blocks in a separate one-pass component audit. Current source is unchanged. [Suffix-array research report](reports/2026-10-19-suffix-order-extraction-screen.md), [strategy ledger](research/strategy-ledger.md). Do not call these figures full-archive benchmark savings.
