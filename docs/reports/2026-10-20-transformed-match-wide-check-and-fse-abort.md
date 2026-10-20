@@ -1,6 +1,6 @@
 # Encoder work-elimination experiments: transformed match word compares and finite-state early abort
 
-**Date: 2026-10-20.** **Outcomes: REJECT both current implementations for promotion; no source changes on main.** This is original native-Go research based on [industry hot-path source audit](2026-10-20-industry-encoder-hotpaths-audit.md). No new JLZ release identifier, backend, copied existing compression implementation, or user-visible codec mode. Current complete-original-Silesia reference remains **60,585,717 archive B, historical ten-run median 5.493743735 s encode and 2.194427893 s decode**, which was **not rerun**. This report uses **screening runs**, not newly established candidate ten-run performance medians.
+**Date: 2026-10-20.** **Outcomes: REJECT all three concrete implementations for promotion; no source changes on main.** This is original native-Go research based on [industry hot-path source audit](2026-10-20-industry-encoder-hotpaths-audit.md). No new JLZ release identifier, backend, copied existing compression implementation, or user-visible codec mode. Current complete-original-Silesia reference remains **60,585,717 archive B, historical ten-run median 5.493743735 s encode and 2.194427893 s decode**, which was **not rerun**. This report uses **screening runs**, not newly established candidate ten-run performance medians.
 
 ## Source provenance / environment
 
@@ -50,3 +50,23 @@ Targeted native engine/finite-state tests PASS, `go vet ./...` PASS, CGO-disable
 **Both implementations: REJECT promotion.** This is a failure to demonstrate speed nonregression, not a claim that word-wise transformed verification is wrong or that guaranteed early abort cannot be useful on other data. Identical archive bytes and original reconstruction are proved on the authorized original Silesia corpus; neither trial is a valid benchmarked ten-run replacement. Current and historical external benchmarks were not rerun; no corpus comparator/delta table is appropriate in user-facing communication. No experimental source committed.
 
 **Next independent source-grounded direction:** Since the FSE coder already wins on **1,552/1,642** real attempts, further FSE alternative selection heuristics have poor room to save work. Stronger nonredundant opportunities would arise from avoiding unnecessary *model initialization* or the encoder-side decoder-only lookup-table construction, but these need a new profile showing sufficient CPU share—not blind parameter tuning. Alternatively study novel low-work match candidate access or codec architectures beyond the already failed parsing/BWT variants. Continue to audit established compressor implementations and use actual source-level differences to justify an implementation.
+
+## H3: exact reciprocal-based FSE encoder division elimination (REJECT concrete implementation)
+
+**Why distinct:** Earlier exact-reciprocal optimization targeted the **adaptive arithmetic** coder and, in combination with unrelated hot-path changes, did not produce an accepted performance result. This is the independent native **rANS finite-state forward encoder**, which performs division and remainder for each symbol in every winning FSE stream; the H2 gate revealed **1,552/1,642** such streams win on actual full Silesia. A new implementation had a plausible per-symbol CPU advantage while preserving all emitted entropy bytes.
+
+**Actual original native-Go code:** Disposable local `/mnt/data/jlz_fse_recip_trial/engine/finite_state.go`. Precompute `floor(2^32/f)` for every `f` in 1..4096 just once, then for 32-bit coding state `x`, compute `q = (x * reciprocal[f]) >> 32`, `r = x - q*f`, and if `r >= f` adjust `q++, r-=f`. Since `x < 2^32`, this reciprocal quotient underestimates exact integer division by **at most one**, so the corrected quotient and remainder are precisely equal to `x/f` and `x%f`. Full original rANS state transition is otherwise unchanged, as are normalized frequency tables and stream framing. There is no decoder change.
+
+**Correctness:** `TestFSEReciprocalEquivalent` passed for every normalized frequency **1..4096** at boundary coding states (including `0xffffffff`) and another **1,000,000 seeded random x/f pairs** against Go integer division. One complete original 12-file Silesia screen restored every file exactly, reproduced **60,585,717 B aggregate** and all twelve exact original individual archive sizes. That screen took **6.397578 s encode / 2.466794 s decode**; ONE run, not a median or a controlled before/after test.
+
+**Direct CPU feasibility cross-check:** Original division + remainder and new multiplication + correction microbenchmarks ran in the same disposable candidate package on a virtual AMD EPYC 9V74 CPU, three `250ms` samples per variant with seeded 16K input frequencies/states:
+- Current `x/f, x%f`: **1.705, 1.805, 1.883 ns/op**.
+- Exact reciprocal: **1.954, 2.501, 1.936 ns/op**.
+
+The ordinary Go compiler's existing division/remainder calculation is efficient enough that the reciprocal version **does not win even its isolated arithmetic microbenchmark** on this CPU. Therefore it cannot justify integration or a ten-run full candidate benchmark. Different processors may differ; no universal claim that reciprocal multiplication is always slower is made.
+
+**REJECT H3 as a production change and STOP nearby division-constant and reciprocal-correction tuning.** No experimental Go files committed to main.
+
+## Final consolidated outcome
+
+Three independent, actual **bitstream-preserving** native Go experiments were attempted: transformed XOR/ADD word-wide match verification, bounded early discard of provably losing FSE, and exact reciprocal finite-state quotient/remainder. All produced the unchanged **60,585,717 B** full-original-Silesia archive, with exact reconstruction. None established all-three-metric practical performance improvement. Separate one-run and three-run screens are **not** ten-run promotional benchmarks; no comparison table of candidate ten-run median belongs in the user-facing outcome. Current source remains unchanged. All losses are implementation-specific and do not disprove general mathematical validity.
