@@ -102,8 +102,7 @@ func encodeParallelBWTRegions(input []byte, digest [32]byte, rawSize int, sample
 			for idx := range jobs {
 				at := idx * stage3BlockSize
 				block := input[at:min(len(input), at+stage3BlockSize)]
-				enc, err := encodeBWTBijective(block)
-				mode := blockBWTBijective
+				enc, mode, err := encodeBWTSubregions(block)
 				if len(enc) >= len(block) {
 					mode = stage3Raw
 					enc = block
