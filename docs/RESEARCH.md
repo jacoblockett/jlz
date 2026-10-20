@@ -39,3 +39,6 @@ Last documentation reorganization: 2026-10-19 America/New_York. **No new version
 
 
 **Latest research outcome (not an integrated candidate):** Original reversible prefix-doubling suffix-array construction exactly reproduced current BWT bytes on 21 original-source diagnostic blocks but ran ~2–7× slower than the standard-library forward transform; serializing and re-parsing current suffix indexes accounted for ~0.882 seconds of cumulative stage work across all 451 selected BWT source blocks in a separate one-pass component audit. Current source is unchanged. [Suffix-array research report](reports/2026-10-19-suffix-order-extraction-screen.md), [strategy ledger](research/strategy-ledger.md). Do not call these figures full-archive benchmark savings.
+
+
+[Primary-source Zstd/XZ/Brotli architecture audit](reports/2026-10-19-industry-architecture-audit.md) (2026-10-19): match generation vs priced sequences, full vs bounded optimal parsing, x86 branch-address reversible transforms, entropy/context model overhead, explicit crosswalk to current Go and failed strategy ledger. This is **source-level research only, no measured candidate**. Top candidate hypothesis is bounded, state-aware match-choice pricing within existing native exact/XOR/ADD candidates. Second distinct idea is original branch-address prefilter. No release/round number assigned.
