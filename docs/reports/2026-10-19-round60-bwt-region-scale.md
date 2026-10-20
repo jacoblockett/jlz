@@ -1,6 +1,6 @@
-# Round 60: Larger BWT context horizons; close low-value remapping spiral (ACCEPT H1)
+# Round 60: Larger BWT context horizons; ratio gain but unacceptable time regression (FINAL REJECT H1)
 
-**Date:** 2026-10-19. **Production ACCEPT R60**, superseding R57. Only the complete original twelve-file Silesia corpus (211,938,580 B) and its selected original regions were analyzed. Original corpus SHA-256 manifest 12/12 PASS. No external compressor, copied compression algorithm, new command, learned per-file table or GitHub Actions.
+**Date:** 2026-10-19. **FINAL: REJECTED by the user and rolled back, restoring R57.** The original provisional acceptance was erroneous. R60 is historical candidate research only, not the production baseline. Only the complete original twelve-file Silesia corpus (211,938,580 B) and its selected original regions were analyzed. Original corpus SHA-256 manifest 12/12 PASS. No external compressor, copied compression algorithm, new command, learned per-file table or GitHub Actions.
 
 ## Hypothesis A: decoder-synchronized symbol remapping (REJECT and STOP)
 
@@ -92,7 +92,11 @@ Zstd/XZ external CLI methods differ from JLZ in-memory timing conventions. Reuse
 - Reconstructed old R57 CLI encoded the original complete **mr** corpus file to exactly **2,729,261 B**, matching recorded approved R57. New R60 CLI restored its bytes/digest exactly. New R60 CLI encoded mr to **2,673,111 B**. Old R57 decoder correctly rejected the new 512 KiB frame with cross block bounds error. Older archives are backward-readable, newer extended BWT frame archives not forward-readable by old binaries.
 - No rejected R59 three-table entropy path or R60 remapping code committed. Only narrow production BWT and mixed-cross boundary/decode changes, plus tests.
 
-## Conclusion and continuation
+## Original provisional conclusion (superseded by user's rejection)
+
+**Correction, 2026-10-19:** The user rejected this performance trade despite the genuine 2.074% archive reduction. Encoding worsened by approximately 0.521 s and decoding by 0.150 s relative to the historical ten-run R57 measurements, equivalent to 0.593 percentage points of additional reduction from the original corpus. The **entire R60 source change was reverted** and **R57 is restored as approved.** New binding requirement: absent explicit user permission, a candidate cannot be accepted unless complete Silesia compressed size, encoding time and decoding time all preserve or improve the approved baseline. Additional R61 attempts to salvage the improvement with a packed LF inverse and bounded BWT windows were unsuccessful; see [Round61 recovery report](2026-10-19-round61-r60-pareto-recovery.md).
+
+## Historical conclusion, void
 
 **ACCEPT H1, Round60.** The 2.074% compressed-size improvement is materially larger than previous 0.2–0.35% modeling gains, affects only selected BWT input regions, and has no per-file size regressions. Nominal ~9.5% encoding and ~6.8% decoding costs, bounded memory and newer-decoder requirement are documented. The user's strict compression-priority rule is preserved, while overhead is proportionate to this substantive size gain.
 
