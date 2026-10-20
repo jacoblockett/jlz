@@ -1,6 +1,6 @@
 # JLZ research index: strategies and evidence, not numbered sessions
 
-**Current production:** \`current\` on \`main\`, complete original twelve-file Silesia archive **60,585,717 B**, prior ten-run medians **5.493743735 s encoding / 2.194427893 s decoding**. **Benchmarked/integrated candidate: none active.** Strict three-metric no-regression without express user approval. [Full current state](STATE.md).
+**Current production:** `current` on `main`, complete original twelve-file Silesia archive **60,585,717 B**, prior ten-run medians **5.493743735 s encoding / 2.194427893 s decoding**. **Benchmarked/integrated candidate: none active.** Strict three-metric no-regression without express user approval. [Full current state](STATE.md).
 
 ## Canonical research records
 
@@ -25,12 +25,12 @@
 
 **Most recent component diagnostic:** [sparse content-defined far-reference anchors](reports/2026-10-19-sparse-far-anchor-screen.md) were implemented and reconstructed all original Silesia files, but no full JLZ archive and no demonstrated incremental compressed bytes; the initial scan was too costly. Status SCREENED; avoid further anchor-mask/window tweaking.
 
-**Previously accepted subsystems and rejected alternatives:** refer to the single [strategy ledger](research/strategy-ledger.md) rather than a numerical succession of "rounds." The pre-2026-10-19 historical development record remains intact in repository Git history and original dated reports. The current engine's historical benchmark provenance is documented under the original archival report \`docs/reports/2026-10-19-round57-mdl-bwt-regimes.md\`; its filename is legacy-only.
+**Previously accepted subsystems and rejected alternatives:** refer to the single [strategy ledger](research/strategy-ledger.md) rather than a numerical succession of "rounds." The pre-2026-10-19 historical development record remains intact in repository Git history and original dated reports. The current engine's historical benchmark provenance is documented under the original archival report `docs/reports/2026-10-19-round57-mdl-bwt-regimes.md`; its filename is legacy-only.
 
 ## Current production references
 
 - Complete original source bytes: **211,938,580 B** (12 files), [Silesia SHA-256 manifest](reports/2026-10-18-round23-silesia-sha256.txt).
-- \`current\`: **60,585,717 B**, **5.493743735 s encode / 2.194427893 s decode** (previously measured medians of ten complete runs).
+- `current`: **60,585,717 B**, **5.493743735 s encode / 2.194427893 s decode** (previously measured medians of ten complete runs).
 - Zstd-3 external CLI: **66,216,569 B / 1.2561 s / 0.8551 s** (historical; not rerun).
 - XZ-6 external CLI: **49,233,340 B / 116.9892 s / 2.3079 s** (historical; not rerun).
 - Never imply external CLI timings and in-memory JLZ timings share I/O measurement conventions.
