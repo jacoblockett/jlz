@@ -48,7 +48,13 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 		if e != nil {
 			return nil, e
 		}
-		if size == 0 || size > stage3BlockSize || size > n-produced || plen > uint64(r.Len()) || plen > size*8+1024*1024 || (size < stage3BlockSize && size < n-produced) {
+		limit := uint64(stage3BlockSize)
+		// Selected BWT blocks may span two legacy regions. Other
+		// mathematical blocks retain their strict 256 KiB boundaries.
+		if mode == stage3Raw || mode == blockBWTBijective || mode == blockBWTSubregions {
+			limit = 2 * stage3BlockSize
+		}
+		if size == 0 || size > limit || size > n-produced || plen > uint64(r.Len()) || plen > size*8+1024*1024 || (size < stage3BlockSize && size < n-produced) {
 			return nil, errors.New("cross block bounds")
 		}
 		if mode != stage3Raw && mode != blockCrossPacked && (mode == blockOldDictionary || (mode > blockAdditivePacked && mode != blockBWTBijective && mode != blockBWTSubregions)) {
@@ -68,7 +74,23 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 		return nil, errors.New("cross archive trailing bytes")
 	}
 	output := make([]byte, int(n))
-	groupCount := (len(blocks) + crossGroupRegions - 1) / crossGroupRegions
+	// Variable-sized BWT blocks invalidate the old block-index*256KiB
+	// output offset, while previous archives continue to use same positions.
+	positions := make([]int, len(blocks)+1)
+	independent := true
+	for i, b := range blocks {
+		positions[i+1] = positions[i] + b.size
+		if b.typ != stage3Raw && b.typ != blockBWTPacked && b.typ != blockBWTBijective && b.typ != blockBWTSubregions {
+			independent = false
+		}
+	}
+	groupSpan := crossGroupRegions
+	// Pure BWT blocks have no cross-block dependencies and can be
+	// decoded independently; match-reference archives retain group-of-four.
+	if independent {
+		groupSpan = 1
+	}
+	groupCount := (len(blocks) + groupSpan - 1) / groupSpan
 	errs := make([]error, groupCount)
 	jobs := make(chan int)
 	var wg sync.WaitGroup
@@ -77,8 +99,8 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 		go func() {
 			defer wg.Done()
 			for group := range jobs {
-				lo := group * crossGroupRegions
-				hi := min(len(blocks), lo+crossGroupRegions)
+				lo := group * groupSpan
+				hi := min(len(blocks), lo+groupSpan)
 				restored := make([]byte, 0, crossGroupRegions*stage3BlockSize)
 				for i := lo; i < hi; i++ {
 					b := blocks[i]
@@ -113,7 +135,7 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 					restored = append(restored, dec...)
 				}
 				if errs[group] == nil {
-					dst := lo * stage3BlockSize
+					dst := positions[lo]
 					if dst+len(restored) > len(output) {
 						errs[group] = errors.New("cross group bounds")
 					} else {
