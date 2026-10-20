@@ -51,3 +51,10 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o jlz.exe .
 ```
 
 GitHub Actions are disabled. Only permanent validated source edits to `main`, disposable local research otherwise. No candidate may worsen the complete original 12-file Silesia **archive size, ten-run median encoding time, or ten-run median decoding time**, unless the user explicitly approves that precise tradeoff.
+
+
+## Accepted layered BCJ→BWT plus Go PGO (2026-10-20)
+
+**Current** uses reversible per-block E8/E9 32-bit little-endian relative operand normalization before existing native 256KiB BWT/MTF/finite-state coding on automatically selected math regions. Mixed-cross mode 19 holds existing BWT subtype 15 or 16. The decoder reconstructs via existing BWT inverse then branch inverse; old archive modes remain backward-decodable, while old binaries reject newly written mode 19. A root checked-in **default.pgo** profile (16,804 compressed bytes; SHA-256 3b35cda74832360a252b63c1805e025aa1f4ed7a4fe4124d9a55929a6e86289f) is automatically read by ordinary Go 1.23+ compilation. Without the measured profile the same codec was historically REJECTED for encoding regression; **do not claim the approved timings for an unprofiled build**.
+
+Current **12-file original Silesia** accepted complete archive: **60,244,257 B**; candidate-only ten-run medians **5.322679488 s encode / 2.003659634 s decode**, 120 exact reconstructions. Previous accepted historical (not rerun): 60,585,717 B / 5.493743735 s / 2.194427893 s. Net -341,460 B, nominal -3.1138% encode, -8.6933% decode (independently timed sessions). [Actual ten-run data, method and backward-compatibility checks](reports/2026-10-20-native-bcj-bwt-pgo-accepted.md). No pending candidate and no numbered release label.

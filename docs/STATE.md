@@ -2,12 +2,17 @@
 
 **Status: `current` accepted on `main`. `candidate`: NONE.** New JLZ states and research reports do **not** use numbered rounds. Historical numbered filenames remain only as archive references; strategies and outcomes are indexed in [the strategy ledger](research/strategy-ledger.md).
 
-## Current complete-Silesia benchmark
+## Current complete-Silesia benchmark — accepted October 20, 2026
 
-- **Original input:** the exact original 12-file Silesia corpus, **211,938,580 B** total; manifest at `docs/reports/2026-10-18-round23-silesia-sha256.txt`, all 12 SHA-256 verified.
-- **Complete archived size:** **60,585,717 B**. Reduction from original ~**71.41355%**.
-- **Previously established candidate-only 10 complete-run medians:** **5.493743735 seconds compress; 2.194427893 seconds decompress**. These are retained accepted timings, **not rerun**.
-- **Historical external reference:** Zstd-3 **66,216,569 B**, **1.2561 s encode / 0.8551 s decode**; XZ-6 **49,233,340 B**, **116.9892 s encode / 2.3079 s decode**. External CLI elapsed times are not directly comparable to in-memory JLZ timings.
+- Original: **12 original Silesia files, 211,938,580 B**, 12 canonical SHA-256 checks PASS.
+- **Current complete archived size: 60,244,257 B**, **71.574662% reduction**.
+- **Current ten candidate-only complete-run medians: 5.322679488 s encode, 2.003659634 s decode**, built with committed root **default.pgo**, automatically consumed by Go 1.23+.
+- Previous accepted reference, retained historical and **not rerun**: **60,585,717 B / 5.493743735 s encode / 2.194427893 s decode**. Exact archive improvement **341,460 B (0.563598%)**; measured unpaired speed deltas **-3.113801% encode / -8.693303% decode**.
+- External historical references, not rerun: Zstd-3 **66,216,569 B / 1.2561 s / 0.8551 s** and XZ-6 **49,233,340 B / 116.9892 s / 2.3079 s**. CLI timings are not directly comparable to JLZ in-memory timings.
+- **Accepted additive layer:** reversible 32-bit branch-relative normalization on automatically identified original math blocks, feeding the existing 256 KiB BWT/MTF/FSE coder. New mixed-cross internal block mode **19** carries existing BWT subtype 15/16; previous archives remain backward-decodable. Older decoder binaries reject new mode 19.
+- **Candidate pending: NONE.** [Exact full implementation, profile and ten-run report](reports/2026-10-20-native-bcj-bwt-pgo-accepted.md).
+
+**Historical sections below were written against the preceding current baseline and remain archival evidence; their old "current" figures no longer supersede the figures above. In particular the UNPROFILED BCJ→BWT candidate remained REJECTED; the new PGO-equipped integrated build qualifies.**
 
 **Binding promotion rule:** unless the user explicitly approves a particular trade, the **candidate** must not worsen **any** of compressed bytes, median compression seconds, or median decompression seconds on the entire original twelve-file Silesia corpus. Exact size includes all headers, table costs, metadata and checksums. Candidate-only ten complete runs before promotion; clear unfavorable component or one-run screens may be rejected earlier. Disclose per-file regressions, compatibility, repeatability and memory/format costs. Tiny unpaired timing differences are inconclusive, not evidence of significant performance gain.
 

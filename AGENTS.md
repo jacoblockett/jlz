@@ -2,7 +2,7 @@
 
 **Current**: accepted native Go compressor on GitHub `main`. **Candidate**: no integrated or benchmarked candidate currently active. Do not name the project state using numbered rounds or release identifiers. Earlier dated reports retain legacy filenames solely as historical citations.
 
-**Current complete original-Silesia reference (12 original files; 211,938,580 source bytes):** compressed **60,585,717 B**, historical ten-run medians **5.493743735 s encode**, **2.194427893 s decode**. Fixed external benchmarks, retain without rerun: Zstd-3 **66,216,569 B / 1.2561 s / 0.8551 s**, XZ-6 **49,233,340 B / 116.9892 s / 2.3079 s**. External CLI and JLZ in-memory timings are not directly comparable.
+**Current complete original-Silesia reference (12 original files; 211,938,580 source bytes):** compressed **60,244,257 B**, accepted candidate-only ten-run medians **5.322679488 s encode**, **2.003659634 s decode**, with native layered branch-relative-normalized BWT and root **default.pgo** automatically used by Go 1.23+ builds. Previous accepted historical reference (not rerun): 60,585,717 B / 5.493743735 s / 2.194427893 s. See [accepted measurements and full validation](docs/reports/2026-10-20-native-bcj-bwt-pgo-accepted.md). Keep the committed 16,804 B default.pgo; an unprofiled build did NOT qualify. Fixed external benchmarks, retain without rerun: Zstd-3 **66,216,569 B / 1.2561 s / 0.8551 s**, XZ-6 **49,233,340 B / 116.9892 s / 2.3079 s**. External CLI and JLZ in-memory timings are not directly comparable.
 
 ## Mission, architecture, and constraints
 

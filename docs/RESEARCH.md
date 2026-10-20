@@ -1,6 +1,6 @@
 # JLZ research index: strategies and evidence, not numbered sessions
 
-**Current production:** `current` on `main`, complete original twelve-file Silesia archive **60,585,717 B**, prior ten-run medians **5.493743735 s encoding / 2.194427893 s decoding**. **Benchmarked/integrated candidate: none active.** Strict three-metric no-regression without express user approval. [Full current state](STATE.md).
+**Current production:** `current` on `main`, complete original twelve-file Silesia archive **60,244,257 B**, accepted ten-run medians **5.322679488 s encoding / 2.003659634 s decoding**, with additive BCJ→existing BWT and the checked-in Go **default.pgo**. Previous accepted historical reference: 60,585,717 B / 5.493743735 s / 2.194427893 s. **Benchmarked/integrated candidate: none active.** Strict three-metric no-regression without express user approval. [Full current state](STATE.md).
 
 ## Canonical research records
 
@@ -60,3 +60,6 @@ Last documentation reorganization: 2026-10-19 America/New_York. **No new version
 
 
 **Supplementary placements screened with current native stream encoders, no complete benchmarked candidate** (2026-10-20): [stride-informed 2D additive prediction, reverse references, opcode-conditioned distance factoring, and sparse-correction exact-copy tokens](reports/2026-10-20-selected-stream-layer-screens.md). Each was original native Go, reversible or source-match-exact, evaluated against existing substreams on complete-original Silesia data, and *specific* concrete placement rejected for poor encoded-size economics or scanner CPU. See [layer matrix](research/layer-placement-matrix.md). No archive format mode committed and no general mathematical family declared impossible.
+
+
+**ACCEPTED layered native branch-BWT with built-in Go profile-guided optimization (2026-10-20):** [complete original Silesia implementation, all ten candidate runs, exact reconstruction and compatibility](reports/2026-10-20-native-bcj-bwt-pgo-accepted.md). **60,244,257 B / 5.322679488 s encode / 2.003659634 s decode** versus retained prior accepted **60,585,717 B / 5.493743735 s / 2.194427893 s**, all three metrics improved. The earlier unprofiled BCJ→BWT variant remains rejected; do not conflate the two. Prior benchmark figures in older reports are historical, not today's current. No pending candidate.
