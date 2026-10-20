@@ -82,6 +82,9 @@ func encodeParallelMathRegions(input []byte, digest [32]byte, bestSize int, samp
 				} else {
 					mode, p, e = encodeMathRegionBlockFast(input[at:end])
 				}
+				if e == nil {
+					mode, p = betterPeriodicLane(input[at:end], mode, p)
+				}
 				results[idx] = mathRegionResult{mode, p, e}
 			}
 		}()
