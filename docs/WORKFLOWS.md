@@ -31,3 +31,8 @@ Before implementing or rejecting a research strategy, inspect the canonical [lay
 Current **12-file original Silesia** accepted complete archive: **60,244,257 B**; candidate-only ten-run medians **5.322679488 s encode / 2.003659634 s decode**, 120 exact reconstructions. Previous accepted historical (not rerun): 60,585,717 B / 5.493743735 s / 2.194427893 s. Net -341,460 B, nominal -3.1138% encode, -8.6933% decode (independently timed sessions). [Actual ten-run data, method and backward-compatibility checks](reports/2026-10-20-native-bcj-bwt-pgo-accepted.md). No pending candidate and no numbered release label.
 
 The checked-in profile is build data, not a mature codec backend. Include it when reproducing benchmarks. Profiling improves the compiler's generated code; it is host/compiler-sensitive and not a cross-platform timing guarantee.
+
+
+## Updated approved measurement (2026-10-20)
+
+The current accepted native Go engine is source-aligned with GitHub `main` commit `e75bb094e518c8f0a4c74731f0d517143cf66989`. The full original 12-file 211,938,580 B Silesia corpus compresses to **60,244,257 B**, with ten complete candidate-only medians **5.081535442 s encode / 1.9046838445 s decode**. Previous reference **60,244,257 B / 5.322679488 s / 2.003659634 s** is now historical, not to be rebenchmarked automatically. Root `default.pgo` required for comparability; the archive format and old decoding remain unchanged. Pair-LF inverse needs extra scratch memory. See [ten-run source validation](reports/2026-10-20-compact-index-two-hop-inverse-accepted.md).
