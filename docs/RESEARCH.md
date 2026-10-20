@@ -42,3 +42,6 @@ Last documentation reorganization: 2026-10-19 America/New_York. **No new version
 
 
 [Primary-source Zstd/XZ/Brotli architecture audit](reports/2026-10-19-industry-architecture-audit.md) (2026-10-19): match generation vs priced sequences, full vs bounded optimal parsing, x86 branch-address reversible transforms, entropy/context model overhead, explicit crosswalk to current Go and failed strategy ledger. This is **source-level research only, no measured candidate**. Top candidate hypothesis is bounded, state-aware match-choice pricing within existing native exact/XOR/ADD candidates. Second distinct idea is original branch-address prefilter. No release/round number assigned.
+
+
+**Native match price feasibility diagnostic:** [Measured nine exact reversible math-selected source-region token streams](reports/2026-10-19-native-match-price-screen.md) after inspecting industry high-quality parser sources. Current fixed 5/6-bit match scorer diverges from the observed 4.47–7.95 bits/byte zero-order entropy of left-behind literal streams on selected Silesia source regions; this is not a proven marginal entropy price or a full archive candidate gain. Keep one **bounded entropy-priced native parse selection** hypothesis open, not a threshold-sweep, with unchanged decoder and transformed-match candidate generator. No integrated candidate or ten-run benchmark.
