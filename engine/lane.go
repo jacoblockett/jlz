@@ -1,25 +1,72 @@
 package engine
 
 import (
- "github.com/jacoblockett/jlz/lane"
 	"bytes"
+	"github.com/jacoblockett/jlz/lane"
 	"math"
 	"sync"
 )
 
 // Reversible byte-lane decomposition. Independent per-lane native entropy
 // streams expose interleaved structural fields that a single byte histogram
-// cannot describe. Payload: stride byte (2, 4, or 8), then one independently
+// cannot describe. Payload: stride byte (2, 4, 8 or detected record period 12..64), then one independently
 // framed native stream per byte-offset lane. Each lane holds indices congruent
 // to that offset modulo the stride; its exact decoded length is derived from
 // the original region size, so no additional lane lengths are trusted.
 const blockLanePacked byte = 13
 
-func encodeLaneBlock(data []byte, stride int) []byte { return lane.EncodeBlock(data,stride,packStream) }
-func decodeLaneBlock(data []byte, n int) ([]byte,error) {
- return lane.DecodeBlock(data,n,unpackStream)
+func encodeLaneBlock(data []byte, stride int) []byte {
+	return lane.EncodeBlock(data, stride, packStream)
+}
+func decodeLaneBlock(data []byte, n int) ([]byte, error) {
+	return lane.DecodeBlock(data, n, unpackStream)
 }
 func laneEntropyEstimates(data []byte) [3]float64 { return lane.EntropyEstimates(data) }
+
+// recordAlignedStride looks for a repeated field layout rather than simply
+// increasing ordinary 2/4/8 byte lanes. Compare distant, independent small
+// source windows; choose the shortest significant period to avoid redundant
+// per-field Huffman models for multiples of a true record width.
+func recordAlignedStride(samples [3][]byte) int {
+	const sampleLimit = 4096
+	var hits [65]int
+	var trials [65]int
+	for _, block := range samples {
+		n := min(len(block), sampleLimit)
+		for lag := 12; lag <= 64; lag++ {
+			if n <= lag {
+				continue
+			}
+			for i := lag; i < n; i++ {
+				if block[i] == block[i-lag] {
+					hits[lag]++
+				}
+			}
+			trials[lag] += n - lag
+		}
+	}
+	best := 0.0
+	for lag := 12; lag <= 64; lag++ {
+		if trials[lag] == 0 {
+			continue
+		}
+		rate := float64(hits[lag]) / float64(trials[lag])
+		if rate > best {
+			best = rate
+		}
+	}
+	// A structural period must be conspicuous; random source collisions or
+	// ordinary letter correlations do not justify many additional models.
+	if best < 0.1 {
+		return 0
+	}
+	for lag := 12; lag <= 64; lag++ {
+		if trials[lag] > 0 && float64(hits[lag])/float64(trials[lag]) >= best*0.9 {
+			return lag
+		}
+	}
+	return 0
+}
 
 func sampledLaneStride(input []byte, currentBest int) int {
 	count := (len(input) + stage3BlockSize - 1) / stage3BlockSize
@@ -72,6 +119,19 @@ func sampledLaneStride(input []byte, currentBest int) int {
 		if size < bestPayload {
 			bestPayload = size
 			bestStride = stride
+		}
+	}
+	// A promising periodic record layout can reveal fields that 2/4/8
+	// interleaving conflates. It competes using the exact existing native
+	// stream frames, not uncharged entropy estimates.
+	if period := recordAlignedStride(sampled); period != 0 {
+		size := 0
+		for _, block := range sampled {
+			size += len(encodeLaneBlock(block, period))
+		}
+		if size < bestPayload {
+			bestPayload = size
+			bestStride = period
 		}
 	}
 	// Samples must still plausibly beat the currently selected file rate.

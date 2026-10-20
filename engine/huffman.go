@@ -1,10 +1,12 @@
 package engine
 
-// Fast fixed-width lookup for canonical Huffman codes of at most 15 bits.
-// This replaces per-bit linear-length searching without changing the format.
+// Canonical Huffman decoder with a lookup table sized to the longest code
+// present in each stream, and a bulk word fast path for interior bytes.
+// Both preserve the existing bitstream and bound code lengths to 15 bits.
 // Invalid prefixes, truncation, padding, and trailing data remain errors.
 
 import (
+	"encoding/binary"
 	"errors"
 	"io"
 )
@@ -14,12 +16,21 @@ func decodeCanonicalHuffman(lengths [256]byte, payload []byte, count int) ([]byt
 	if err != nil {
 		return nil, err
 	}
-	var lookup [1 << 15]uint16 // packed code length (high byte), symbol (low byte)
+	maxBits := 0
+	for _, length := range lengths {
+		if int(length) > maxBits {
+			maxBits = int(length)
+		}
+	}
+	if maxBits == 0 {
+		return nil, errors.New("empty canonical Huffman table")
+	}
+	lookup := make([]uint16, 1<<uint(maxBits)) // length in high byte, symbol in low byte
 	for sym, nbits := range lengths {
 		if nbits == 0 {
 			continue
 		}
-		span := 1 << (15 - nbits)
+		span := 1 << uint(maxBits-int(nbits))
 		start := int(codes[sym]) * span
 		entry := uint16(nbits)<<8 | uint16(sym)
 		for i := 0; i < span; i++ {
@@ -34,14 +45,19 @@ func decodeCanonicalHuffman(lengths [256]byte, payload []byte, count int) ([]byt
 			return nil, io.ErrUnexpectedEOF
 		}
 		at := pos >> 3
-		var bits uint32 = uint32(payload[at]) << 16
-		if at+1 < len(payload) {
-			bits |= uint32(payload[at+1]) << 8
+		var bits uint32
+		if at+4 <= len(payload) {
+			bits = binary.BigEndian.Uint32(payload[at:]) >> 8
+		} else {
+			bits = uint32(payload[at]) << 16
+			if at+1 < len(payload) {
+				bits |= uint32(payload[at+1]) << 8
+			}
+			if at+2 < len(payload) {
+				bits |= uint32(payload[at+2])
+			}
 		}
-		if at+2 < len(payload) {
-			bits |= uint32(payload[at+2])
-		}
-		key := (bits >> uint(9-(pos&7))) & 0x7fff
+		key := (bits >> uint(24-maxBits-(pos&7))) & uint32((1<<uint(maxBits))-1)
 		entry := lookup[key]
 		length := int(entry >> 8)
 		if length == 0 {

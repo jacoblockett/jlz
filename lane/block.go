@@ -1,9 +1,9 @@
 package lane
 
 import (
- "bytes"
- "errors"
- "math"
+	"bytes"
+	"errors"
+	"math"
 )
 
 func EncodeBlock(data []byte, stride int, pack func([]byte) []byte) []byte {
@@ -18,18 +18,18 @@ func EncodeBlock(data []byte, stride int, pack func([]byte) []byte) []byte {
 	}
 	return out.Bytes()
 }
-func DecodeBlock(data []byte, n int, unpack func(*bytes.Reader, int) ([]byte,error)) ([]byte, error) {
+func DecodeBlock(data []byte, n int, unpack func(*bytes.Reader, int) ([]byte, error)) ([]byte, error) {
 	if len(data) == 0 {
 		return nil, errors.New("lane payload missing")
 	}
 	stride := int(data[0])
-	if stride != 2 && stride != 4 && stride != 8 {
+	if stride != 2 && stride != 4 && stride != 8 && (stride < 12 || stride > 64) {
 		return nil, errors.New("invalid lane stride")
 	}
 	r := bytes.NewReader(data[1:])
 	out := make([]byte, n)
-	for lane := 0; lane < stride; lane++ {
-		sz := (n + stride - 1 - lane) / stride
+	for field := 0; field < stride; field++ {
+		sz := (n + stride - 1 - field) / stride
 		b, e := unpack(r, sz)
 		if e != nil {
 			return nil, e
@@ -38,7 +38,7 @@ func DecodeBlock(data []byte, n int, unpack func(*bytes.Reader, int) ([]byte,err
 			return nil, errors.New("lane length mismatch")
 		}
 		for k, v := range b {
-			out[lane+k*stride] = v
+			out[field+k*stride] = v
 		}
 	}
 	if r.Len() != 0 {
