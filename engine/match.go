@@ -35,10 +35,11 @@ const (
 	matchMinimumTransformed = 12
 )
 
-type matchBucket struct {
-	positions [2]uint32 // Stored as (position + 1), 0 means empty.
-	next      uint32
-}
+// Compact two-entry hash bucket: low 32 bits newest, high 32 bits older.
+// Stored offsets are 1-based, allowing zero as the empty sentinel.
+type matchBucket uint64
+
+func (b matchBucket) latest(k int) uint32 { return uint32(uint64(b) >> (uint(k) * 32)) }
 
 type matchIndex struct {
 	heads         [3][]matchBucket
@@ -78,8 +79,7 @@ func (m *matchIndex) addBefore(pos int) {
 				break
 			}
 			bucket := &m.heads[typ][matchHash(matchFingerprint(m.input, at, typ))]
-			bucket.positions[bucket.next&1] = uint32(at + 1)
-			bucket.next++
+			*bucket = matchBucket((uint64(*bucket) << 32) | uint64(uint32(at+1)))
 		}
 	}
 }
@@ -185,8 +185,7 @@ func (m *matchIndex) find(pos int, recent [3]int) matchChoice {
 		key := matchFingerprint(data, pos, typ)
 		bucket := &m.heads[typ][matchHash(key)]
 		for k := 0; k < 2; k++ {
-			slot := (bucket.next - 1 - uint32(k)) & 1
-			value := bucket.positions[slot]
+			value := bucket.latest(k)
 			if value == 0 {
 				break // earlier slots cannot be filled if the newest is empty
 			}

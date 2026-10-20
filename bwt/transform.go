@@ -1,11 +1,12 @@
 package bwt
 
 import (
- "bytes"
- "encoding/binary"
- "errors"
- "index/suffixarray"
+	"bytes"
+	"encoding/binary"
+	"errors"
+	"index/suffixarray"
 )
+
 func Transform(data []byte) ([]byte, int, error) {
 	n := len(data)
 	if n == 0 {
@@ -67,12 +68,13 @@ func Transform(data []byte) ([]byte, int, error) {
 	return bwt, primary, nil
 }
 
+// Inverse uses a two-symbol LF jump. The on-disk BWT is unchanged;
+// one dependent memory lookup produces two bytes of reconstructed output.
 func Inverse(bwt []byte, primary int) ([]byte, error) {
 	n := len(bwt)
 	if primary <= 0 || primary > n {
 		return nil, errors.New("BWT primary index invalid")
 	}
-	// The sentinel is represented by symbol 0; original bytes use 1..256.
 	var freq [257]int
 	column := make([]uint16, n+1)
 	for i := range column {
@@ -85,7 +87,7 @@ func Inverse(bwt []byte, primary int) ([]byte, error) {
 		}
 		freq[column[i]]++
 	}
-	offsets := [257]int{}
+	var offsets [257]int
 	acc := 0
 	for i := range offsets {
 		offsets[i] = acc
@@ -96,21 +98,30 @@ func Inverse(bwt []byte, primary int) ([]byte, error) {
 		lf[i] = int32(offsets[v])
 		offsets[v]++
 	}
+	// Each entry stores first and second symbols (9 bits each) and the row
+	// reached after two LF transitions. Inputs are limited to 256KiB regions.
+	pair := make([]uint64, n+1)
+	for i := range pair {
+		j := int(lf[i])
+		pair[i] = (uint64(uint32(lf[j])) << 18) | (uint64(column[j]) << 9) | uint64(column[i])
+	}
 	out := make([]byte, n)
-	row := primary
-	for i := n; i >= 0; i-- {
-		value := column[row]
-		row = int(lf[row])
-		if i == n {
-			if value != 0 {
-				return nil, errors.New("BWT missing sentinel")
-			}
-			continue
-		}
-		if value == 0 {
+	row := int(lf[primary]) // Skip the unique terminal sentinel.
+	for i := n - 1; i >= 1; i -= 2 {
+		p := pair[row]
+		first, second := uint16(p&511), uint16((p>>9)&511)
+		if first == 0 || second == 0 {
 			return nil, errors.New("BWT premature sentinel")
 		}
-		out[i] = byte(value - 1)
+		out[i] = byte(first - 1)
+		out[i-1] = byte(second - 1)
+		row = int(p >> 18)
+	}
+	if n&1 != 0 {
+		if column[row] == 0 {
+			return nil, errors.New("BWT premature sentinel")
+		}
+		out[0] = byte(column[row] - 1)
 	}
 	return out, nil
 }

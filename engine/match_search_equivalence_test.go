@@ -39,8 +39,7 @@ func (m *matchIndex) findReference(pos int, recent [3]int) matchChoice {
 		key := matchFingerprint(data, pos, typ)
 		bucket := &m.heads[typ][matchHash(key)]
 		for k := 0; k < 2; k++ {
-			slot := (bucket.next - 1 - uint32(k)) & 1
-			value := bucket.positions[slot]
+			value := bucket.latest(k)
 			if value == 0 {
 				continue
 			}
