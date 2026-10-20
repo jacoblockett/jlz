@@ -87,12 +87,12 @@ func decodeBWTNative(data []byte, expected int) ([]byte, error) {
 	}
 	return inverseBWTNative(bwt, int(primary))
 }
-func encodeParallelBWTRegions(input []byte, digest [32]byte, rawSize int, _ mathRegionSamples) ([]byte, error) {
-	// The BWT neighborhood context improves substantially across two original
-	// regions. The mathematical parser keeps its original 256 KiB groups.
-	span := 2 * stage3BlockSize
-	count := (len(input) + span - 1) / span
+func encodeParallelBWTRegions(input []byte, digest [32]byte, rawSize int, samples mathRegionSamples) ([]byte, error) {
+	count := (len(input) + stage3BlockSize - 1) / stage3BlockSize
 	results := make([]mathRegionResult, count)
+	for i, idx := range samples.positions {
+		results[idx] = samples.results[i]
+	}
 	jobs := make(chan int)
 	var wg sync.WaitGroup
 	for worker := 0; worker < availableWorkers(count); worker++ {
@@ -100,8 +100,8 @@ func encodeParallelBWTRegions(input []byte, digest [32]byte, rawSize int, _ math
 		go func() {
 			defer wg.Done()
 			for idx := range jobs {
-				at := idx * span
-				block := input[at:min(len(input), at+span)]
+				at := idx * stage3BlockSize
+				block := input[at:min(len(input), at+stage3BlockSize)]
 				enc, mode, err := encodeBWTSubregions(block)
 				if len(enc) >= len(block) {
 					mode = stage3Raw
@@ -112,6 +112,9 @@ func encodeParallelBWTRegions(input []byte, digest [32]byte, rawSize int, _ math
 		}()
 	}
 	for i := 0; i < count; i++ {
+		if results[i].payload != nil {
+			continue
+		}
 		jobs <- i
 	}
 	close(jobs)
@@ -128,8 +131,8 @@ func encodeParallelBWTRegions(input []byte, digest [32]byte, rawSize int, _ math
 		if len(r.payload) == 0 {
 			return nil, errors.New("BWT region has no payload")
 		}
-		at := idx * span
-		n := min(len(input)-at, span)
+		at := idx * stage3BlockSize
+		n := min(len(input)-at, stage3BlockSize)
 		out.WriteByte(r.mode)
 		putVar(&out, uint64(n))
 		putVar(&out, uint64(len(r.payload)))
