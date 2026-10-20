@@ -41,3 +41,10 @@ A prior widened conventional mathematical matcher improved archived bytes but sl
 - [Conceptual research index](RESEARCH.md)
 - [Engineering](ENGINEERING.md), [local workflow](WORKFLOWS.md)
 - Historical dated experimental reports remain under \`docs/reports/\`, including older numerical filenames retained solely for traceability.
+
+
+## Latest suffix-order diagnostics: no benchmarked candidate
+
+**Current remains unchanged; candidate remains NONE.** The current BWT forward transform's standard-library suffix-array serialization layer was measured on **all 451 selected source blocks** of seven original Silesia files: building suffix indexes consumed ~**4.088 s** cumulative stage time; serializing their offsets ~**0.519 s**; validating/parsing serialized offsets ~**0.364 s**. Intermediate serialized data totaled ~**461.7 MB** processed block by block, **not** embedded in the compressed archives. These figures are a **single component timing pass**, not an integrated JLZ compression benchmark or a promised ~0.88s speedup. An independently written radix-prefix-doubling suffix constructor produced exactly the same BWT bytes and primary indexes on **21/21 distributed original Silesia block samples** with exact inverse reconstruction, but was **~2–7× slower** than the current complete BWT forward transform. **REJECT this concrete builder and stop nearby radix/step-size tuning**; lower-algorithmic-complexity direct construction remains possible but unproven and may not justify implementation complexity. [Evidence](reports/2026-10-19-suffix-order-extraction-screen.md). The current Go source was not modified.
+
+**Priority shift:** Having screened macrochunk dedup, sparse far anchors, and generic prefix-doubling suffix building without a tri-metric opportunity, favor **distinct bounded-work mathematical match-parsing models** or scientifically new transformations from the active theorem backlog rather than adjacent BWT or far-anchor tuning. Identify exact historical overlap before coding. No ten-run whole-corpus candidate benchmark was run, hence no candidate comparison table is warranted.
