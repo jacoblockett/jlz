@@ -34,6 +34,6 @@ Before promoting code, run `go test -count=1 ./...`, `go vet ./...`, targeted ra
 
 ### Documentation and Deliverable
 
-Record meaningful successful and failed findings in `docs/reports/YYYY-MM-DD-<strategy>.md`; update `docs/research/strategy-ledger.md` and `docs/STATE.md`. Report **directly in chat** using the repository-root `FINDINGS.md` template, including its benchmark table for measured integrated candidates. Always show reference and candidate deltas clearly, labeling changes **(better)** or **(worse)**; never fabricate missing benchmark results.
+Record meaningful successful and failed findings in `docs/reports/YYYY-MM-DD-<strategy>.md`; update `docs/research/strategy-ledger.md` and `docs/STATE.md`. Report **directly in chat** using the repository-root `FINDINGS.md` template, including its benchmark table for measured integrated candidates. Always show reference and candidate deltas clearly, labeling changes **(better)** or **(worse)**; never fabricate missing benchmark results. Of course, if a response would not require report findings, skip this.
 
 Interpret short or nonsensical replies (`k`, `asdf`, etc.) as approval of findings and candidate selection, and instructions to continue your recommended direction, unless the user explicitly objects, questions, or redirects. If an important clarification remains unanswered, ask again directly rather than assuming approval.
