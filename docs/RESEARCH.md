@@ -1,6 +1,6 @@
 # JLZ research index: strategies and evidence, not numbered sessions
 
-**Current production:** `current` on `main`, complete original twelve-file Silesia archive **60,244,257 B**, accepted ten-run medians **5.081535442 s encoding / 1.9046838445 s decoding**, with additive BCJ→existing BWT and the checked-in Go **default.pgo**. Previous accepted historical reference: 60,244,257 B / 5.322679488 s / 2.003659634 s. Accepted byte-identical matcher/BWT decoder acceleration [report](reports/2026-10-20-compact-index-two-hop-inverse-accepted.md). **Benchmarked/integrated candidate: none active.** Strict three-metric no-regression without express user approval. [Full current state](STATE.md).
+**Current production:** `current` on `main`, complete original twelve-file Silesia archive **58,924,248 B**, accepted ten-run medians **4.8896856215 s encoding / 1.876473360 s decoding**, with additive BCJ→existing BWT and the checked-in Go **default.pgo**. Previous accepted historical reference: 60,244,257 B / 5.081535442 s / 1.9046838445 s. [Field-period lane and Huffman decoder accepted evidence](reports/2026-10-20-record-aligned-native-lanes-accepted.md). Accepted byte-identical matcher/BWT decoder acceleration [report](reports/2026-10-20-compact-index-two-hop-inverse-accepted.md). **Benchmarked/integrated candidate: none active.** Strict three-metric no-regression without express user approval. [Full current state](STATE.md).
 
 ## Canonical research records
 
