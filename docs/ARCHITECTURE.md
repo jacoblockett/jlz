@@ -1,46 +1,53 @@
-# Source organization
+# Current JLZ architecture (no numbered releases)
 
-JLZ has one standalone executable, with `main.go` at the repository root. Go packages are organized by actual dependency boundaries, not by filename prefix. The repository does not track compiled executables.
+\`current\` is the native Go JLZ engine on \`main\`. \`candidate\` means an isolated, unapproved research implementation; none is currently integrated or benchmarked. Current state and required metrics: [STATE.md](STATE.md). Concrete failed strategies and prior outcomes: [strategy ledger](research/strategy-ledger.md). Historical numbered report filenames are only evidence links, not names of the production compressor.
 
-```text
-main.go                    two-command CLI (source, not a binary)
-engine/                    automatic selection and JLZ1 archive integration
-archive/varint.go          shared wire framing primitive
-additive/words.go          reversible 16-bit modular differences
-bwt/transform.go          block sorting and move-to-front/zero-run
-entropy/arithmetic.go     native adaptive context arithmetic coding
-lane/block.go             byte-lane transforms and entropy estimates
-match/                    fingerprints, transformed-match probes, LZ expansion
-predictive/transform.go   reversible lag predictors
-workers/                  CPU quota-aware bounded parallelism
-engine/testdata/fixtures/ byte-exact correctness fixtures
-docs/                     research, reports, engineering and inactive workflows
-```
+## Package structure
 
-Each directory is a real Go package. `engine/` owns high-level archive construction, encoder selection, legacy-format decoding and interoperability between formats. Feature packages provide independent transforms or policy without importing `engine`. Existing unit/regression tests that exercise internal engine symbols remain alongside `engine` implementations. Wire formats, the two CLI verbs and existing selection logic are unchanged.
+\`\`\`text
+main.go                    two-command CLI: compress/decompress
+engine/                    automatic selection, stream codecs, JLZ1 construction/decoding
+archive/                   native wire framing and varint primitives
+additive/                  reversible signed modular residual transforms
+bwt/                       original-byte BWT, move-to-front/bijective zero coding, inverse
+entropy/                   native adaptive arithmetic coding
+lane/                      independent lane transforms and statistical estimates
+match/                     native exact and XOR/ADD match finding/expansion
+predictive/                native reversible lag predictions
+workers/                   quota-aware bounded parallelism
+engine/testdata/fixtures/  deterministic byte-exact correctness fixtures
+docs/research/             strategy ledger, hypotheses, negative results and research queue
+docs/reports/              dated experimental methods and historically benchmarked data
+\`\`\`
 
-Build locally from the repository root:
+No third-party mature compression codec as a backend or fallback. The full JLZ engine remains one automatically selected, exact-byte lossless compressor with exactly two commands and no user levels.
 
-```sh
+## Current actual production path
+
+- Encoder chooses among native mathematical match/predictive streams, additive/word transforms, native entropy/raw fallbacks, and context-preflight-selected BWT blocks using original-byte exact fully framed costs where candidate comparisons occur.
+- **Source regions remain 256 KiB** for both mathematical matching and BWT. Four mathematical reference regions form an independently decodable history group; the original mathematical lookback is **128 KiB**, with strict decoder limits. Larger BWT regions and enlarged conventional math history were tested and rejected for slowing down both encoding/decoding.
+- Existing mathematical match tokens support exact copying, XOR/ADD transformed relations, repeat distances, and separately packed opcode, length, distance, transform and literal streams.
+- BWT uses a native byte transform whose forward suffix order is currently obtained by ordinary Go \`index/suffixarray\` and its serialized varint index representation. The selected BWT intermediate uses bijective move-to-front zero-run coding and native 12-bit finite-state entropy when shorter than legacy packing.
+- For winning BWT blocks, inexpensive minimum-description-length estimates select a single optional 2-/4-part local finite-state representation, **internal BWT mode 16**. The old BWT format and prior raw/RLE/Huffman/math modes continue decoding unchanged. Older binaries that predate mode16 cannot decode new mode16 payloads. No new forward archive mode has been added by subsequent rejected experiments.
+- Local compression/decoding tests, corruption checks, Windows crossbuild, corpus hash matching, exact original bytes, and historical decoder compatibility remain mandatory for accepted changes.
+
+## Things that are deliberately NOT in production
+
+- Dual-anchor exact-only fast math matcher that grew archive bytes.
+- BWT 512 KiB/1 MiB/2 MiB source-block variants that improved size but slowed decode/encode; no new extended BWT frame accepted.
+- Three-model conditional BWT entropy, dynamic BWT change-point searches, conditional rank remaps, fixed math metadata segmentation and incremental-frequency post-BWT models with disproportionate size/time costs.
+- More expensive expanded conventional math cross-history, ad-hoc sparse far-file absolute-offset references and packed LF-link inversion without an accepted tri-metric advantage.
+- A generic radix-prefix-doubling suffix constructor. It was byte-exact but 2–7× slower on 21 original BWT source-block diagnostic samples than the current standard-library implementation. The generic standard-library serialized suffix array remains in production until a mathematically equivalent direct-order method demonstrates a net all-metric win.
+
+For measured provenance and limits, use the [strategy ledger](research/strategy-ledger.md) and [dated experiment reports](reports/), rather than a chronological list of numbered rounds.
+
+## Local build and strict acceptance
+
+\`\`\`sh
 go test -count=1 ./...
 go vet ./...
 go build -o jlz .
 CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o jlz.exe .
-```
+\`\`\`
 
-The build output is ignored by Git. Do not place binaries in source control, use GitHub Actions, or claim unrun tests as passing. Full candidate throughput benchmarking continues to use only the original 12-file Silesia corpus and stored reference measurements.
-
-
-Round53 adds `engine/finite_state.go` for a bounded, self-contained, byte-renormalized 12-bit native finite-state coder with exact packed-stream subtype 5. The `engine/` orchestrator owns selection and decoding because this codec is only called for selected intermediate BWT and mathematical streams. Existing `entropy/` arithmetic and raw/RLE/Huffman formats remain independently implemented and backwards-readable; do not substitute an external compression codec backend.
-
-**Rejected architecture note:** Round54 briefly added a dual-anchor fast matcher but was rejected because it increased whole-Silesia archive bytes by 1.68985% despite faster encoding. The experimental `engine/match_dual_anchor.go` and associated test were removed, and R53 mathematical encoding code restored. **No R54 parser remains in production; current approved JLZ is Round53.** See `docs/reports/2026-10-19-round54-dual-anchor-speed.md`. New speed optimizations must not sacrifice compression ratio.
-
-Round55 corrects the BWT preference sampling in existing engine/bwt.go to score **actual bijective mode15 payloads**, retain their bytes, and use a 2% / two-of-three position evidence margin. No new codec package, format subtype, or decoder work is added. Rejected R54 dual hash remains absent. See docs/reports/2026-10-19-round55-bwt-preflight-recovery.md.
-
-
-Round57 adds `engine/bwt_subregions.go`, a bounded reversible BWT model-region selector and decoder for new internal block mode16, and `engine/bwt_subregions_test.go`. Region-level math/BWT preflights stay unchanged. Subregions are only attempted for BWT-winning non-sample blocks, and actual byte lengths control fallback to existing mode15. Older JLZ1 archives remain readable; old binaries cannot read new mode16. Source-backed research: `docs/reports/2026-10-19-round57-mdl-bwt-regimes.md`.
-
-Round60 expands the selected native BWT block horizon to **512 KiB** without changing its BWT/bijective/entropy transform or the 256 KiB mathematical region pipeline. The mixed-cross archive decoder supports validated variable BWT/raw block lengths, prefix-sum output positioning and per-block BWT parallelism; history-dependent blocks retain four-region grouping. No new mode ID, but pre-R60 decoders reject new larger frames. Research and format evidence: docs/reports/2026-10-19-round60-bwt-region-scale.md. The reversible prior-rank-label remapping family is closed as too small a component gain.
-
-
-**Authoritative correction after Round61:** The previously described Round60 512KiB BWT region architecture was expressly rejected and the source fully reverted. Active production is R57 with original 256KiB BWT mathematical region sizing and no independent 512KiB BWT mixed frames. The validated Round60 file/block architecture is retained exclusively as rejected research, not as current codec implementation. No speed-versus-ratio trade may be promoted without explicit user permission; candidate must preserve/improve complete archive bytes and both speeds. See docs/reports/2026-10-19-round61-r60-pareto-recovery.md.
+GitHub Actions are disabled. Only permanent validated source edits to \`main\`, disposable local research otherwise. No candidate may worsen the complete original 12-file Silesia **archive size, ten-run median encoding time, or ten-run median decoding time**, unless the user explicitly approves that precise tradeoff.
