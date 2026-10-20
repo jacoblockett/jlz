@@ -1,10 +1,10 @@
 # JLZ current state and next research
 
-**Status: \`current\` accepted on \`main\`. \`candidate\`: NONE.** New JLZ states and research reports do **not** use numbered rounds. Historical numbered filenames remain only as archive references; strategies and outcomes are indexed in [the strategy ledger](research/strategy-ledger.md).
+**Status: `current` accepted on `main`. `candidate`: NONE.** New JLZ states and research reports do **not** use numbered rounds. Historical numbered filenames remain only as archive references; strategies and outcomes are indexed in [the strategy ledger](research/strategy-ledger.md).
 
 ## Current complete-Silesia benchmark
 
-- **Original input:** the exact original 12-file Silesia corpus, **211,938,580 B** total; manifest at \`docs/reports/2026-10-18-round23-silesia-sha256.txt\`, all 12 SHA-256 verified.
+- **Original input:** the exact original 12-file Silesia corpus, **211,938,580 B** total; manifest at `docs/reports/2026-10-18-round23-silesia-sha256.txt`, all 12 SHA-256 verified.
 - **Complete archived size:** **60,585,717 B**. Reduction from original ~**71.41355%**.
 - **Previously established candidate-only 10 complete-run medians:** **5.493743735 seconds compress; 2.194427893 seconds decompress**. These are retained accepted timings, **not rerun**.
 - **Historical external reference:** Zstd-3 **66,216,569 B**, **1.2561 s encode / 0.8551 s decode**; XZ-6 **49,233,340 B**, **116.9892 s encode / 2.3079 s decode**. External CLI elapsed times are not directly comparable to in-memory JLZ timings.
@@ -13,11 +13,11 @@
 
 ## Current implementation
 
-JLZ is a standalone native exact-byte Go encoder/decoder with exactly two commands, \`compress\` and \`decompress\`, one automatic selection policy, and no third-party compressor backend. The encoder combines existing native mathematical exact/XOR/ADD references, prediction, arithmetic/model-coded entropy and an optional BWT/MTF/bijective zero-run + finite-state representation. Mathematical and BWT source regions are **256 KiB**, with a bounded **128 KiB** cross-block reference history and independently decodable four-block history groups. The BWT winner can encode one entropy model or an MDL-predicted 2-/4-part local model (internal mode16). Rigid decoder bounds, prior archive modes and backward decoding are retained.
+JLZ is a standalone native exact-byte Go encoder/decoder with exactly two commands, `compress` and `decompress`, one automatic selection policy, and no third-party compressor backend. The encoder combines existing native mathematical exact/XOR/ADD references, prediction, arithmetic/model-coded entropy and an optional BWT/MTF/bijective zero-run + finite-state representation. Mathematical and BWT source regions are **256 KiB**, with a bounded **128 KiB** cross-block reference history and independently decodable four-block history groups. The BWT winner can encode one entropy model or an MDL-predicted 2-/4-part local model (internal mode16). Rigid decoder bounds, prior archive modes and backward decoding are retained.
 
 **What is NOT in production:** wider 512 KiB BWT blocks, enlarged 512 KiB mathematical search history, dual-anchor exact-only parser, high-cost conditional multi-model BWT entropy, expensive variable entropy boundaries, alternative packed LF inverse, and the new sparse-far-reference diagnostic. Their tested outcomes are preserved by **strategy**, not hidden as "past rounds".
 
-Source control is GitHub \`jacoblockett/jlz\` \`main\` only. No hosted GitHub Actions or temporary workflow branches. Use disposable local experimental directories and local Go tests.
+Source control is GitHub `jacoblockett/jlz` `main` only. No hosted GitHub Actions or temporary workflow branches. Use disposable local experimental directories and local Go tests.
 
 ## Latest evidence, no benchmarked candidate
 
@@ -27,9 +27,9 @@ A prior widened conventional mathematical matcher improved archived bytes but sl
 
 ## Next research: different architecture, not redundant tuning
 
-1. **Profile/research direct suffix-array ordering extraction in the current BWT implementation.** It presently constructs the standard Go \`index/suffixarray\`, serializes it with \`Index.Write\`, then parses varints to recover suffix order; a truly faster, native and independently reversible suffix-array construction/extraction mechanism might keep *identical archives* and decode time while reducing compression time. Screen on actual selected original BWT inputs against the existing full-transform time before attempting integration. Avoid copying existing compressor code, Go unsafe reflection, or compiler-dependent internal links.
+1. **Profile/research direct suffix-array ordering extraction in the current BWT implementation.** It presently constructs the standard Go `index/suffixarray`, serializes it with `Index.Write`, then parses varints to recover suffix order; a truly faster, native and independently reversible suffix-array construction/extraction mechanism might keep *identical archives* and decode time while reducing compression time. Screen on actual selected original BWT inputs against the existing full-transform time before attempting integration. Avoid copying existing compressor code, Go unsafe reflection, or compiler-dependent internal links.
 2. **Cost-aware candidate parsing on the math side**, drawing structurally on libdeflate's minimum-cost parsing and liblzma match-finder classes, but only if a bounded-work approach complements JLZ's XOR/ADD references and can plausibly beat existing 5.494 s encoder. The previously rejected fast exact-only replacement grew archives, so a parser-only swap is not a fresh mechanism.
-3. **Re-open genuinely different experimental mathematical/scientific ideas** from \`docs/research/theory-backlog.md\` when not merely a disguised rerun of an existing token/context/boundary strategy. A theory's failure in one concrete codec is not a universal impossibility.
+3. **Re-open genuinely different experimental mathematical/scientific ideas** from `docs/research/theory-backlog.md` when not merely a disguised rerun of an existing token/context/boundary strategy. A theory's failure in one concrete codec is not a universal impossibility.
 
 **Anti-spiral gate:** before code, name the closest failed strategy in [strategy-ledger.md](research/strategy-ledger.md), state what structurally differs, and estimate real metadata/decode/CPU costs. If it is only a cutoff, model count, hash width or span tweak, stop and move on.
 
@@ -40,7 +40,7 @@ A prior widened conventional mathematical matcher improved archived bytes but sl
 - [Historical concrete approaches](research/attempted-ideas.md)
 - [Conceptual research index](RESEARCH.md)
 - [Engineering](ENGINEERING.md), [local workflow](WORKFLOWS.md)
-- Historical dated experimental reports remain under \`docs/reports/\`, including older numerical filenames retained solely for traceability.
+- Historical dated experimental reports remain under `docs/reports/`, including older numerical filenames retained solely for traceability.
 
 
 ## Latest suffix-order diagnostics: no benchmarked candidate
