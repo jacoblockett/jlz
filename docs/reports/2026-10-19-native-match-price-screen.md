@@ -20,11 +20,9 @@ For each, actually ran the native JLZ match tokenizer, parsed its exact token co
 
 Literal H0 in bits per output literal byte:
 
-| Complete original Silesia source | Start block | Middle block | Final block |
-|---|---:|---:|---:|
-| mozilla | 7.946 | 6.852 | 6.847 |
-| ooffice | 6.755 | 6.765 | 6.653 |
-| samba | 7.895 | 4.474 | 5.686 |
+- **mozilla:** first **7.946**, middle **6.852**, final **6.847** bits/literal byte.
+- **ooffice:** first **6.755**, middle **6.765**, final **6.653**.
+- **samba:** first **7.895**, middle **4.474**, final **5.686**.
 
 **Seven of nine selected literal streams have H0 greater than 6 bits/byte**, one lies between 5 and 6, and one below 5. JLZ's fixed scorer values a replaced source byte at 5–6 bits without conditioning on where it lands in an entropy-coded literal stream. This is a **measured mismatch in model assumptions**, not evidence that changing the score would improve compressed bytes. H0 of raw input is also not its post-parse encoded cost, and transformed-references' mask/slot cache state complicates accurate marginal pricing.
 
@@ -39,7 +37,7 @@ All units above are **one-pass selected-stream component outputs**, not whole JL
 
 Investigate one native **bounded-cost, repeat-cache-aware parser decision** that reuses existing exact/XOR/ADD candidates and the current op/length/distance/literal schema. The cost model should account for expected byte costs of actual native encoding streams (including repeat distances and literal-run framing). Before full integrated candidate work, measure how many distinct candidate decisions it would change and whether those changes produce favorable **actual packed output** on originally math-selected whole Silesia source blocks. It must **not** run a second full matching/entropy pass or create new coder modes; if computing the model dominates compression time, stop. A constant tweak from five to six/seven bits is a threshold sweep, **NOT** the novel hypothesis, and is prohibited by the anti-spiral rule.
 
-A candidate is only promitable if **fully integrated, fully framed, byte-exact** and a ten-complete-original-Silesia-run median is nonregressing in all **three** accepted metrics: archive bytes, encoding time and decoding time. Do not infer a candidate win from H0 mismatch alone. The current accepted engine remains untouched.
+A candidate is only promotable if **fully integrated, fully framed, byte-exact** and a ten-complete-original-Silesia-run median is nonregressing in all **three** accepted metrics: archive bytes, encoding time and decoding time. Do not infer a candidate win from H0 mismatch alone. The current accepted engine remains untouched.
 
 ## Provenance
 
