@@ -42,6 +42,20 @@ func huffmanCannotBeat(block []byte, selectedSize int) bool {
 }
 
 func encodeMathRegionBlockHistory(block []byte, history []byte) (byte, []byte, error) {
+	// On branch-dense regions, normalize relative operands before the
+	// existing native BWT path. Other regions keep all current modes.
+	// This avoids a second full mathematical/entropy encoding pass.
+	if shouldBranchNormalize(block) {
+		normalized := normalizeBranchRelative(block, false)
+		encoded, bmode, err := encodeBWTSubregions(normalized)
+		if err != nil { return 0, nil, err }
+		if len(encoded)+1 < len(block) {
+			payload := make([]byte, 1, len(encoded)+1)
+			payload[0] = bmode
+			payload = append(payload, encoded...)
+			return blockBranchBWT, payload, nil
+		}
+	}
 	// Determine match and predictor results first, then avoid a redundant
 	// native Huffman pass only when an entropy bound proves it cannot win.
 	var predPayload, matchPayload []byte

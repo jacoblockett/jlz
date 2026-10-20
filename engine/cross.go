@@ -51,7 +51,7 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 		if size == 0 || size > stage3BlockSize || size > n-produced || plen > uint64(r.Len()) || plen > size*8+1024*1024 || (size < stage3BlockSize && size < n-produced) {
 			return nil, errors.New("cross block bounds")
 		}
-		if mode != stage3Raw && mode != blockCrossPacked && (mode == blockOldDictionary || (mode > blockAdditivePacked && mode != blockBWTBijective && mode != blockBWTSubregions)) {
+		if mode != stage3Raw && mode != blockCrossPacked && (mode == blockOldDictionary || (mode > blockAdditivePacked && mode != blockBWTBijective && mode != blockBWTSubregions && mode != blockBranchBWT)) {
 			return nil, errors.New("cross block mode")
 		}
 		if mode == stage3Raw && plen != size {
@@ -94,6 +94,22 @@ func decodeMixedCross(r *bytes.Reader, n uint64) ([]byte, error) {
 						dec, err = decodeBWTBijective(b.payload, b.size)
 					} else if b.typ == blockBWTSubregions {
 						dec, err = decodeBWTSubregions(b.payload, b.size)
+					} else if b.typ == blockBranchBWT {
+						if len(b.payload) < 2 {
+							err = errors.New("branch-BWT payload too short")
+						} else {
+							switch b.payload[0] {
+							case blockBWTBijective:
+								dec, err = decodeBWTBijective(b.payload[1:], b.size)
+							case blockBWTSubregions:
+								dec, err = decodeBWTSubregions(b.payload[1:], b.size)
+							default:
+								err = errors.New("invalid branch-BWT subtype")
+							}
+							if err == nil {
+								dec = normalizeBranchRelative(dec, true)
+							}
+						}
 					} else if b.typ == stage3Raw {
 						dec = b.payload
 					} else if b.typ == blockCrossPacked {
