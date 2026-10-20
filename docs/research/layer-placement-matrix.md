@@ -148,3 +148,8 @@ Current **12-file original Silesia** accepted complete archive: **60,244,257 B**
 - **Current V2-tokenized math literal column → static conditional bitwise rANS**: 18 extracted original source streams, current packed 913,452 B versus new coded+model 997,565 B, all inverse exact. **CLOSED this static bit-prefix coder placement**; adaptive mathematical models and differently structured reference representations remain open.
 
 All are component-only screens: no complete JLZ archive candidate, no qualifying 10-run original-Silesia result, no new decoder or PGO change. [Methods and source architecture references](../reports/2026-10-20-native-lzp-field-delta-bitcontext-screens.md).
+
+
+## libbsc QLFC-inspired rank/run supplementary native BWT (2026-10-20)
+
+**SCREENED at actually selected BWT region output; then INTEGRATED TWICE and REJECTED.** Reversible current BWT output symbol-run MTF ranks and varint lengths encoded as two existing native Huffman/FSE streams, charged all models and framing. Among 451 actually selected current original-Silesia BWT blocks, component oracle 41 wins/90,001 B potential, 39 osdb blocks accounted for 89,665 B. Full 12-file original-Silesia native archive candidate 58,683,911 B versus accepted 58,767,739 B, twice confirmed across ten candidate-only encode/decode runs with 120 exact reconstructions each. However both encoder/decode medians regressed: 5.552824776/2.020571492 s and 5.539367754/2.035238451 s versus historical accepted 4.7873709325/1.8721679705 s. An 8KiB cheap preflight and reuse of incumbent MTF symbols did not preserve performance. **REJECT both concrete placements**; remove experimental code; keep format unchanged. [Quantitative report](../reports/2026-10-20-bwt-run-rank-qlfc-supplement-rejected.md).
