@@ -41,3 +41,8 @@ The current accepted native Go engine is source-aligned with GitHub `main` commi
 ## New current accepted benchmark (2026-10-20)
 
 Accepted `main` native automatic record-aligned field-lane + Huffman decoder improvement (source commit `37f02082063fed3bb42aa05817dd0afabd0790ae`): complete original 12-file Silesia **58,924,248 B** from **211,938,580 B original**, ten candidate-only complete-run medians **4.8896856215 s compression and 1.876473360 s decompression**. Prior historical accepted **60,244,257 B / 5.081535442 / 1.9046838445**, not rerun. Automatic mode13 source-period lane width 12..64 may require this newer decoder; old archives decode. Original committed `default.pgo` unchanged. [Full report](reports/2026-10-20-record-aligned-native-lanes-accepted.md). Do not rerun older references during new candidate tests.
+
+
+## Accepted reference after efficient math-region field gating (2026-10-20)
+
+The new current accepted engine `main` source `e632bc02872b983c050785d88297425457bc3e6f` compresses complete original twelve-file Silesia 211,938,580 B into **58,767,739 B**, ten complete candidate-only median **4.7873709325 s encode /1.8721679705 s decode**. Previous accepted historical reference **58,924,248 B /4.8896856215 /1.876473360** must **not** be rerun. [Validation/benchmark report](reports/2026-10-20-cheap-aligned-field-math-regions-accepted.md). `default.pgo` unchanged, no new on-disk formats; small nominal -0.23% decode delta is inconclusive.
