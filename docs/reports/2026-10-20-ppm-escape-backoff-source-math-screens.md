@@ -14,7 +14,7 @@ Disposable **original native-Go**, decoder-synchronous and independently bounded
 
 **Source identity:** all 12 complete *original* Silesia members were available unmodified, **211,938,580 bytes**, and all twelve SHA-256 identities matched committed `docs/reports/2026-10-18-round23-silesia-sha256.txt`. Selected **first/middle/last natural 256-KiB source blocks** from specified originals; every tested stream decoded back **byte for byte** and was verified by `bytes.Equal`. These are diagnostic source-block component tests, **not** full JLZ archive tests or actual automatic selection.
 
-| Component screen | Accepted JLZ existing selected representation on those blocks (B) | New bounded PPM representation (B) | Difference | Exact block restorations |
+| Component screen | Current JLZ component for the same diagnostic block (B) | New bounded PPM component (B) | Difference | Exact block restorations |
 | --- | ---: | ---: | ---: | ---: |
 | No-exclusion order-2 PPM original source, 24 blocks from 8 originals, vs existing full per-block BWT+MTF+native FSE | 2,142,635 | 3,781,420 | +1,638,785 B, worse | 24/24 |
 | No-exclusion order-2 PPM on matcher literals, 36 blocks from all twelve originals, vs existing fully packed literal stream | 2,453,528 | 3,919,962 | +1,466,434 B, worse | 36/36 |
