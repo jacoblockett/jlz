@@ -20,6 +20,8 @@ Maintain a repository history of successful and failed research. **Prioritize st
 
 Do not repeat failed parameter tweaks without a genuinely different mechanism or placement. Distinguish a failed implementation from an untested theory, and examine plausible supplementary placements before declaring a strategy exhausted.
 
+**Pre-experiment novelty gate:** Before writing prototype code, search the strategy ledger, placement matrix, attempted-ideas register, historical reports, and current implementation for functionally equivalent mechanisms (including different names for the same algorithm). Record the nearest previous attempts, precise algorithmic and placement differences, and why the new candidate avoids the prior failure. If no substantive difference exists, do not rerun it; select a different research direction. An earlier report's stale `OPEN` label is not evidence of novelty when newer work has already tested it.
+
 Maximize improvements while minimizing regressions. **No fixed acceptance threshold applies.** Evaluate compressed size, encoding/decoding speed, memory, complexity, and compatibility together; ask when an important tradeoff or candidate decision is uncertain.
 
 ### Candidates, Integration, and Benchmarking
