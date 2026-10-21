@@ -24,6 +24,12 @@ Do not repeat failed parameter tweaks without a genuinely different mechanism or
 
 Maximize improvements while minimizing regressions. **No fixed acceptance threshold applies.** Evaluate compressed size, encoding/decoding speed, memory, complexity, and compatibility together; ask when an important tradeoff or candidate decision is uncertain.
 
+### Current Zstd-Focused Research Campaign
+
+Examine Meta Zstd **exclusively as the current external architectural inspiration**, with the explicit [Zstd coverage and evidence matrix](docs/research/zstd-architecture-coverage.md) as the active research queue. Before closing an idea, audit actual upstream source, compare prior JLZ trials by mechanism and placement, test credible original native-Go independent and supplementary variants (including refinement and eliminating redundant work), and document the specific measured limits. Do not mistake one losing implementation, early component screen, or stale research note for an exhausted theory. Continue across the remaining OPEN Zstd mechanism families before diverting to generic JLZ micro-optimization or unrelated compressor families.
+
+**Exhaustion claims require scoped evidence.** It is not possible to enumerate all imaginable algorithm variants; record the tested mechanism, full set of plausible bounded placements and refinements actually assessed, empirical or mathematical resource/size ceilings, and still-untested alternatives. Only advance promising integrated candidates to ten complete original-Silesia runs; do not run ten expensive whole-codec tests for demonstrably uncompetitive exploratory components. Maintain the accepted JLZ engine and preserve independent block decoding unless a validated improvement justifies otherwise.
+
 ### Candidates, Integration, and Benchmarking
 
 Always test candidates at component level first, then integrate promising results **as supplements to JLZ's existing architecture**, not isolated replacements. Consider replacement only if isolated experiments demonstrate substantial compression and speed improvements. Even then, test supplementary integration.
